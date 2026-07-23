@@ -132,11 +132,11 @@ export default function SopSimulator({ allowedScenarios, hideTitle }: { allowedS
             >
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{sc.icon}</span>
-                <span className={`text-xs font-bold ${isActive ? 'text-brand-900' : 'text-slate-700'}`}>
+                <span className={`text-sm font-bold ${isActive ? 'text-brand-900' : 'text-slate-700'}`}>
                   {sc.title}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-2">{sc.trigger}</p>
+              <p className="text-xs text-slate-400 mt-2">{sc.trigger}</p>
             </button>
           );
         })}
@@ -146,8 +146,8 @@ export default function SopSimulator({ allowedScenarios, hideTitle }: { allowedS
       <div className="bg-slate-950 rounded-2xl border border-slate-800 p-5 overflow-hidden shadow-inner relative">
 
         <div className="mb-5 pb-4 border-b border-slate-800/80">
-          <h4 className="text-xs font-bold text-slate-200 flex items-center gap-1.5 leading-relaxed">
-            <span className="text-red-500 text-sm">⚠️</span> {scenario.trigger}
+          <h4 className="text-sm font-bold text-slate-200 flex items-center gap-1.5 leading-relaxed">
+            <span className="text-red-500 text-base">⚠️</span> {scenario.trigger}
           </h4>
         </div>
 
@@ -170,20 +170,20 @@ export default function SopSimulator({ allowedScenarios, hideTitle }: { allowedS
                     <div className="text-slate-600 text-lg shrink-0 select-none">→</div>
                   )}
                   <div
-                    className="p-2.5 rounded-lg border text-[10px] leading-relaxed flex flex-col gap-1.5 border-slate-700 bg-slate-900/40 min-w-[180px] flex-1 basis-[180px]"
+                    className="p-2.5 rounded-lg border text-xs leading-relaxed flex flex-col gap-1.5 border-slate-700 bg-slate-900/40 min-w-[180px] flex-1 basis-[180px]"
                   >
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[9px] bg-brand-600 text-white px-1.5 py-0.5 rounded font-bold">
+                      <span className="text-[11px] bg-brand-600 text-white px-1.5 py-0.5 rounded font-bold">
                         {st.time}
                       </span>
                       {st.badge && (
-                        <span className="text-[7px] bg-slate-700/60 text-slate-300 px-1.5 py-0.5 rounded font-black uppercase">
+                        <span className="text-[9px] bg-slate-700/60 text-slate-300 px-1.5 py-0.5 rounded font-black uppercase">
                           {st.badge}
                         </span>
                       )}
                     </div>
                     <div className="flex items-start gap-1.5">
-                      <span className="shrink-0 text-xs mt-0.5">{icon}</span>
+                      <span className="shrink-0 text-sm mt-0.5">{icon}</span>
                       <p className="text-slate-300">{st.desc}</p>
                     </div>
                   </div>

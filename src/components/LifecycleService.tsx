@@ -159,30 +159,30 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
               <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-xs text-slate-700 pb-2 border-b border-slate-100">
-                    <span className="text-sm">🧔</span> 住客端现状
+                  <div className="flex items-center gap-1.5 font-bold text-sm text-slate-700 pb-2 border-b border-slate-100">
+                    <span className="text-base">🧔</span> 住客端现状
                   </div>
-                  <p className="text-xs text-slate-500 mt-3 leading-relaxed">{stage.guestAction}</p>
+                  <p className="text-sm text-slate-500 mt-3 leading-relaxed">{stage.guestAction}</p>
                 </div>
-                <div className="text-[11px] text-indigo-900 bg-brand-50 px-2.5 py-1 rounded-lg mt-4 font-semibold">⭐ 极致便捷：微信扫码直达</div>
+                <div className="text-xs text-indigo-900 bg-brand-50 px-2.5 py-1 rounded-lg mt-4 font-semibold">⭐ 极致便捷：微信扫码直达</div>
               </div>
               <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-xs text-slate-700 pb-2 border-b border-slate-100">
-                    <span className="text-sm">👩‍💻</span> 员工端现状
+                  <div className="flex items-center gap-1.5 font-bold text-sm text-slate-700 pb-2 border-b border-slate-100">
+                    <span className="text-base">👩‍💻</span> 员工端现状
                   </div>
-                  <p className="text-xs text-slate-500 mt-3 leading-relaxed">{stage.staffAction}</p>
+                  <p className="text-sm text-slate-500 mt-3 leading-relaxed">{stage.staffAction}</p>
                 </div>
-                <div className="text-[11px] text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg mt-4 font-medium">⚙️ 连接现有 PMS / 移动工作台</div>
+                <div className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg mt-4 font-medium">⚙️ 连接现有 PMS / 移动工作台</div>
               </div>
               <div className="bg-slate-900 text-white rounded-xl p-4 border border-slate-800 shadow-lg flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-xs text-yellow-400 pb-2 border-b border-slate-800">
-                    <span className="text-sm">🤖</span> 智能体做了什么？
+                  <div className="flex items-center gap-1.5 font-bold text-sm text-yellow-400 pb-2 border-b border-slate-800">
+                    <span className="text-base">🤖</span> 智能体做了什么？
                   </div>
-                  <p className="text-xs text-slate-300 mt-3 leading-relaxed font-medium">{stage.aiAction}</p>
+                  <p className="text-sm text-slate-300 mt-3 leading-relaxed font-medium">{stage.aiAction}</p>
                 </div>
-                <div className="text-[11px] text-green-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg mt-4 font-bold flex items-center gap-1">
+                <div className="text-xs text-green-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg mt-4 font-bold flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />自动处理 · 全流程闭痕留痕
                 </div>
               </div>
@@ -192,15 +192,15 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <div className="flex gap-2.5 items-start bg-indigo-50/40 p-3.5 rounded-xl border border-brand-100/30">
                 <span className="text-xl">💝</span>
                 <div>
-                  <h4 className="text-xs font-bold text-brand-900">住客获得价值</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueGuest}</p>
+                  <h4 className="text-sm font-bold text-brand-900">住客获得价值</h4>
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueGuest}</p>
                 </div>
               </div>
               <div className="flex gap-2.5 items-start bg-emerald-50/40 p-3.5 rounded-xl border border-emerald-100/30">
                 <span className="text-xl">💰</span>
                 <div>
-                  <h4 className="text-xs font-bold text-emerald-900">酒店获得价值</h4>
-                  <p className="text-xs text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueHotel}</p>
+                  <h4 className="text-sm font-bold text-emerald-900">酒店获得价值</h4>
+                  <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueHotel}</p>
                 </div>
               </div>
             </div>
@@ -340,7 +340,7 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <button
                 key={d.id}
                 onClick={() => setActiveManagerDomain(d.id)}
-                className={`px-3 py-2 rounded-xl text-xs font-bold transition w-full text-center ${
+                className={`px-3 py-2 rounded-xl text-sm font-bold transition w-full text-center ${
                   activeManagerDomain === d.id
                     ? 'bg-brand-500 text-white shadow-md'
                     : 'bg-white border border-slate-100 text-slate-600 hover:bg-slate-100'
@@ -401,19 +401,19 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <h3 className="font-display text-lg font-bold text-slate-900">
                 {managerDomain.name}
               </h3>
-              <p className="text-xs text-slate-500 mt-1">{managerDomain.desc}</p>
+              <p className="text-sm text-slate-500 mt-1">{managerDomain.desc}</p>
 
               {/* Two-column content grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
                 {/* 日常做法 */}
                 <div className="bg-purple-50/50 rounded-xl p-4 border border-purple-100/80">
-                  <div className="flex items-center gap-2 text-purple-600 font-bold text-sm mb-3">
+                  <div className="flex items-center gap-2 text-purple-600 font-bold text-base mb-3">
                     <TrendingUp className="w-4 h-4" />
                     经营决策者日常怎么管
                   </div>
                   <ul className="space-y-2">
                     {managerDomain.currentSituation.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-slate-700 leading-relaxed">
+                      <li key={i} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
                         <span className="text-purple-400 font-bold shrink-0 mt-0.5">•</span>
                         <span dangerouslySetInnerHTML={{ __html: item }}></span>
                       </li>
@@ -423,13 +423,13 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
 
                 {/* AI接管 */}
                 <div className="bg-brand-50/50 rounded-xl p-4 border border-brand-100/80">
-                  <div className="flex items-center gap-2 text-brand-600 font-bold text-sm mb-3">
+                  <div className="flex items-center gap-2 text-brand-600 font-bold text-base mb-3">
                     <Bot className="w-4 h-4" />
                     AI 智能体接管后
                   </div>
                   <ul className="space-y-2">
                     {managerDomain.aiValue.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-slate-700 leading-relaxed">
+                      <li key={i} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
                         <span className="text-brand-500 font-bold shrink-0 mt-0.5">✓</span>
                         <span dangerouslySetInnerHTML={{ __html: item }}></span>
                       </li>
@@ -442,8 +442,8 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <div className="mt-4 bg-gradient-to-r from-brand-50/60 to-emerald-50/40 rounded-xl p-4 border border-brand-100/40 flex items-start gap-3">
                 <span className="text-xl shrink-0">💝</span>
                 <div>
-                  <h4 className="text-xs font-bold text-brand-900">决策者使用智能体后的获得</h4>
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-medium">
+                  <h4 className="text-sm font-bold text-brand-900">决策者使用智能体后的获得</h4>
+                  <p className="text-sm text-slate-600 mt-1.5 leading-relaxed font-medium">
                     {managerDomain.roleValue}
                   </p>
                 </div>

@@ -164,7 +164,7 @@ export default function ProductShowcase() {
                       </ul>
 
                       <div className="pt-6">
-                        <div className="text-xs font-bold text-slate-500 mb-3">AI 智能体技能矩阵</div>
+                        <div className="text-sm font-bold text-slate-500 mb-3">AI 智能体技能矩阵</div>
                         <div className="flex flex-wrap gap-2">
                           {[
                             '智能问答', '客房服务', '吐槽评价', '周边推荐', '订房购物',
@@ -174,7 +174,7 @@ export default function ProductShowcase() {
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-xs font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
                             >
                               {tag}
                             </span>
@@ -211,7 +211,7 @@ export default function ProductShowcase() {
                       </ul>
 
                       <div className="pt-6">
-                        <div className="text-xs font-bold text-slate-500 mb-3">AI 员工技能矩阵</div>
+                        <div className="text-sm font-bold text-slate-500 mb-3">AI 员工技能矩阵</div>
                         <div className="flex flex-wrap gap-2">
                           {[
                             '客房工单处理', '住客吐槽管理', '行李寄存管理',
@@ -219,7 +219,7 @@ export default function ProductShowcase() {
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-xs font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
                             >
                               {tag}
                             </span>
@@ -256,7 +256,7 @@ export default function ProductShowcase() {
                       </ul>
 
                       <div className="pt-6">
-                        <div className="text-xs font-bold text-slate-500 mb-3">AI 管理技能矩阵</div>
+                        <div className="text-sm font-bold text-slate-500 mb-3">AI 管理技能矩阵</div>
                         <div className="flex flex-wrap gap-2">
                           {[
                             '运营数据统计', '客户数据统计', '收入数据统计',
@@ -265,7 +265,7 @@ export default function ProductShowcase() {
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-xs font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
                             >
                               {tag}
                             </span>

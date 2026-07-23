@@ -112,7 +112,7 @@ export default function RolePainPoints({ allowedRoles, hideTitle }: Props) {
           {/* Column 2: BEFORE: Orange Alert */}
           <div className="lg:col-span-4 bg-orange-50/50 rounded-xl p-4 border border-orange-100/80 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 text-orange-600 font-bold text-sm mb-3">
+              <div className="flex items-center gap-2 text-orange-600 font-bold text-base mb-3">
                 <AlertCircle className="w-4 h-4 shrink-0" />
                 没有智能体时
               </div>
@@ -123,14 +123,14 @@ export default function RolePainPoints({ allowedRoles, hideTitle }: Props) {
                       {i + 1}
                     </span>
                     <div>
-                      <h4 className="text-[11px] font-bold text-slate-700">{prob.scenarios}</h4>
-                      <p className="text-[11px] text-orange-500 font-medium mt-0.5">{prob.consequences}</p>
+                      <h4 className="text-xs font-bold text-slate-700">{prob.scenarios}</h4>
+                      <p className="text-xs text-orange-500 font-medium mt-0.5">{prob.consequences}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="mt-3 pt-2 border-t border-orange-200/40 text-[11px] text-orange-600/80 font-medium flex items-center gap-1">
+            <div className="mt-3 pt-2 border-t border-orange-200/40 text-xs text-orange-600/80 font-medium flex items-center gap-1">
               <ShieldAlert className="w-3 h-3 shrink-0" />
               传统 PMS 只做记录，不能做判断
             </div>
@@ -139,7 +139,7 @@ export default function RolePainPoints({ allowedRoles, hideTitle }: Props) {
           {/* Column 3: AFTER: Blue AI Empowerment */}
           <div className="lg:col-span-4 bg-brand-50/50 rounded-xl p-4 border border-brand-100/80 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 text-brand-600 font-bold text-sm mb-3">
+              <div className="flex items-center gap-2 text-brand-600 font-bold text-base mb-3">
                 <CheckCircle className="w-4 h-4 shrink-0" />
                 HotelClaw 赋能
               </div>
@@ -150,16 +150,16 @@ export default function RolePainPoints({ allowedRoles, hideTitle }: Props) {
                       {i + 1}
                     </span>
                     <div>
-                      <h4 className="text-[11px] font-bold text-slate-700">{aiItem.scenarios}</h4>
+                      <h4 className="text-xs font-bold text-slate-700">{aiItem.scenarios}</h4>
                       {aiItem.metrics && (
-                        <p className="text-[11px] text-brand-600 font-medium mt-0.5">核心指标：{aiItem.metrics}</p>
+                        <p className="text-xs text-brand-600 font-medium mt-0.5">核心指标：{aiItem.metrics}</p>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="mt-3 pt-2 border-t border-brand-200/40 text-[11px] text-brand-600/80 font-medium flex items-center gap-1">
+            <div className="mt-3 pt-2 border-t border-brand-200/40 text-xs text-brand-600/80 font-medium flex items-center gap-1">
               <BadgeInfo className="w-3 h-3 shrink-0" />
               自动派单、任务跟踪，越用越聪明
             </div>

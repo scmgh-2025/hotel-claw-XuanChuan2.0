@@ -1,7 +1,7 @@
 import { PainPoint, LifecycleStage, ModelCard, ArchLayer, OnboardingStep, PartnerHotel, RoleDomain } from './types';
 
 export const IMAGE_PATHS = {
-  huangxiaoxi: './images/IP配图.png',
+  huangxiaoxi: './images/黄小西.png',
   guestScan: './images/guest_scan_qr_1783253674673.jpg',
   dashboard: './images/manager_dashboard_1783253693906.jpg',
 };
@@ -414,7 +414,7 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
   {
     step: 4,
     title: '下载打印，即刻上线',
-    desc: '系统 1 分钟自动渲染并生成酒店各房间专属服务二维码，下载打印贴在房间，即刻开始享受爆满收益。',
+    desc: '系统1分钟自动渲染并生成酒店各房间专属服务二维码，下载打印贴在房间，即刻开启智慧酒店。',
     duration: '2 分钟'
   }
 ];
@@ -422,13 +422,16 @@ export const ONBOARDING_STEPS: OnboardingStep[] = [
 export const PARTNER_HOTELS: PartnerHotel[] = [
   { name: '贵州饭店·迎宾楼', type: '高端商务型', tag: '省府国宾、商务旗舰', image: './images/贵州饭店.jpg' },
   { name: '铜仁国宾馆', type: '高端商务型', tag: '外事接待、高奢地标', image: './images/铜仁国宾馆.jpg' },
-  { name: '遵义贵州饭店', type: '高端商务型', tag: '红色文旅、会议标杆', image: './images/遵投丽呈酒店.jpg' },
+  { name: '遵义贵州饭店', type: '高端商务型', tag: '红色文旅、会议标杆', image: './images/遵义贵州饭店.jpg' },
   { name: '汉庭酒店 (安顺古城店)', type: '城市连锁型', tag: '大流量、极致高人效', image: './images/汉庭酒店.jpg' },
   { name: '维也纳国际 (贵阳北站店)', type: '城市连锁型', tag: '交通枢纽、差旅首选', image: './images/维也纳国际酒店.jpg' },
   { name: '都匀匀东贵州饭店', type: '会议度假型', tag: '生态度假、大型会展', image: './images/匀东贵州饭店.jpg' },
-  { name: '毕节阿西里西大酒店', type: '度假文旅型', tag: '大美黔山、避暑首选', image: './images/阿西里西大酒店.jpg' },
-  { name: '贵阳观山湖希尔顿惠庭', type: '精品民宿型', tag: '小资情调、私域标杆', image: './images/希尔顿惠庭酒店.jpg' },
-  { name: '贵阳千山和悦酒店', type: '精品民宿型', tag: '轻奢山水、度假网红', image: './images/千山和悦酒店.jpg' }
+  { name: '毕节阿西里西大酒店', type: '高端度假文旅型', tag: '大美黔山、避暑首选', image: './images/阿西里西大酒店.jpg' },
+  { name: '贵阳观山湖希尔顿惠庭', type: '高端商务型', tag: '小资情调、私域标杆', image: './images/希尔顿惠庭酒店.jpg' },
+  { name: '贵阳千山和悦酒店', type: '精品商务型', tag: '轻奢山水、度假网红', image: './images/千山和悦酒店.jpg' },
+  { name: '贵阳天怡豪生大酒店', type: '高端商务型', tag: '优雅舒适，临近景点', image: './images/贵阳天怡豪生大酒店.jpg' },
+  { name: '林城万宜酒店', type: '高端商务型', tag: '会议定点、交通枢纽', image: './images/林城万宜酒店.jpg' },
+  { name: '村上见全景民宿', type: '精品民宿型', tag: '苗家风情、舒适便捷', image: './images/村上见全景民宿.jpg' }
 ];
 
 export const PITCH_CARDS = [

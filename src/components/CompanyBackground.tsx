@@ -35,26 +35,26 @@ export default function CompanyBackground() {
                   <div className="bg-white rounded-xl p-2.5 shadow-sm border border-slate-100">
                     {getIcon(idx)}
                   </div>
-                  <span className="text-[11px] font-black text-brand-700 bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-lg">
+                  <span className="text-sm font-black text-brand-700 bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-lg">
                     {co.badge}
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="font-display text-xs font-black text-slate-800 leading-tight">
+                  <h3 className="font-display text-base font-black text-slate-800 leading-tight">
                     {co.name}
                   </h3>
-                  <p className="text-[11px] text-slate-500 leading-relaxed mt-2 font-medium">
+                  <p className="text-sm text-slate-500 leading-relaxed mt-2 font-medium">
                     {co.desc}
                   </p>
                 </div>
               </div>
 
               <div className="mt-5 pt-4 border-t border-slate-200/60">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <h4 className="text-base font-bold text-slate-400 uppercase tracking-widest">
                   对酒店的核心承载价值
                 </h4>
-                <p className="text-[11px] text-brand-900 font-bold mt-1 leading-relaxed">
+                <p className="text-sm text-brand-900 font-bold mt-1 leading-relaxed">
                   {co.value}
                 </p>
               </div>
@@ -66,24 +66,24 @@ export default function CompanyBackground() {
       {/* Triple Security Guarantee Bar */}
       <div className="mt-6 bg-slate-900 text-white rounded-2xl p-4 flex flex-col sm:flex-row justify-around items-center gap-4 text-center border border-slate-800">
         <div className="flex items-center gap-2">
-          <span className="text-xl">🔒</span>
+          <span className="text-2xl">🔒</span>
           <div className="text-left">
-            <h4 className="text-xs font-bold text-slate-200">上市公司级安全</h4>
-            <p className="text-[11px] text-slate-500">双重沙箱隔离 · 绝对保护住客隐私</p>
+            <h4 className="text-base font-bold text-slate-200">上市公司级安全</h4>
+            <p className="text-sm text-slate-500">双重沙箱隔离 · 绝对保护住客隐私</p>
           </div>
         </div>
         <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-x border-slate-800/80 px-0 sm:px-8 py-2 sm:py-0">
-          <span className="text-xl">💳</span>
+          <span className="text-2xl">💳</span>
           <div className="text-left">
-            <h4 className="text-xs font-bold text-slate-200">央行支付合规</h4>
-            <p className="text-[11px] text-slate-500">佣金提成秒清算 · 交易流水无缝入账</p>
+            <h4 className="text-base font-bold text-slate-200">央行支付合规</h4>
+            <p className="text-sm text-slate-500">佣金提成秒清算 · 交易流水无缝入账</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xl">🛰️</span>
+          <span className="text-2xl">🛰️</span>
           <div className="text-left">
-            <h4 className="text-xs font-bold text-slate-200">行业顶尖底盘</h4>
-            <p className="text-[11px] text-slate-500">百度/阿里/微软顶尖专家大模型算法</p>
+            <h4 className="text-base font-bold text-slate-200">行业顶尖底盘</h4>
+            <p className="text-sm text-slate-500">百度/阿里/微软顶尖专家大模型算法</p>
           </div>
         </div>
       </div>

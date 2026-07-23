@@ -22,10 +22,10 @@ export default function CoreCapabilities() {
       <div className="space-y-5">
         <div className="flex items-center gap-2 pb-2">
           <Layers className="w-5 h-5 text-brand-500" />
-          <h3 className="font-display text-lg font-bold text-slate-900">
+          <h3 className="font-display text-xl font-bold text-slate-900">
             六层技术架构 · 保驾护航
           </h3>
-          <span className="bg-indigo-50 text-brand-900 text-xs px-2.5 py-0.5 rounded-full font-bold border border-brand-200">
+          <span className="bg-indigo-50 text-brand-900 text-sm px-2.5 py-0.5 rounded-full font-bold border border-brand-200">
             金融级云原生
           </span>
         </div>
@@ -46,12 +46,12 @@ export default function CoreCapabilities() {
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className={`font-mono text-xs font-black ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                    <span className={`font-mono text-sm font-black ${isActive ? 'text-white' : 'text-slate-400'}`}>
                       {layer.level}
                     </span>
-                    <span className="text-xs font-bold font-display">{layer.name}</span>
+                    <span className="text-sm font-bold font-display">{layer.name}</span>
                   </div>
-                  <span className={`text-[11px] uppercase tracking-widest ${isActive ? 'text-white/80' : 'text-slate-400'}`}>
+                  <span className={`text-xs uppercase tracking-widest ${isActive ? 'text-white/80' : 'text-slate-400'}`}>
                     Active
                   </span>
                 </button>
@@ -61,25 +61,25 @@ export default function CoreCapabilities() {
 
           {/* Expanded layer description card */}
           <div className="lg:col-span-8 bg-slate-50 rounded-2xl p-5 border border-slate-100">
-            <span className="font-mono text-xs font-extrabold text-brand-600 tracking-widest bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-full inline-block">
+            <span className="font-mono text-sm font-extrabold text-brand-600 tracking-widest bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-full inline-block">
               {selectedLayer.level} - {selectedLayer.name}
             </span>
             
             <div className="mt-4">
-              <p className="text-xs text-brand-900 font-bold leading-relaxed mt-1 bg-brand-50 p-3 rounded-xl border border-brand-100/60">
+              <p className="text-sm text-brand-900 font-bold leading-relaxed mt-1 bg-brand-50 p-3 rounded-xl border border-brand-100/60">
                 "{selectedLayer.translation}"
               </p>
             </div>
 
             <div className="mt-5">
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+              <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">
                 核心集成组件包括：
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {selectedLayer.items.map((item, idx) => (
                   <div
                     key={idx}
-                    className="bg-white border border-slate-100 rounded-xl p-2.5 text-xs text-slate-700 flex items-center gap-1.5 shadow-sm font-semibold"
+                    className="bg-white border border-slate-100 rounded-xl p-2.5 text-sm text-slate-700 flex items-center gap-1.5 shadow-sm font-semibold"
                   >
                     <span className="text-brand-500 font-bold">✓</span>
                     {item}
