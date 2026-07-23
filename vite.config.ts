@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: './',
+    base: '/hotel-claw-XuanChuan2.0/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
