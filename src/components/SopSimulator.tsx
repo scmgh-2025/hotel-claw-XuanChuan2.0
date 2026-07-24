@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Step {
   time: string;
@@ -143,54 +143,58 @@ export default function SopSimulator({ allowedScenarios, hideTitle }: { allowedS
       </div>
 
       {/* Simulator Sandbox */}
-      <div className="bg-slate-950 rounded-2xl border border-slate-800 p-5 overflow-hidden shadow-inner relative">
+      <div className="bg-gradient-to-br from-slate-50 to-brand-50/30 rounded-2xl border border-slate-200 p-6 overflow-hidden shadow-sm">
 
-        <div className="mb-5 pb-4 border-b border-slate-800/80">
-          <h4 className="text-sm font-bold text-slate-200 flex items-center gap-1.5 leading-relaxed">
-            <span className="text-red-500 text-base">⚠️</span> {scenario.trigger}
-          </h4>
-        </div>
-
-        <div className="mb-3">
-        </div>
-
-        {/* Stepper Content */}
-        <div className="font-mono">
-          <div className="flex flex-wrap items-center gap-1">
-            {scenario.steps.map((st, idx) => {
-              let icon = '⚫';
-              if (st.type === 'alert') icon = '🚨';
-              else if (st.type === 'ai') icon = '🧠';
-              else if (st.type === 'action') icon = '📱';
-              else if (st.type === 'done') icon = '✓';
-
-              return (
-                <React.Fragment key={idx}>
-                  {idx > 0 && (
-                    <div className="text-slate-600 text-lg shrink-0 select-none">→</div>
-                  )}
-                  <div
-                    className="p-2.5 rounded-lg border text-xs leading-relaxed flex flex-col gap-1.5 border-slate-700 bg-slate-900/40 min-w-[180px] flex-1 basis-[180px]"
-                  >
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[11px] bg-brand-600 text-white px-1.5 py-0.5 rounded font-bold">
-                        {st.time}
-                      </span>
-                      {st.badge && (
-                        <span className="text-[9px] bg-slate-700/60 text-slate-300 px-1.5 py-0.5 rounded font-black uppercase">
-                          {st.badge}
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex items-start gap-1.5">
-                      <span className="shrink-0 text-sm mt-0.5">{icon}</span>
-                      <p className="text-slate-300">{st.desc}</p>
-                    </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
+        <div className="mb-6 pb-4 border-b border-slate-200">
+          <div className="flex items-start gap-2">
+            <span className="text-red-500 text-xl shrink-0 mt-0.5">⚠️</span>
+            <h4 className="text-base font-bold text-slate-700 leading-relaxed">
+              {scenario.trigger}
+            </h4>
           </div>
+        </div>
+
+        {/* Stepper Content - 纵向时间线 */}
+        <div className="space-y-3">
+          {scenario.steps.map((st, idx) => {
+            let icon = '⚫';
+            let borderColor = 'border-slate-300';
+            let cardBg = 'bg-white';
+            let iconBg = 'bg-slate-100';
+            if (st.type === 'alert') { icon = '🚨'; borderColor = 'border-red-400'; cardBg = 'bg-red-50/40'; iconBg = 'bg-red-100'; }
+            else if (st.type === 'ai') { icon = '🧠'; borderColor = 'border-indigo-400'; cardBg = 'bg-indigo-50/40'; iconBg = 'bg-indigo-100'; }
+            else if (st.type === 'action') { icon = '📱'; borderColor = 'border-blue-400'; cardBg = 'bg-blue-50/40'; iconBg = 'bg-blue-100'; }
+            else if (st.type === 'done') { icon = '✓'; borderColor = 'border-green-400'; cardBg = 'bg-green-50/40'; iconBg = 'bg-green-100'; }
+
+            return (
+              <div key={idx} className="relative flex gap-3">
+                {/* 时间线连接线 */}
+                {idx < scenario.steps.length - 1 && (
+                  <div className="absolute left-[22px] top-12 bottom-[-16px] w-0.5 bg-slate-200" />
+                )}
+
+                {/* 图标节点 */}
+                <div className={`shrink-0 w-11 h-11 rounded-full ${iconBg} flex items-center justify-center text-lg z-10 ring-2 ring-white`}>
+                  {icon}
+                </div>
+
+                {/* 内容卡片 */}
+                <div className={`flex-1 ${cardBg} border-l-4 ${borderColor} rounded-r-lg p-4 transition-all hover:shadow-sm`}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm bg-slate-800 text-white px-2.5 py-0.5 rounded font-bold font-mono">
+                      {st.time}
+                    </span>
+                    {st.badge && (
+                      <span className="text-xs bg-brand-100 text-brand-700 px-2.5 py-0.5 rounded-full font-bold">
+                        {st.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed">{st.desc}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -45,7 +45,11 @@ export default function CompanyBackground() {
                     {co.name}
                   </h3>
                   <p className="text-sm text-slate-500 leading-relaxed mt-2 font-medium">
-                    {co.desc}
+                    {co.desc.map((seg: { text: string; bold: boolean }, i: number) =>
+                      seg.bold
+                        ? <span key={i} className="font-bold text-slate-800">{seg.text}</span>
+                        : <span key={i}>{seg.text}</span>
+                    )}
                   </p>
                 </div>
               </div>

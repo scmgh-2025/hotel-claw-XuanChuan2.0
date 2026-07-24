@@ -61,7 +61,7 @@ export default function CoreCapabilities() {
 
           {/* Expanded layer description card */}
           <div className="lg:col-span-8 bg-slate-50 rounded-2xl p-5 border border-slate-100">
-            <span className="font-mono text-sm font-extrabold text-brand-600 tracking-widest bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-full inline-block">
+            <span className="text-sm font-bold text-white tracking-wide bg-gradient-to-r from-brand-600 to-indigo-600 border border-brand-700 px-3 py-1 rounded-full inline-block shadow-sm">
               {selectedLayer.level} - {selectedLayer.name}
             </span>
             

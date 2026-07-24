@@ -154,7 +154,7 @@ export default function RoiCalculator() {
                   <div className="flex items-center justify-between">
                     <div className="font-bold text-slate-700">基础版</div>
                     <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms <= 50 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      {rooms <= 50 ? '当前版本' : '≤ 50 间'}
+                      ≤ 50 间
                     </div>
                   </div>
                   <div className="text-brand-600 font-bold mt-1">¥59 / 月</div>
@@ -164,7 +164,7 @@ export default function RoiCalculator() {
                   <div className="flex items-center justify-between">
                     <div className="font-bold text-slate-700">专业版 (Pro)</div>
                     <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms > 50 && rooms <= 150 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      {rooms > 50 && rooms <= 150 ? '当前版本' : '51 ~ 150 间'}
+                      51 ~ 150 间
                     </div>
                   </div>
                   <div className="text-brand-600 font-bold mt-1">¥99 / 月</div>
@@ -174,7 +174,7 @@ export default function RoiCalculator() {
                   <div className="flex items-center justify-between">
                     <div className="font-bold text-slate-700">旗舰尊享版 (Pro+)</div>
                     <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms > 150 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      {rooms > 150 ? '当前版本' : '> 150 间'}
+                      &gt; 150 间
                     </div>
                   </div>
                   <div className="text-brand-600 font-bold mt-1">¥299 / 月</div>
@@ -208,17 +208,17 @@ export default function RoiCalculator() {
                   <div className="text-sm font-bold text-slate-600">📐 计算公式</div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">每日承接电话量</div>
-                    <div className="text-slate-800 font-semibold">= {rooms}间 × {occupancy}%入住率 × 1.5次/间晚 × 60%AI承接率</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{rooms}间</span> × <span className="text-brand-600 font-bold">{occupancy}%入住率</span> × 1.5次/间晚 × 60%AI承接率</div>
                     <div className="text-brand-600 font-bold">= {dailyCallsHandled} 通/天</div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">释放前台人力</div>
-                    <div className="text-slate-800 font-semibold">= {rooms}间 ÷ 80间基准 × 0.75基准人力</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{rooms}间</span> ÷ 80间基准 × 0.75基准人力</div>
                     <div className="text-brand-600 font-bold">= {staffOptimized} 人</div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">年节省人工成本</div>
-                    <div className="text-slate-800 font-semibold">= 释放{staffOptimized}人 × ¥{averageStaffSalary}/月 × 12月</div>
+                    <div className="text-slate-800 font-semibold">= 释放<span className="text-brand-600 font-bold">{staffOptimized}人</span> × ¥{averageStaffSalary}/月 × 12月</div>
                     <div className="text-emerald-600 font-bold">= ¥{annualStaffSaved.toLocaleString()} / 年</div>
                   </div>
                   <div className="text-xs text-slate-400">* 按酒店前台平均月薪 ¥{averageStaffSalary} 估算</div>
@@ -246,12 +246,12 @@ export default function RoiCalculator() {
                   <div className="text-sm font-bold text-slate-600">📐 计算公式</div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">年入住间夜数</div>
-                    <div className="text-slate-800 font-semibold">= {rooms}间 × 365天 × {occupancy}%入住率</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{rooms}间</span> × 365天 × <span className="text-brand-600 font-bold">{occupancy}%入住率</span></div>
                     <div className="text-brand-600 font-bold">= {annualRoomNights.toLocaleString()} 间夜/年</div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">年二销分润收益</div>
-                    <div className="text-slate-800 font-semibold">= {annualRoomNights.toLocaleString()}间夜 × {specialtyConversion * 100}%转化率 × ¥{averageSpecialtyCommission}/单</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{annualRoomNights.toLocaleString()}间夜</span> × {specialtyConversion * 100}%转化率 × ¥{averageSpecialtyCommission}/单</div>
                     <div className="text-emerald-600 font-bold">= ¥{annualSpecialtyRevenue.toLocaleString()} / 年</div>
                   </div>
                   <div className="text-xs text-slate-400">* 按10%转化、单笔均佣¥5保守估算</div>
@@ -279,12 +279,12 @@ export default function RoiCalculator() {
                   <div className="text-sm font-bold text-slate-600">📐 计算公式</div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">年私域复购间夜数</div>
-                    <div className="text-slate-800 font-semibold">= {annualRoomNights.toLocaleString()}间夜 × {privateRepeatConversion * 100}%私域转化率</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{annualRoomNights.toLocaleString()}间夜</span> × {privateRepeatConversion * 100}%私域转化率</div>
                     <div className="text-brand-600 font-bold">= {Math.round(annualRoomNights * privateRepeatConversion).toLocaleString()} 间夜/年</div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-3 text-sm space-y-1.5 font-mono">
                     <div className="text-slate-600">年节省OTA佣金</div>
-                    <div className="text-slate-800 font-semibold">= {Math.round(annualRoomNights * privateRepeatConversion).toLocaleString()}间夜 × ¥{adr}房价 × {otaCommissionRate * 100}%平台抽佣</div>
+                    <div className="text-slate-800 font-semibold">= <span className="text-brand-600 font-bold">{Math.round(annualRoomNights * privateRepeatConversion).toLocaleString()}间夜</span> × <span className="text-brand-600 font-bold">¥{adr}房价</span> × {otaCommissionRate * 100}%平台抽佣</div>
                     <div className="text-emerald-600 font-bold">= ¥{annualOtaSaved.toLocaleString()} / 年</div>
                   </div>
                   <div className="text-xs text-slate-400">* 按3%私域转化率、15% OTA平台佣金保守估算</div>
@@ -324,15 +324,15 @@ export default function RoiCalculator() {
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-sm space-y-3 font-mono">
                   <div className="flex items-center justify-between text-white/90">
                     <span>🤖 节省前台人效收益</span>
-                    <span className="font-bold">+ ¥{annualStaffSaved.toLocaleString()}</span>
+                    <span className="font-bold text-yellow-300">+ ¥{annualStaffSaved.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center justify-between text-white/90">
                     <span>🍹 文旅供应链二销分润</span>
-                    <span className="font-bold">+ ¥{annualSpecialtyRevenue.toLocaleString()}</span>
+                    <span className="font-bold text-yellow-300">+ ¥{annualSpecialtyRevenue.toLocaleString()}</span>
                   </div>
                   <div className="flex items-center justify-between text-white/90">
                     <span>🌱 老客私域复购省佣</span>
-                    <span className="font-bold">+ ¥{annualOtaSaved.toLocaleString()}</span>
+                    <span className="font-bold text-yellow-300">+ ¥{annualOtaSaved.toLocaleString()}</span>
                   </div>
                   <div className="border-t border-white/20 pt-3 space-y-2">
                     <div className="flex items-center justify-between text-white/90">

@@ -77,7 +77,7 @@ export default function OnboardingFlow() {
           <p className="text-sm text-slate-400 mt-0.5">工作日 4 小时内闪电响应</p>
         </div>
         <div className="flex flex-col items-center p-2">
-          <img src="./images/qrcode.png" alt="快速入驻二维码" className="w-36 h-36 mb-2" />
+          <img src="./images/qrcode.png" alt="快速入驻二维码" className="w-48 h-48 mb-2 rounded-xl border-4 border-[#07C160]" />
           <p className="text-sm text-slate-500 font-semibold">微信扫码快速入驻</p>
         </div>
       </div>

@@ -193,7 +193,7 @@ export default function App() {
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
                   <h4 className="text-base font-bold text-slate-800">黄小西 IP 酒店智能体</h4>
                   <p className="text-sm text-slate-500 leading-relaxed mt-1">
-                    已服务全国 <span className="text-brand-500 font-bold">1000+</span> 酒店。微信扫码，客房呼叫直派工单，打通门票特产，当天上线，立提非房营收！
+                    已服务全国 <span className="text-brand-500 font-bold">1000+</span> 酒店。微信扫码，客房呼叫直派工单，打通门票特产，快速部署，快速上线
                   </p>
                 </div>
               </div>

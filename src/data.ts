@@ -364,7 +364,7 @@ export const ARCH_LAYERS: ArchLayer[] = [
     level: 'L2',
     name: '应用服务层',
     translation: '从预订、入住到在店服务、退房、售后，AI 深入每个经营场景协助，绝非纸上谈兵。',
-    items: ['预订与智能前置咨询', '人脸识别与分房入住', '客房自动派单服务（OMS）', '本地文旅商城 & 离店结算（CRM）']
+    items: ['预订与智能前置咨询', '身份识别与分房入住', '客房自动派单服务（OMS）', '本地文旅商城 & 离店结算（CRM）']
   },
   {
     level: 'L3',
@@ -702,19 +702,43 @@ export const MANAGER_DOMAINS: RoleDomain[] = [
 export const COMPANY_BACKS = [
   {
     name: '华创云信数字技术股份有限公司',
-    desc: '上交所主板上市公司，公司总资产 526 亿元，净资产 195 亿元，管理资产规模超 3500 亿元。业务覆盖数字金融、数字产业、数字消费三大板块。',
+    desc: [
+      { text: '上交所主板上市公司', bold: true },
+      { text: '，公司总资产 ', bold: false },
+      { text: '526 亿元', bold: true },
+      { text: '，净资产 ', bold: false },
+      { text: '195 亿元', bold: true },
+      { text: '，管理资产规模超 ', bold: false },
+      { text: '3500 亿元', bold: true },
+      { text: '。业务覆盖数字金融、数字产业、数字消费三大板块。', bold: false },
+    ],
     badge: '国企背景 · 526亿资产巨头背书',
     value: '为酒店提供金融级的数据安全合规保障，绝对隐私、稳定可靠。'
   },
   {
     name: '北京融汇金信信息技术有限公司',
-    desc: '国家高新技术企业、北京市专精特新企业，深耕人工智能、大语言模型和知识图谱。核心团队来自百度、微软、阿里等 AI 顶尖梯队，团队规模 500+ 人。',
+    desc: [
+      { text: '国家高新技术企业', bold: true },
+      { text: '、', bold: false },
+      { text: '北京市专精特新企业', bold: true },
+      { text: '，深耕人工智能、大语言模型和知识图谱。核心团队来自', bold: false },
+      { text: '百度、微软、阿里', bold: true },
+      { text: '等 AI 顶尖梯队，团队规模 ', bold: false },
+      { text: '500+ 人', bold: true },
+      { text: '。', bold: false },
+    ],
     badge: '专精特新 · 500+人顶尖 AI 研发团队',
     value: '自建 109 套酒店行业大模型语义本体底座，不仅是聊天框，更是真正的业务自主跟进引擎。'
   },
   {
     name: '证联支付有限责任公司',
-    desc: '持有央行颁发的《支付业务许可证》（第三方支付牌照）。长期深耕数字交易、基金理财、电子商务与多元化行业支付解决方案。',
+    desc: [
+      { text: '持有央行颁发的', bold: false },
+      { text: '《支付业务许可证》', bold: true },
+      { text: '（', bold: false },
+      { text: '第三方支付牌照', bold: true },
+      { text: '）。长期深耕数字交易、基金理财、电子商务与多元化行业支付解决方案。', bold: false },
+    ],
     badge: '央行支付牌照 · 资金流转安全合规',
     value: '文旅分账、二销提成秒级安全清结算，确保每一分资金进出安全合法合规。'
   }

@@ -146,7 +146,7 @@ export default function ProductShowcase() {
                         住客端：极致轻量，无需下载
                       </h3>
                       <p className="text-base text-slate-500 leading-relaxed font-medium">
-                        住客微信扫一扫客房专属二维码或呼叫小度音箱。自然语言交互，集咨询、叫物、退房、特产购买于一体，提供极速响应的专属温度。
+                        住客微信扫一扫客房专属二维码或呼叫智能音箱。自然语言交互，集咨询、叫物、退房、特产购买于一体，提供极速响应的专属温度。
                       </p>
                       <ul className="space-y-4 text-sm text-slate-600 font-bold pt-4">
                         <li className="flex items-center gap-3">
@@ -214,8 +214,9 @@ export default function ProductShowcase() {
                         <div className="text-sm font-bold text-slate-500 mb-3">AI 员工技能矩阵</div>
                         <div className="flex flex-wrap gap-2">
                           {[
+                            '工单自动分配', '任务语音播报提醒', '任务AI助手',
                             '客房工单处理', '住客吐槽管理', '行李寄存管理',
-                            '订单管理与交易管理', '前台记事交班助手', 'AI营销'
+                            '订单管理与交易管理', 'AI交班记事助手', 'AI营销'
                           ].map((tag, idx) => (
                             <span
                               key={idx}
