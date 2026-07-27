@@ -23,12 +23,15 @@ export default function App() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const navHeight = 80;
+      const elTop = el.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: elTop - navHeight, behavior: 'smooth' });
     }
     setMobileMenuOpen(false);
   };
 
   const navItems = [
+    { name: '产品介绍', id: 'hero-section' },
     { name: '产品形态', id: 'product-showcase' },
     { name: '六层架构', id: 'capabilities-section' },
     { name: '收益测算', id: 'roi-calculator' },
@@ -48,11 +51,8 @@ export default function App() {
             <div className="flex items-center gap-2">
               <img src="./images/logo.png" alt="HotelClaw" className="w-9 h-9" />
               <div>
-                <span className="font-display font-black text-slate-900 tracking-tight text-lg block">
+                <span className="font-display font-black text-slate-900 tracking-tight text-xl block">
                   华创云信 · 酒店智能体
-                </span>
-                <span className="text-xs font-bold text-indigo-900 uppercase tracking-widest block -mt-1">
-                  产品服务宣传册
                 </span>
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function App() {
 
       {/* 2. Main Hero Banner Section — Light Fresh */}
       <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <section className="relative overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="hero-section" className="relative overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
@@ -185,8 +185,8 @@ export default function App() {
                 />
                 
                 {/* Overlay card */}
-                <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
-                  <h4 className="text-base font-bold text-slate-800">贵州文旅品牌IP"黄小西"与"酒店智能体"联名合作</h4>
+                <div className="absolute bottom-6 left-2 right-2 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
+                  <h4 className="text-base font-bold text-slate-800 whitespace-nowrap text-center">贵州文旅品牌IP"黄小西"与"HotelClaw 酒店智能体"联名合作</h4>
                 </div>
               </div>
             </div>
