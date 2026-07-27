@@ -139,11 +139,8 @@ export default function ProductShowcase() {
                 <div className="xl:w-5/12 space-y-8 animate-in fade-in slide-in-from-left-4 duration-500">
                   {activeMode === 'guest' && (
                     <div className="space-y-6">
-                      <span className="text-xs font-bold text-brand-600 tracking-wider bg-brand-50 px-4 py-2 rounded-full border border-brand-100">
-                        住客端 · 极简扫码入口
-                      </span>
                       <h3 className="font-display text-4xl font-black text-slate-950 leading-tight">
-                        住客端：极致轻量，无需下载
+                        住客端：<span className="text-2xl"><br />极致轻量，无需下载</span>
                       </h3>
                       <p className="text-base text-slate-500 leading-relaxed font-medium">
                         住客微信扫一扫客房专属二维码或呼叫智能音箱。自然语言交互，集咨询、叫物、退房、特产购买于一体，提供极速响应的专属温度。
@@ -165,16 +162,16 @@ export default function ProductShowcase() {
 
                       <div className="pt-6">
                         <div className="text-sm font-bold text-slate-500 mb-3">AI 智能体技能矩阵</div>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-3 gap-2">
                           {[
                             '智能问答', '客房服务', '吐槽评价', '周边推荐', '订房购物',
                             '天气助手', '酒店管家', '黄小西行程伴侣', '本地推荐官',
-                            '健康小妙招', '睡眠助眠眠', '亲子陪伴', '邀约小管家',
-                            '会议邀请助手'
+                            '健康小妙招', '睡眠助眠', '亲子陪伴', '邀约小管家',
+                            '会议邀请助手', '活动日历'
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
                             >
                               {tag}
                             </span>
@@ -186,11 +183,8 @@ export default function ProductShowcase() {
 
                   {activeMode === 'staff' && (
                     <div className="space-y-6">
-                      <span className="text-xs font-bold text-brand-600 tracking-wider bg-brand-50 px-4 py-2 rounded-full border border-brand-100">
-                        员工端 · 极简工作台
-                      </span>
                       <h3 className="font-display text-4xl font-black text-slate-950 leading-tight">
-                        员工端：智能派单，语音接单
+                        员工端：<span className="text-2xl"><br />智能派单，语音接单</span>
                       </h3>
                       <p className="text-base text-slate-500 leading-relaxed font-medium">
                         无需繁琐打字，阿姨/维修工语音说话即接单、反馈。AI 根据实时位置和人员排班，自动规划最优动线，实现跨部门 0 沟通成本协同。
@@ -212,15 +206,16 @@ export default function ProductShowcase() {
 
                       <div className="pt-6">
                         <div className="text-sm font-bold text-slate-500 mb-3">AI 员工技能矩阵</div>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-3 gap-2">
                           {[
-                            '工单自动分配', '任务语音播报提醒', '任务AI助手',
+                            '任务自动流转', '智能语音提醒',
                             '住客吐槽管理', '行李寄存管理',
-                            '订单管理与交易管理', 'AI交班记事助手', 'AI营销'
+                            '订房订单处理', '商城交易处理', '客服服务处理',
+                            'AI交班记事助手', 'AI营销助手'
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
                             >
                               {tag}
                             </span>
@@ -232,11 +227,8 @@ export default function ProductShowcase() {
 
                   {activeMode === 'admin' && (
                     <div className="space-y-6">
-                      <span className="text-xs font-bold text-brand-600 tracking-wider bg-brand-50 px-4 py-2 rounded-full border border-brand-100">
-                        管理者 · 全局仪表盘
-                      </span>
                       <h3 className="font-display text-4xl font-black text-slate-950 leading-tight">
-                        管理者端：数据穿透，风险熔断
+                        管理者端：<span className="text-2xl"><br />一屏尽览，智能决策</span>
                       </h3>
                       <p className="text-base text-slate-500 leading-relaxed font-medium">
                         酒店经营数据一盘棋。客诉预警、能耗异常、收益趋势实时监控，让店长和老板能够随时随地进行精细化管理与决策。
@@ -258,15 +250,15 @@ export default function ProductShowcase() {
 
                       <div className="pt-6">
                         <div className="text-sm font-bold text-slate-500 mb-3">AI 管理技能矩阵</div>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="grid grid-cols-3 gap-2">
                           {[
                             '运营数据可视化', '客户数据可视化', '收入数据可视化',
-                            '房价竞价', '热点活动', '自营商城',
-                            '平台商城', '融资匹配'
+                            '房价竞价', '热门活动提示', '自营商城管理',
+                            '平台商城管理', '融资匹配', '运营预警中心'
                           ].map((tag, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1.5 text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 whitespace-nowrap"
+                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
                             >
                               {tag}
                             </span>

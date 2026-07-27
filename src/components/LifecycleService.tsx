@@ -175,14 +175,14 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                 </div>
                 <div className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg mt-4 font-medium">⚙️ 连接现有 PMS / 移动工作台</div>
               </div>
-              <div className="bg-slate-900 text-white rounded-xl p-4 border border-slate-800 shadow-lg flex flex-col justify-between">
+              <div className="bg-gradient-to-br from-brand-50 to-indigo-50 text-slate-800 rounded-xl p-4 border border-brand-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-sm text-yellow-400 pb-2 border-b border-slate-800">
+                  <div className="flex items-center gap-1.5 font-bold text-sm text-brand-700 pb-2 border-b border-brand-100">
                     <span className="text-base">🤖</span> 智能体做了什么？
                   </div>
-                  <p className="text-sm text-slate-300 mt-3 leading-relaxed font-medium">{stage.aiAction}</p>
+                  <p className="text-sm text-slate-600 mt-3 leading-relaxed font-medium">{stage.aiAction}</p>
                 </div>
-                <div className="text-xs text-green-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-lg mt-4 font-bold flex items-center gap-1">
+                <div className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-lg mt-4 font-bold flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5" />自动处理 · 全流程闭痕留痕
                 </div>
               </div>

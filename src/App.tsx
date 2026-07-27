@@ -186,7 +186,7 @@ export default function App() {
                 
                 {/* Overlay card */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
-                  <h4 className="text-base font-bold text-slate-800">联名合作-贵州文旅品牌IP"黄小西"酒店智能体</h4>
+                  <h4 className="text-base font-bold text-slate-800">贵州文旅品牌IP"黄小西"与"酒店智能体"联名合作</h4>
                 </div>
               </div>
             </div>
