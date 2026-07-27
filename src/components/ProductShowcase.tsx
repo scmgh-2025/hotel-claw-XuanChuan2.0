@@ -190,7 +190,7 @@ export default function ProductShowcase() {
                         员工端 · 极简工作台
                       </span>
                       <h3 className="font-display text-4xl font-black text-slate-950 leading-tight">
-                        员工端：语音接单，智能派单
+                        员工端：智能派单，语音接单
                       </h3>
                       <p className="text-base text-slate-500 leading-relaxed font-medium">
                         无需繁琐打字，阿姨/维修工语音说话即接单、反馈。AI 根据实时位置和人员排班，自动规划最优动线，实现跨部门 0 沟通成本协同。
@@ -215,7 +215,7 @@ export default function ProductShowcase() {
                         <div className="flex flex-wrap gap-2">
                           {[
                             '工单自动分配', '任务语音播报提醒', '任务AI助手',
-                            '客房工单处理', '住客吐槽管理', '行李寄存管理',
+                            '住客吐槽管理', '行李寄存管理',
                             '订单管理与交易管理', 'AI交班记事助手', 'AI营销'
                           ].map((tag, idx) => (
                             <span
@@ -260,9 +260,9 @@ export default function ProductShowcase() {
                         <div className="text-sm font-bold text-slate-500 mb-3">AI 管理技能矩阵</div>
                         <div className="flex flex-wrap gap-2">
                           {[
-                            '运营数据统计', '客户数据统计', '收入数据统计',
+                            '运营数据可视化', '客户数据可视化', '收入数据可视化',
                             '房价竞价', '热点活动', '自营商城',
-                            '平台商城', '融资匹配', '组织架构管理'
+                            '平台商城', '融资匹配'
                           ].map((tag, idx) => (
                             <span
                               key={idx}

@@ -124,11 +124,6 @@ export default function App() {
           {/* Hero Left: Headlines & Core Bento Cards */}
           <div className="lg:col-span-5 space-y-6">
             
-            <div className="inline-flex items-center gap-1.5 bg-brand-50 border border-brand-100 text-brand-600 text-xs px-3 py-1 rounded-full font-bold shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-brand-400 animate-ping"></span>
-              贵州文旅厅认证 · 华创云信联合打造
-            </div>
-
             <div className="space-y-3">
               <h1 className="font-display text-4xl sm:text-5xl font-black text-slate-800 tracking-tight leading-tight">
                 HotelClaw 酒店智能体
@@ -191,10 +186,7 @@ export default function App() {
                 
                 {/* Overlay card */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
-                  <h4 className="text-base font-bold text-slate-800">黄小西 IP 酒店智能体</h4>
-                  <p className="text-sm text-slate-500 leading-relaxed mt-1">
-                    已服务全国 <span className="text-brand-500 font-bold">1000+</span> 酒店。微信扫码，客房呼叫直派工单，打通门票特产，快速部署，快速上线
-                  </p>
+                  <h4 className="text-base font-bold text-slate-800">联名合作-贵州文旅品牌IP"黄小西"酒店智能体</h4>
                 </div>
               </div>
             </div>
@@ -275,7 +267,7 @@ export default function App() {
             </div>
 
             {/* Hotel Carousel */}
-            <HotelCarousel hotels={PARTNER_HOTELS} />
+            <HotelCarousel hotels={PARTNER_HOTELS} speed={100} />
           </div>
         </section>
 
