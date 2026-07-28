@@ -33,7 +33,7 @@ export default function App() {
   const navItems = [
     { name: '产品介绍', id: 'hero-section' },
     { name: '产品形态', id: 'product-showcase' },
-    { name: '六层架构', id: 'capabilities-section' },
+    { name: '能力架构', id: 'capabilities-section' },
     { name: '收益测算', id: 'roi-calculator' },
     { name: '合作酒店', id: 'partner-hotels' },
     { name: '极速入驻', id: 'onboarding-flow' }
@@ -186,6 +186,7 @@ export default function App() {
                 
                 {/* Overlay card */}
                 <div className="absolute bottom-6 left-2 right-2 bg-white/95 backdrop-blur-md text-slate-800 rounded-2xl p-4 border border-blue-100 shadow-lg">
+                  <p className="text-lg font-bold text-brand-600 text-center mb-1">"黄小西"酒店智能体</p>
                   <h4 className="text-base font-bold text-slate-800 whitespace-nowrap text-center">贵州文旅品牌IP"黄小西"与"HotelClaw 酒店智能体"联名合作</h4>
                 </div>
               </div>
