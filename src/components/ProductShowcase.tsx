@@ -342,7 +342,7 @@ export default function ProductShowcase() {
             {/* Section 4: SOP (Staff & Admin only) */}
             {activeSection === 'sop' && (
               <div className="animate-in fade-in slide-in-from-right-4 duration-500 h-full overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200">
-                 {activeMode === 'staff' && <SopSimulator allowedScenarios={['absence', 'extra_bed']} hideTitle={true} />}
+                 {activeMode === 'staff' && <SopSimulator allowedScenarios={['handover', 'extra_bed']} hideTitle={true} />}
                  {activeMode === 'admin' && <SopSimulator allowedScenarios={['bad_review']} hideTitle={true} />}
               </div>
             )}

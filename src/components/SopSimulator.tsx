@@ -17,18 +17,19 @@ interface Scenario {
 
 const SCENARIOS: Scenario[] = [
   {
-    id: 'absence',
-    title: '突发缺勤 · 自动补位 · 排班自主跟进',
-    icon: '🏃',
-    trigger: '明早满房，早班前台小王 7:30 缺勤失联',
+    id: 'handover',
+    title: '语音即时记录・AI 智能汇总・交班高效落地',
+    icon: '📋',
+    trigger: '前台语音填报当班事务信息，系统自动分类整理，交接班内容一目了然无遗漏',
     steps: [
-      { time: '07:30:00', desc: '监控到小王未正常打卡，系统自动标记为【异常缺勤】并通知店长', type: 'alert' },
-      { time: '07:30:15', desc: 'AI 引擎分析：今日入住率 90%（满房），早间属退房高峰期，前台为关键瓶颈岗位需立刻补位', type: 'ai', badge: '引擎决策' },
-      { time: '07:30:20', desc: 'AI 智能匹配算法启动：从【协作备班池】筛选候选人，按技能匹配度×工时余额×通勤距离排序', type: 'info' },
-      { time: '07:30:30', desc: 'AI 触发一键自动改派：向第一备班候选人小李（距离 2.5km）推送【应急补位邀请】', type: 'action', badge: '一键派单' },
-      { time: '07:31:15', desc: '小李手机收到紧急震动播报，确认接单并点击"立刻赶往酒店"', type: 'action' },
-      { time: '07:31:20', desc: '系统后台自动更新排班表，AI 通知店长："小王缺勤已由小李自动补位，排班表自主跟进完成"', type: 'done', badge: '排班自主跟进' },
-      { time: '07:35:00', desc: '数据沉淀：系统将小王标记为"出勤风险+1"，下次排班自动避开早班关键岗', type: 'done' }
+      { time: '08:20:00', desc: '早班前台在岗处理客诉：308 住客扫码留言，需要增补被子、两瓶瓶装矿泉水；前台一边处理手头入住手续，直接对着 AI 前台助手语音口述该需求', type: 'action' },
+      { time: '08:20:08', desc: 'AI 实时识别语音内容，自动提取关键字：【房间号 308、需求：加被子 + 2 瓶矿泉水、归属客房服务待办】，自动归入「今日待办事项」板块留存', type: 'ai', badge: '智能识别' },
+      { time: '09:12:00', desc: '前台发现大厅自助入住机读卡反应迟缓，随即语音告知 AI 助手记录设备故障问题', type: 'action' },
+      { time: '09:12:10', desc: 'AI 识别信息归类至「重点风险 / 设备异常」标签内标注存档', type: 'ai', badge: '自动归类' },
+      { time: '日间在岗时段', desc: '前台陆续将临时寄存物品、VIP 客人到店提醒、退房延时申请、待回访客情等事务，全部以随口语音的形式录入系统，无需手动打字编辑', type: 'info' },
+      { time: '16:57:00', desc: '早班即将下班交接，前台在对话框发送指令【工作小结】，触发 AI 汇总全天所有语音录入内容', type: 'action' },
+      { time: '16:57:08', desc: 'AI 自动规整输出标准化交班台账，划分四大清晰模块：✅今日已完成事项、🔴重点风险 / 超时未处理事项、🟡今日剩余待办工作、🔵必须交接给接班人员事项；底部附带数据统计：当日录入总条数、已办结数量、遗留待办数量', type: 'ai', badge: '交班台账生成' },
+      { time: '17:00:00', desc: '接班前台打开 AI 前台助手即可直接查看规整完毕的交班文档，不用翻看杂乱聊天记录、潦草纸质笔记，所有遗留工作一目了然，逐项核对接手，交接效率大幅提升', type: 'done', badge: '高效交接' }
     ]
   },
   {
@@ -63,7 +64,7 @@ const SCENARIOS: Scenario[] = [
 
 export default function SopSimulator({ allowedScenarios, hideTitle }: { allowedScenarios?: string[], hideTitle?: boolean }) {
   const scenariosToRender = allowedScenarios ? SCENARIOS.filter(s => allowedScenarios.includes(s.id)) : SCENARIOS;
-  const [selectedScenarioId, setSelectedScenarioId] = useState(scenariosToRender[0]?.id || 'absence');
+  const [selectedScenarioId, setSelectedScenarioId] = useState(scenariosToRender[0]?.id || 'handover');
   const [currentStepIdx, setCurrentStepIdx] = useState(-1);
   const [isRunning, setIsRunning] = useState(false);
 
