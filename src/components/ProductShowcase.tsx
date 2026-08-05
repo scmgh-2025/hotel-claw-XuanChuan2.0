@@ -60,6 +60,28 @@ export default function ProductShowcase() {
 
   return (
     <div id="product-showcase" className="bg-slate-50/50 rounded-3xl pt-8 pb-12 shadow-sm border border-brand-100">
+
+      {/* HotelClaw 技能矩阵 - 全宽展示 */}
+      <div className="w-full mb-10">
+        <div className="text-center mb-5">
+          <h2 className="font-display text-2xl md:text-3xl font-black text-slate-950 tracking-tight">
+            技能矩阵
+          </h2>
+          <p className="text-sm md:text-base text-slate-500 mt-3 font-medium">
+            全场景覆盖，全业务赋能——重新定义下一代智慧酒店服务生态。
+          </p>
+        </div>
+        <div className="rounded-none border-y border-slate-200 shadow-sm overflow-hidden bg-white">
+          <iframe
+            src="/hotel-claw-XuanChuan2.0/skill-matrix.html"
+            title="HotelClaw 技能矩阵"
+            className="w-full"
+            scrolling="no"
+            style={{ height: '900px', border: 'none', display: 'block' }}
+          />
+        </div>
+      </div>
+
       <div className="text-center max-w-2xl mx-auto mb-10">
         <h2 className="font-display text-2xl md:text-4xl font-black text-slate-950 tracking-tight">
           轻量全套智能产品形态
@@ -70,7 +92,7 @@ export default function ProductShowcase() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Top Level 1: Role Switcher */}
         <div className="flex justify-center mb-6">
           <div className="bg-white p-1.5 rounded-[1.25rem] flex flex-wrap justify-center gap-1.5 border border-slate-200/60 shadow-sm">
@@ -83,7 +105,7 @@ export default function ProductShowcase() {
               }`}
             >
               <Smartphone className="w-4 h-4" />
-              住客端 (微信小程序)
+              住客服务小程序
             </button>
             <button
               onClick={() => { setActiveMode('staff'); setActiveSection('overview'); }}
@@ -94,7 +116,7 @@ export default function ProductShowcase() {
               }`}
             >
               <ListTodo className="w-4 h-4" />
-              员工端 (手机 App)
+              员工工作台
             </button>
             <button
               onClick={() => { setActiveMode('admin'); setActiveSection('overview'); }}
@@ -105,7 +127,7 @@ export default function ProductShowcase() {
               }`}
             >
               <LayoutDashboard className="w-4 h-4" />
-              管理者端 (APP/PC)
+              管理者工作台
             </button>
           </div>
         </div>
@@ -159,25 +181,6 @@ export default function ProductShowcase() {
                           本地特产、周边景区门票，一站式底价下单
                         </li>
                       </ul>
-
-                      <div className="pt-6">
-                        <div className="text-sm font-bold text-slate-500 mb-3">AI 智能体技能矩阵</div>
-                        <div className="grid grid-cols-3 gap-2">
-                          {[
-                            '智能问答', '客房服务', '吐槽评价', '周边推荐', '订房购物',
-                            '天气助手', '酒店管家', '黄小西行程伴侣', '本地推荐官',
-                            '健康小妙招', '睡眠助眠', '亲子陪伴', '邀约小管家',
-                            '会议邀请助手', '活动日历'
-                          ].map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   )}
 
@@ -203,25 +206,6 @@ export default function ProductShowcase() {
                           业绩数据实时可见，激发员工动力
                         </li>
                       </ul>
-
-                      <div className="pt-6">
-                        <div className="text-sm font-bold text-slate-500 mb-3">AI 员工技能矩阵</div>
-                        <div className="grid grid-cols-3 gap-2">
-                          {[
-                            '任务自动流转', '智能语音提醒',
-                            '住客吐槽管理', '行李寄存管理',
-                            '订房订单处理', '商城交易处理', '客服服务处理',
-                            'AI交班记事助手', 'AI营销助手'
-                          ].map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   )}
 
@@ -247,24 +231,6 @@ export default function ProductShowcase() {
                           员工效能、响应时长等履约数据排行
                         </li>
                       </ul>
-
-                      <div className="pt-6">
-                        <div className="text-sm font-bold text-slate-500 mb-3">AI 管理技能矩阵</div>
-                        <div className="grid grid-cols-3 gap-2">
-                          {[
-                            '运营数据可视化', '客户数据可视化', '收入数据可视化',
-                            '房价竞价', '热门活动提示', '自营商城管理',
-                            '平台商城管理', '融资匹配', '运营预警中心'
-                          ].map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="h-10 flex items-center justify-center text-sm font-bold text-indigo-600 rounded-full bg-indigo-50 border border-indigo-100 text-center px-2"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   )}
                 </div>
@@ -346,33 +312,6 @@ export default function ProductShowcase() {
                  {activeMode === 'admin' && <SopSimulator allowedScenarios={['bad_review']} hideTitle={true} />}
               </div>
             )}
-          </div>
-
-          {/* Bottom Flip Navigation Bar */}
-          <div className="bg-slate-50 border-t border-slate-200 px-6 py-4 flex justify-between items-center">
-            {prevSection ? (
-              <button 
-                onClick={() => setActiveSection(prevSection.id)}
-                className="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-brand-600 transition"
-              >
-                <ChevronLeft className="w-5 h-5" />
-                上一页：{prevSection.label}
-              </button>
-            ) : <div />}
-            
-            <div className="text-xs font-bold text-slate-400">
-              {currentIndex + 1} / {availableSections.length}
-            </div>
-
-            {nextSection ? (
-              <button 
-                onClick={() => setActiveSection(nextSection.id)}
-                className="flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 transition"
-              >
-                下一页：{nextSection.label}
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            ) : <div />}
           </div>
 
         </div>

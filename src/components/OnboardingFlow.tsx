@@ -40,10 +40,10 @@ export default function OnboardingFlow() {
                 <div className="bg-white rounded-xl p-2.5 w-10 h-10 flex items-center justify-center shadow-sm border border-slate-100">
                   {getIcon(s.step)}
                 </div>
-                <h3 className="font-display text-base font-black text-slate-800 mt-3 flex items-center gap-1.5">
+                <h3 className="font-display text-lg font-black text-slate-800 mt-3 flex items-center gap-1.5">
                   {s.title}
                 </h3>
-                <p className="text-sm text-slate-500 mt-1.5 leading-relaxed font-semibold">
+                <p className="text-base text-slate-500 mt-1.5 leading-relaxed font-semibold">
                   {s.desc}
                 </p>
               </div>
@@ -63,18 +63,18 @@ export default function OnboardingFlow() {
       <div className="mt-8 bg-brand-50 rounded-2xl p-4 border border-brand-100/60 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center items-center">
         <div className="flex flex-col items-center p-2">
           <span className="text-2xl">🎁</span>
-          <h4 className="text-base font-bold text-slate-800 mt-1">首次注册免费试用</h4>
-          <p className="text-sm text-slate-400 mt-0.5">无任何前置隐形收费</p>
+          <h4 className="text-lg font-bold text-slate-800 mt-1">首次注册免费试用</h4>
+          <p className="text-base text-slate-400 mt-0.5">无任何前置隐形收费</p>
         </div>
         <div className="flex flex-col items-center p-2">
           <span className="text-2xl">📺</span>
-          <h4 className="text-base font-bold text-slate-800 mt-1">视频教程 & 线上培训</h4>
-          <p className="text-sm text-slate-400 mt-0.5">运营经理一对一手把手教</p>
+          <h4 className="text-lg font-bold text-slate-800 mt-1">视频教程 & 线上培训</h4>
+          <p className="text-base text-slate-400 mt-0.5">运营经理一对一手把手教</p>
         </div>
         <div className="flex flex-col items-center p-2">
           <span className="text-2xl">👩‍💼</span>
-          <h4 className="text-base font-bold text-slate-800 mt-1">专属 1对1 售后对接</h4>
-          <p className="text-sm text-slate-400 mt-0.5">工作日 4 小时内闪电响应</p>
+          <h4 className="text-lg font-bold text-slate-800 mt-1">专属 1对1 售后对接</h4>
+          <p className="text-base text-slate-400 mt-0.5">工作日 4 小时内闪电响应</p>
         </div>
         <div className="flex flex-col items-center p-2">
           <img src="./images/qrcode.png" alt="快速入驻二维码" className="w-48 h-48 mb-2 rounded-xl border-4 border-[#07C160]" />

@@ -47,20 +47,11 @@ export default function CompanyBackground() {
                   <p className="text-sm text-slate-500 leading-relaxed mt-2 font-medium">
                     {co.desc.map((seg: { text: string; bold: boolean }, i: number) =>
                       seg.bold
-                        ? <span key={i} className="font-bold text-slate-800">{seg.text}</span>
+                        ? <span key={i} className="text-slate-700">{seg.text}</span>
                         : <span key={i}>{seg.text}</span>
                     )}
                   </p>
                 </div>
-              </div>
-
-              <div className="mt-5 pt-4 border-t border-slate-200/60">
-                <h4 className="text-base font-bold text-slate-400 uppercase tracking-widest">
-                  对酒店的核心承载价值
-                </h4>
-                <p className="text-sm text-brand-900 font-bold mt-1 leading-relaxed">
-                  {co.value}
-                </p>
               </div>
             </div>
           );
@@ -68,22 +59,22 @@ export default function CompanyBackground() {
       </div>
 
       {/* Triple Security Guarantee Bar */}
-      <div className="mt-6 bg-slate-900 text-white rounded-2xl p-4 flex flex-col sm:flex-row justify-around items-center gap-4 text-center border border-slate-800">
-        <div className="flex items-center gap-2">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
           <span className="text-2xl">🔒</span>
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">上市公司级安全</h4>
             <p className="text-sm text-slate-500">双重沙箱隔离 · 绝对保护住客隐私</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 border-t sm:border-t-0 sm:border-x border-slate-800/80 px-0 sm:px-8 py-2 sm:py-0">
+        <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
           <span className="text-2xl">💳</span>
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">央行支付合规</h4>
             <p className="text-sm text-slate-500">佣金提成秒清算 · 交易流水无缝入账</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
           <span className="text-2xl">🛰️</span>
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">行业顶尖底盘</h4>

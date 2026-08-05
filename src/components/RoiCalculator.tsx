@@ -61,9 +61,9 @@ export default function RoiCalculator() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Left Inputs Controls */}
-        <div className="lg:col-span-5 bg-white p-5 rounded-2xl border border-blue-100 shadow-sm space-y-5">
+        <div className="lg:col-span-5 bg-white p-5 rounded-2xl border border-blue-100 shadow-sm space-y-5 flex flex-col">
           <h3 className="text-base font-bold uppercase tracking-widest text-slate-500 border-b border-blue-50 pb-2 flex items-center gap-1.5">✏️ 填写酒店基础指标</h3>
 
           {/* Rooms Slider */}
@@ -132,7 +132,7 @@ export default function RoiCalculator() {
           {/* Software Cost Info banner */}
           <div
             onClick={() => toggleExpand('saas')}
-            className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3.5 rounded-xl border border-blue-100 text-center cursor-pointer hover:shadow-md transition-shadow"
+            className="mt-auto bg-gradient-to-br from-blue-50 to-indigo-50 p-3.5 rounded-xl border border-blue-100 text-center cursor-pointer hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-center gap-2">
               <div className="text-sm text-slate-500">酒店智能体 SaaS 投入</div>
@@ -186,7 +186,7 @@ export default function RoiCalculator() {
         </div>
 
         {/* Right Outputs Metrics bento */}
-        <div className="lg:col-span-7 space-y-4">
+        <div className="lg:col-span-7 space-y-4 flex flex-col">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {/* Front Desk Benefit */}
             <div
@@ -302,7 +302,7 @@ export default function RoiCalculator() {
             <div className="grid grid-cols-1 gap-2">
               <div>
                 <div className="flex items-center justify-between">
-                  <div className="text-sm text-white/80 font-bold tracking-wider">
+                  <div className="text-base text-white/90 font-bold tracking-wider">
                     年度总体超额降本增收利润
                   </div>
                   <ChevronDown className={`w-5 h-5 text-white/70 transition-transform duration-300 ${expanded.total ? 'rotate-180' : ''}`} />

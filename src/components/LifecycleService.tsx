@@ -156,48 +156,68 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-              <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-between">
+            {/* Before vs After Grid - 对齐全岗位提效方案样式 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
+              {/* Before: 没有智能体时 */}
+              <div className="bg-orange-50 rounded-xl p-4 border-2 border-orange-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-sm text-slate-700 pb-2 border-b border-slate-100">
-                    <span className="text-base">🧔</span> 住客端现状
+                  <div className="flex items-center gap-2 text-orange-700 font-bold text-base mb-3">
+                    <span>🧔</span>
+                    没有智能体时
                   </div>
-                  <p className="text-sm text-slate-500 mt-3 leading-relaxed">{stage.guestAction}</p>
+                  <div className="space-y-3">
+                    <div className="bg-white rounded-lg p-3 border border-orange-200">
+                      <h4 className="text-xs font-bold text-slate-700">住客现状</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.guestAction}</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 border border-orange-200">
+                      <h4 className="text-xs font-bold text-slate-700">酒店服务现状</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.staffAction}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-xs text-indigo-900 bg-brand-50 px-2.5 py-1 rounded-lg mt-4 font-semibold">⭐ 极致便捷：微信扫码直达</div>
+                <div className="mt-4 pt-3 border-t border-orange-300 text-xs text-orange-700 font-medium flex items-center gap-1">
+                  <span>⚠️</span>
+                  缺乏智能连接，流程割裂
+                </div>
               </div>
-              <div className="bg-white rounded-xl p-4 border border-slate-100 shadow-sm flex flex-col justify-between">
+
+              {/* After: AI 智能体接管后 */}
+              <div className="bg-brand-50 rounded-xl p-4 border-2 border-brand-200 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1.5 font-bold text-sm text-slate-700 pb-2 border-b border-slate-100">
-                    <span className="text-base">👩‍💻</span> 员工端现状
+                  <div className="flex items-center gap-2 text-brand-700 font-bold text-base mb-3">
+                    <span>🤖</span>
+                    HotelClaw 智能体赋能
                   </div>
-                  <p className="text-sm text-slate-500 mt-3 leading-relaxed">{stage.staffAction}</p>
-                </div>
-                <div className="text-xs text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg mt-4 font-medium">⚙️ 连接现有 PMS / 移动工作台</div>
-              </div>
-              <div className="bg-gradient-to-br from-brand-50 to-indigo-50 text-slate-800 rounded-xl p-4 border border-brand-100 shadow-sm flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-1.5 font-bold text-sm text-brand-700 pb-2 border-b border-brand-100">
-                    <span className="text-base">🤖</span> 智能体做了什么？
+                  <div className="space-y-3">
+                    <div className="bg-white rounded-lg p-3 border border-brand-200">
+                      <h4 className="text-xs font-bold text-slate-700">AI 为住客实现</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.aiAction}</p>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 border border-brand-200">
+                      <h4 className="text-xs font-bold text-slate-700">AI 为酒店带来</h4>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.valueHotel}</p>
+                    </div>
                   </div>
-                  <p className="text-sm text-slate-600 mt-3 leading-relaxed font-medium">{stage.aiAction}</p>
                 </div>
-                <div className="text-xs text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-lg mt-4 font-bold flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />自动处理 · 全流程闭痕留痕
+                <div className="mt-4 pt-3 border-t border-brand-300 text-xs text-brand-700 font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  自动处理 · 全流程闭痕留痕
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5 pt-5 border-t border-slate-200">
-              <div className="flex gap-2.5 items-start bg-indigo-50/40 p-3.5 rounded-xl border border-brand-100/30">
-                <span className="text-xl">💝</span>
+            {/* Role value section */}
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-indigo-50/40 p-3.5 rounded-xl border border-brand-100/30 flex items-start gap-3">
+                <span className="text-xl shrink-0">💝</span>
                 <div>
                   <h4 className="text-sm font-bold text-brand-900">住客获得价值</h4>
                   <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueGuest}</p>
                 </div>
               </div>
-              <div className="flex gap-2.5 items-start bg-emerald-50/40 p-3.5 rounded-xl border border-emerald-100/30">
-                <span className="text-xl">💰</span>
+              <div className="bg-emerald-50/40 p-3.5 rounded-xl border border-emerald-100/30 flex items-start gap-3">
+                <span className="text-xl shrink-0">💰</span>
                 <div>
                   <h4 className="text-sm font-bold text-emerald-900">酒店获得价值</h4>
                   <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueHotel}</p>
