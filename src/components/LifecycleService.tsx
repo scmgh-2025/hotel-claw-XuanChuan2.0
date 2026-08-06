@@ -134,7 +134,7 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                       )}
                     </div>
                     <span
-                      className={`text-[11px] md:text-xs font-semibold mt-2 text-center transition-colors max-w-[90px] md:max-w-[120px] line-clamp-1 ${
+                      className={`text-xs md:text-sm font-semibold mt-2 text-center transition-colors max-w-[90px] md:max-w-[120px] line-clamp-1 ${
                         isActive ? 'text-brand-600 font-bold' : 'text-slate-400'
                       }`}
                     >
@@ -148,10 +148,7 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
 
           <div className="bg-slate-50 rounded-2xl p-5 md:p-6 border border-slate-100">
             <div className="mb-4">
-              <span className="text-[11px] font-bold text-brand-600 tracking-widest uppercase bg-brand-100 px-2 py-0.5 rounded-full">
-                {stage.phase}
-              </span>
-              <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 mt-2 flex items-center gap-1.5">
+              <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 flex items-center gap-1.5">
                 {stage.title}
               </h3>
             </div>
@@ -166,19 +163,45 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                     没有智能体时
                   </div>
                   <div className="space-y-3">
-                    <div className="bg-white rounded-lg p-3 border border-orange-200">
-                      <h4 className="text-xs font-bold text-slate-700">住客现状</h4>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.guestAction}</p>
+                    <div>
+                      <h4 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-1.5">
+                        <span className="w-5 h-5 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center font-mono text-xs font-bold">1</span>
+                        住客现状
+                      </h4>
+                      <div className="space-y-1.5">
+                        {stage.beforeGuest.map((item, i) => (
+                          <div key={i} className="bg-white rounded-lg p-2.5 border border-orange-100/60 flex gap-2">
+                            <span className="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                              {i + 1}
+                            </span>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                              <p className="text-xs text-orange-500 font-medium mt-0.5">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="bg-white rounded-lg p-3 border border-orange-200">
-                      <h4 className="text-xs font-bold text-slate-700">酒店服务现状</h4>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.staffAction}</p>
+                    <div>
+                      <h4 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-1.5">
+                        <span className="w-5 h-5 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center font-mono text-xs font-bold">2</span>
+                        酒店服务现状
+                      </h4>
+                      <div className="space-y-1.5">
+                        {stage.beforeHotel.map((item, i) => (
+                          <div key={i} className="bg-white rounded-lg p-2.5 border border-orange-100/60 flex gap-2">
+                            <span className="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                              {i + 1}
+                            </span>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                              <p className="text-xs text-orange-500 font-medium mt-0.5">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="mt-4 pt-3 border-t border-orange-300 text-xs text-orange-700 font-medium flex items-center gap-1">
-                  <span>⚠️</span>
-                  缺乏智能连接，流程割裂
                 </div>
               </div>
 
@@ -190,19 +213,45 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                     HotelClaw 智能体赋能
                   </div>
                   <div className="space-y-3">
-                    <div className="bg-white rounded-lg p-3 border border-brand-200">
-                      <h4 className="text-xs font-bold text-slate-700">AI 为住客实现</h4>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.aiAction}</p>
+                    <div>
+                      <h4 className="text-sm font-bold text-brand-600 mb-2 flex items-center gap-1.5">
+                        <span className="w-5 h-5 rounded-full bg-brand-200 text-brand-700 flex items-center justify-center font-mono text-xs font-bold">1</span>
+                        AI 为住客实现
+                      </h4>
+                      <div className="space-y-1.5">
+                        {stage.afterGuest.map((item, i) => (
+                          <div key={i} className="bg-white rounded-lg p-2.5 border border-brand-100/60 flex gap-2">
+                            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                              {i + 1}
+                            </span>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                              <p className="text-xs text-brand-500 font-medium mt-0.5">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="bg-white rounded-lg p-3 border border-brand-200">
-                      <h4 className="text-xs font-bold text-slate-700">AI 为酒店带来</h4>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">{stage.valueHotel}</p>
+                    <div>
+                      <h4 className="text-sm font-bold text-brand-600 mb-2 flex items-center gap-1.5">
+                        <span className="w-5 h-5 rounded-full bg-brand-200 text-brand-700 flex items-center justify-center font-mono text-xs font-bold">2</span>
+                        AI 为酒店带来
+                      </h4>
+                      <div className="space-y-1.5">
+                        {stage.afterHotel.map((item, i) => (
+                          <div key={i} className="bg-white rounded-lg p-2.5 border border-brand-100/60 flex gap-2">
+                            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                              {i + 1}
+                            </span>
+                            <div>
+                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                              <p className="text-xs text-brand-500 font-medium mt-0.5">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="mt-4 pt-3 border-t border-brand-300 text-xs text-brand-700 font-medium flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  自动处理 · 全流程闭痕留痕
                 </div>
               </div>
             </div>

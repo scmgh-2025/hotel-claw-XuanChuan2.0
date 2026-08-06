@@ -62,7 +62,7 @@ export default function ProductShowcase() {
     <div id="product-showcase" className="bg-slate-50/50 rounded-3xl pt-8 pb-12 shadow-sm border border-brand-100">
 
       {/* HotelClaw 技能矩阵 - 全宽展示 */}
-      <div className="w-full mb-10">
+      <div id="skill-matrix" className="w-full mb-10">
         <div className="text-center mb-5">
           <h2 className="font-display text-2xl md:text-3xl font-black text-slate-950 tracking-tight">
             技能矩阵
@@ -82,14 +82,16 @@ export default function ProductShowcase() {
         </div>
       </div>
 
-      <div className="text-center max-w-2xl mx-auto mb-10">
-        <h2 className="font-display text-2xl md:text-4xl font-black text-slate-950 tracking-tight">
-          轻量全套智能产品形态
-        </h2>
-        <p className="text-sm md:text-base text-slate-500 mt-3 font-medium whitespace-nowrap">
-          全周期覆盖、全角色适配、全系统打通的一站式酒店智能工作台，3 分钟注册即用，轻成本快速落地
-        </p>
-      </div>
+      {/* 轻量全套智能产品形态 */}
+      <div id="product-form" className="w-full mb-10">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h2 className="font-display text-2xl md:text-4xl font-black text-slate-950 tracking-tight">
+            轻量全套智能产品形态
+          </h2>
+          <p className="text-sm md:text-base text-slate-500 mt-3 font-medium whitespace-nowrap">
+            全周期覆盖、全角色适配、全系统打通的一站式酒店智能工作台，3 分钟注册即用，轻成本快速落地
+          </p>
+        </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -315,6 +317,7 @@ export default function ProductShowcase() {
           </div>
 
         </div>
+      </div>
       </div>
     </div>
   );

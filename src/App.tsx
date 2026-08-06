@@ -32,9 +32,10 @@ export default function App() {
 
   const navItems = [
     { name: '产品介绍', id: 'hero-section' },
-    { name: '产品形态', id: 'product-showcase' },
-    { name: '极速入驻', id: 'onboarding-flow' },
+    { name: '技能矩阵', id: 'skill-matrix' },
+    { name: '产品形态', id: 'product-form' },
     { name: '收益测算', id: 'roi-calculator' },
+    { name: '极速入驻', id: 'onboarding-flow' },
     { name: '合作酒店', id: 'partner-hotels' },
     { name: '能力架构', id: 'capabilities-section' }
   ];
@@ -409,22 +410,22 @@ export default function App() {
         {/* Unified Product UI simulator & Pain Points & Solutions */}
         <ProductShowcase />
 
-        {/* 4 steps onboarding setup */}
-        <OnboardingFlow />
-
         {/* Sliders ROI calculator */}
         <RoiCalculator />
 
+        {/* 4 steps onboarding setup */}
+        <OnboardingFlow />
+
         {/* 3. Partner Hotels - 环绕式布局 */}
-        <section id="partner-hotels" className="bg-gradient-to-b from-slate-50 to-white py-12">
+        <section id="partner-hotels" className="bg-white rounded-3xl p-6 md:p-10 shadow-xl border border-brand-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* 居中文字 */}
             <div className="text-center mb-8">
               <p className="font-display text-3xl md:text-4xl font-black text-slate-950 tracking-tight">
-                黄小西酒店智能体合作酒店
+                HotelClaw 酒店智能体合作酒店
               </p>
               <h2 className="text-lg font-bold text-slate-600 mt-2 tracking-wide">
-                HotelClaw 落地案例
+                落地案例
               </h2>
             </div>
 
@@ -577,6 +578,16 @@ export default function App() {
                 <div className="p-1.5 text-center">
                   <h3 className="text-base font-bold text-slate-800 truncate">公羽家·设计师酒店</h3>
                   <p className="text-sm text-slate-500 mt-0.5">设计师酒店</p>
+                </div>
+              </div>
+
+              {/* 更多酒店提示 */}
+              <div className="col-span-full flex justify-center mt-6">
+                <div className="flex items-center gap-2 bg-white/80 backdrop-blur border border-slate-200 rounded-full px-5 py-2.5 shadow-sm">
+                  <span className="text-slate-500 text-sm font-medium">更多合作酒店持续接入中</span>
+                  <svg className="w-4 h-4 text-brand-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </div>
             </div>

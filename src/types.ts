@@ -18,13 +18,19 @@ export interface PainPoint {
   caseStudy: string;
 }
 
+export interface LifecycleItem {
+  title: string;
+  desc: string;
+}
+
 export interface LifecycleStage {
   id: number;
   phase: string;
   title: string;
-  guestAction: string;
-  staffAction: string;
-  aiAction: string;
+  beforeGuest: LifecycleItem[];
+  beforeHotel: LifecycleItem[];
+  afterGuest: LifecycleItem[];
+  afterHotel: LifecycleItem[];
   valueGuest: string;
   valueHotel: string;
 }

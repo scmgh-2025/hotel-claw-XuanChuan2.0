@@ -35,7 +35,7 @@ export default function CompanyBackground() {
                   <div className="bg-white rounded-xl p-2.5 shadow-sm border border-slate-100">
                     {getIcon(idx)}
                   </div>
-                  <span className="text-sm font-black text-brand-700 bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-lg">
+                  <span className="text-lg font-black text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-2 rounded-lg">
                     {co.badge}
                   </span>
                 </div>
