@@ -35,16 +35,16 @@ export default function CompanyBackground() {
                   <div className="bg-white rounded-xl p-2.5 shadow-sm border border-slate-100">
                     {getIcon(idx)}
                   </div>
-                  <span className="text-lg font-black text-brand-700 bg-brand-50 border border-brand-100 px-3.5 py-2 rounded-lg">
-                    {co.badge}
-                  </span>
-                </div>
-
-                <div>
                   <h3 className="font-display text-base font-black text-slate-800 leading-tight">
                     {co.name}
                   </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mt-2 font-medium">
+                </div>
+
+                <div>
+                  <span className="text-sm font-bold text-brand-700 bg-brand-50 border border-brand-100 px-2.5 py-1 rounded-lg inline-block mb-2">
+                    {co.badge}
+                  </span>
+                  <p className="text-sm text-slate-500 leading-relaxed font-medium">
                     {co.desc.map((seg: { text: string; bold: boolean }, i: number) =>
                       seg.bold
                         ? <span key={i} className="text-slate-700">{seg.text}</span>
