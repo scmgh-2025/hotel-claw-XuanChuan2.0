@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>酒店智能服务全景图</title>
+  <style>
+    /* CSS Reset & Variable Definitions */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-canvas: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      /* Theme Colors */
+      --guest-primary: #0284c7;
+      --guest-light: #f0f9ff;
+      --guest-border: #bae6fd;
+      --guest-hover: #e0f2fe;
+
+      --staff-primary: #059669;
+      --staff-light: #ecfdf5;
+      --staff-border: #a7f3d0;
+      --staff-hover: #d1fae5;
+
+      --manager-primary: #7c3aed;
+      --manager-light: #f5f3ff;
+      --manager-border: #ddd6fe;
+      --manager-hover: #ede9fe;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: 1rem;
+    }
+
+    /* 16:9 Fixed Ratio Canvas Container */
+    .aspect-box {
+      width: min(96vw, 177.78vh);
+      aspect-ratio: 16 / 9;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5vw 2.8vw;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* Subtle Background Decoration */
+    .bg-decoration {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--guest-primary) 0%, var(--staff-primary) 50%, var(--manager-primary) 100%);
+    }
+
+    /* Header Section */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4vw;
+      padding-bottom: 0.8vw;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-title {
+      font-size: clamp(20px, 2.2vw, 32px);
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-title-badge {
+      font-size: clamp(11px, 0.9vw, 13px);
+      font-weight: 600;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .header-subtitle {
+      font-size: clamp(12px, 1vw, 15px);
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tag-count-summary {
+      display: flex;
+      gap: 12px;
+      font-size: clamp(11px, 0.85vw, 13px);
+    }
+
+    .summary-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 500;
+      border: 1px solid transparent;
+    }
+    .summary-badge.guest { background: var(--guest-light); color: var(--guest-primary); border-color: var(--guest-border); }
+    .summary-badge.staff { background: var(--staff-light); color: var(--staff-primary); border-color: var(--staff-border); }
+    .summary-badge.manager { background: var(--manager-light); color: var(--manager-primary); border-color: var(--manager-border); }
+
+    /* Main Columns Grid Layout */
+    .columns-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 0.95fr;
+      gap: 1.5vw;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Individual Column Component */
+    .column-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 0.8vw 1.1vw 0.5vw 1.1vw;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: visible;
+    }
+
+    .column-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Column Themes */
+    .column-card.guest {
+      border-top: 4px solid var(--guest-primary);
+      background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 15%);
+    }
+
+    .column-card.staff {
+      border-top: 4px solid var(--staff-primary);
+      background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 15%);
+    }
+
+    .column-card.manager {
+      border-top: 4px solid var(--manager-primary);
+      background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 15%);
+    }
+
+    /* Section Header */
+    .section-header {
+      margin-bottom: 0.6vw;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 1.75vw, 28px);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .column-card.guest .section-title { color: #0369a1; }
+    .column-card.staff .section-title { color: #047857; }
+    .column-card.manager .section-title { color: #6d28d9; }
+
+    .target-audience {
+      font-size: clamp(13px, 1vw, 15px);
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 10px;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      display: inline-block;
+    }
+
+    .column-card.guest .target-audience { background: var(--guest-light); color: var(--guest-primary); border-color: var(--guest-border); }
+    .column-card.staff .target-audience { background: var(--staff-light); color: var(--staff-primary); border-color: var(--staff-border); }
+    .column-card.manager .target-audience { background: var(--manager-light); color: var(--manager-primary); border-color: var(--manager-border); }
+
+    .section-desc {
+      font-size: clamp(14px, 1.1vw, 16px);
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+
+    /* Tags Grid Container - 使用双列网格，确保所有二级标签同一列宽度完全等宽对齐 */
+    .tags-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8vw 0.8vw;
+      align-content: start;
+      overflow: visible;
+      padding-top: 0.4vw;
+      position: relative;
+    }
+
+    /* Has Dropdown Styling */
+    .tag-chip.has-dropdown {
+      position: relative;
+      cursor: pointer;
+      justify-content: space-between;
+      overflow: visible;
+    }
+
+    .dropdown-arrow {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+      opacity: 0.7;
+      flex-shrink: 0;
+      margin-left: 4px;
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      background: rgba(148, 163, 184, 0.15);
+    }
+
+    .tag-chip.has-dropdown:hover .dropdown-arrow,
+    .tag-chip.has-dropdown.active .dropdown-arrow {
+      opacity: 1;
+    }
+
+    .tag-chip.has-dropdown.active .dropdown-arrow {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      width: max-content;
+      min-width: 160px;
+      max-width: 220px;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 6px;
+      box-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.18), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      z-index: 100;
+      flex-direction: column;
+      gap: 2px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .dropdown-menu.dropdown-up {
+      bottom: calc(100% + 6px);
+      left: 0;
+    }
+
+    .dropdown-menu.dropdown-down {
+      top: calc(100% + 6px);
+      left: 0;
+    }
+
+    .dropdown-menu.active {
+      display: flex;
+      animation: dropdownFadeIn 0.15s ease-out;
+    }
+
+    @keyframes dropdownFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      font-size: clamp(11px, 0.82vw, 12px);
+      font-weight: 500;
+      color: #334155;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .dropdown-item-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Guest Column Dropdown */
+    .tag-chip.has-dropdown {
+      position: relative;
+      cursor: pointer;
+      justify-content: space-between;
+      z-index: 5;
+    }
+    .tag-chip.has-dropdown.active {
+      z-index: 250 !important;
+    }
+
+    .column-card.guest .tag-chip.has-dropdown.active {
+      background: var(--guest-hover);
+      color: #0284c7;
+      border-color: var(--guest-border);
+    }
+    .column-card.guest .dropdown-menu {
+      border: 1px solid var(--guest-border);
+    }
+    .column-card.guest .dropdown-item:hover {
+      background: var(--guest-light);
+      color: #0284c7;
+    }
+    .column-card.guest .dropdown-item-dot {
+      background-color: var(--guest-primary);
+    }
+
+    /* Manager Column Dropdown */
+    .column-card.manager .tag-chip.has-dropdown.active {
+      background: var(--manager-hover);
+      color: #7c3aed;
+      border-color: var(--manager-border);
+    }
+    .column-card.manager .dropdown-menu {
+      border: 1px solid var(--manager-border);
+    }
+    .column-card.manager .dropdown-item:hover {
+      background: var(--manager-light);
+      color: #7c3aed;
+    }
+    .column-card.manager .dropdown-item-dot {
+      background-color: var(--manager-primary);
+    }
+
+    /* Floating Feature Tooltip Popover */
+    .feature-tooltip-popover {
+      position: fixed;
+      z-index: 9999;
+      width: min(320px, 85vw);
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 12px 14px;
+      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.22), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+      border: 1px solid #cbd5e1;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(4px) scale(0.98);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      visibility: hidden;
+    }
+
+    .feature-tooltip-popover.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      visibility: visible;
+    }
+
+    .tooltip-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .tooltip-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tooltip-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tooltip-badge.guest { background: var(--guest-light); color: var(--guest-primary); border: 1px solid var(--guest-border); }
+    .tooltip-badge.staff { background: var(--staff-light); color: var(--staff-primary); border: 1px solid var(--staff-border); }
+    .tooltip-badge.manager { background: var(--manager-light); color: var(--manager-primary); border: 1px solid var(--manager-border); }
+
+    .tooltip-body {
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    /* Tag Chips Unified Style - 绝对统一宽高度与布局形态 */
+    .tag-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0.9vw 0.8vw;
+      border-radius: 8px;
+      font-size: clamp(12px, 0.98vw, 14px);
+      font-weight: 600;
+      background: #f8fafc;
+      color: #334155;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s ease;
+      cursor: default;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Skill Matrix Sci-Fi Header & Flowing Lines */
+    .skill-matrix-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .skill-matrix-node {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 16px;
+      padding: 12px 28px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.25), inset 0 0 10px rgba(56, 189, 248, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-matrix-node:hover {
+      transform: translateY(-1px) scale(1.02);
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), inset 0 0 14px rgba(56, 189, 248, 0.2);
+    }
+
+    .matrix-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #38bdf8;
+      box-shadow: 0 0 8px #38bdf8;
+      animation: pulseDot 1.5s infinite ease-in-out;
+    }
+
+    .matrix-title {
+      background: linear-gradient(90deg, #38bdf8, #22d3ee, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .matrix-tag {
+      font-size: 10px;
+      font-family: monospace;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(14, 165, 233, 0.2);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    @keyframes flowLight {
+      from { stroke-dashoffset: 28; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .flowing-line-sky { animation: flowLight 1.6s linear infinite; }
+    .flowing-line-emerald { animation: flowLight 1.8s linear infinite; }
+    .flowing-line-violet { animation: flowLight 2s linear infinite; }
+    .flowing-line-particle { animation: flowParticle 1.2s linear infinite; }
+
+    @keyframes flowParticle {
+      from { stroke-dashoffset: 28; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .sci-fi-lines-svg {
+      width: 100%;
+      height: 64px;
+      margin-top: -2px;
+      overflow: visible;
+    }
+
+    /* Hover Micro-interactions */
+    .tag-chip:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Theme specific tag styles */
+    .column-card.guest .tag-chip:hover {
+      background: var(--guest-hover);
+      color: #0284c7;
+      border-color: var(--guest-border);
+    }
+
+    .column-card.staff .tag-chip:hover {
+      background: var(--staff-hover);
+      color: #059669;
+      border-color: var(--staff-border);
+    }
+
+    .column-card.manager .tag-chip:hover {
+      background: var(--manager-hover);
+      color: #7c3aed;
+      border-color: var(--manager-border);
+    }
+
+    /* Chip Dots */
+    .chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .column-card.guest .chip-dot { background-color: var(--guest-primary); }
+    .column-card.staff .chip-dot { background-color: var(--staff-primary); }
+    .column-card.manager .chip-dot { background-color: var(--manager-primary); }
+
+    /* Footer Section */
+    .footer {
+      margin-top: 1vw;
+      padding-top: 0.8vw;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: clamp(10px, 0.75vw, 12px);
+      color: var(--text-light);
+    }
+
+    .footer-note {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-tag {
+      background: #f8fafc;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aspect-box">
+    <!-- Top Accent Line -->
+    <div class="bg-decoration"></div>
+
+    <!-- Skill Matrix Sci-Fi Header Node & Connecting Lines -->
+    <div class="skill-matrix-section">
+      <div class="skill-matrix-node">
+        <span class="matrix-dot"></span>
+        <span class="matrix-title">HotelClaw 技能矩阵</span>
+      </div>
+
+      <svg class="sci-fi-lines-svg" viewBox="0 0 1000 36" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="grad-sky" x1="500" y1="0" x2="166" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="100%" stop-color="#0284c7" />
+          </linearGradient>
+          <linearGradient id="grad-emerald" x1="500" y1="0" x2="500" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#34d399" />
+            <stop offset="100%" stop-color="#059669" />
+          </linearGradient>
+          <linearGradient id="grad-violet" x1="500" y1="0" x2="834" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#c084fc" />
+            <stop offset="100%" stop-color="#7c3aed" />
+          </linearGradient>
+          <filter id="glow-sky" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-emerald" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-emerald-light" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="0.6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id="glow-violet" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.8" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Base Dashed Guides -->
+        <path d="M 500 0 C 500 22, 166 14, 166 36" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 4" />
+        <path d="M 500 0 L 500 36" fill="none" stroke="#cbd5e1" stroke-width="0.8" stroke-dasharray="3 4" opacity="0.4" />
+        <path d="M 500 0 C 500 22, 834 14, 834 36" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 4" />
+
+        <!-- Glowing Flowing Light Lines -->
+        <path d="M 500 0 C 500 22, 166 14, 166 36" fill="none" stroke="url(#grad-sky)" stroke-width="1.8" stroke-dasharray="7 7" filter="url(#glow-sky)" class="flowing-line-sky" />
+        <path d="M 500 0 L 500 36" fill="none" stroke="url(#grad-emerald)" stroke-width="2.5" stroke-dasharray="4 10" filter="none" class="flowing-line-emerald" />
+        <path d="M 500 0 C 500 22, 834 14, 834 36" fill="none" stroke="url(#grad-violet)" stroke-width="1.8" stroke-dasharray="7 7" filter="url(#glow-violet)" class="flowing-line-violet" />
+
+        <!-- Connection Junction Dots -->
+        <circle cx="166" cy="35" r="2.8" fill="#0284c7" filter="url(#glow-sky)" />
+        <circle cx="500" cy="35" r="2.8" fill="#10b981" filter="url(#glow-emerald)" />
+        <circle cx="834" cy="35" r="2.8" fill="#7c3aed" filter="url(#glow-violet)" />
+      </svg>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="columns-grid">
+
+      <!-- Column 1: 住客服务 -->
+      <section class="column-card guest">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2 class="section-title">
+              <span>🛎️ 住客服务</span>
+            </h2>
+            <span class="target-audience">面向住客</span>
+          </div>
+          <p class="section-desc">无感便捷、即时响应的数字化入住与消费体验</p>
+        </div>
+
+        <div class="tags-container">
+          <div class="tag-chip" data-title="客房服务工单" data-badge="住客服务" data-badge-type="guest" data-desc="涵盖外卖代送、清洁、维修、送物、开票、夜床、洗衣、行李、车牌、入住预约、叫醒等全品类工单，住客在线提交后自动生成，部门按单处理并跟踪进度。"><span class="chip-dot"></span>客房服务工单</div>
+          <div class="tag-chip" data-title="设施问询" data-badge="住客服务" data-badge-type="guest" data-desc="酒店全场景设施信息查询，涵盖WiFi、会议室、停车场、健身房、客房设施、洗衣房、餐厅等。"><span class="chip-dot"></span>设施问询</div>
+          <div class="tag-chip" data-title="订房" data-badge="住客服务" data-badge-type="guest" data-desc="酒店客房在线购买入口，支持房型选择、日期查询、价格展示和预订下单。"><span class="chip-dot"></span>订房</div>
+          <div class="tag-chip" data-title="酒店自营商城" data-badge="住客服务" data-badge-type="guest" data-desc="酒店自营商品购买入口，涵盖客房便利品、伴手礼、早餐券、按摩、延迟退房等，支持在线选购支付。"><span class="chip-dot"></span>酒店自营商城</div>
+          <div class="tag-chip" data-title="平台精选商城" data-badge="住客服务" data-badge-type="guest" data-desc="平台精选供应链商品，包括文娱活动、精品游、酒水、特产、景区门票等。"><span class="chip-dot"></span>平台精选商城</div>
+          <div class="tag-chip" data-title="吐槽墙" data-badge="住客服务" data-badge-type="guest" data-desc="住客可提交反馈、吐槽、建议和图片，系统跟踪回复与处理时长，支持酒店管理吐槽墙展示情况。"><span class="chip-dot"></span>吐槽墙</div>
+          <div class="tag-chip" data-title="车牌登记" data-badge="住客服务" data-badge-type="guest" data-desc="住客输入车牌号完成停车登记，可与离店核验或停车减免流程衔接。"><span class="chip-dot"></span>车牌登记</div>
+          <div class="tag-chip" data-title="行李寄存" data-badge="住客服务" data-badge-type="guest" data-desc="住客在线提交寄存件数、取件时间、联系方式等信息并生成服务记录。"><span class="chip-dot"></span>行李寄存</div>
+          <div class="tag-chip" data-title="周边美食推荐" data-badge="住客服务" data-badge-type="guest" data-desc="基于酒店位置推荐周边餐饮榜单。"><span class="chip-dot"></span>周边美食推荐</div>
+          <div class="tag-chip" data-title="周边打卡推荐" data-badge="住客服务" data-badge-type="guest" data-desc="基于酒店位置推荐周边拍照点、地标、景区、路线和热门打卡点。"><span class="chip-dot"></span>周边打卡推荐</div>
+          <div class="tag-chip" data-title="酒店活动" data-badge="住客服务" data-badge-type="guest" data-desc="推荐周边文化体验（非遗、民俗、博物馆、演出、节庆），支持酒店/城市/节庆活动展示与报名。"><span class="chip-dot"></span>酒店活动</div>
+          <div class="tag-chip has-dropdown" data-title="智能服务团队" data-badge="住客服务" data-badge-type="guest" data-desc="智能服务管家矩阵，提供亲子、会议、健康、天气等10大专项问答与特色交互助手。" onclick="toggleDropdown(event, 'dropdown-smart-team')">
+            <div style="display: flex; align-items: center; gap: 6px; overflow: hidden; min-width: 0;">
+              <span class="chip-dot"></span>
+              <span style="overflow: hidden; text-overflow: ellipsis;">智能服务团队</span>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+            <div id="dropdown-smart-team" class="dropdown-menu dropdown-up" onclick="event.stopPropagation()">
+              <div class="dropdown-item" data-title="亲子陪伴乐乐" data-badge="智能服务团队" data-badge-type="guest" data-desc="亲子住客智能陪伴助手，提供儿童故事、儿歌、科普、亲子话题和亲子设施查询。"><span class="dropdown-item-dot"></span>亲子陪伴乐乐</div>
+              <div class="dropdown-item" data-title="会议邀请助手" data-badge="智能服务团队" data-badge-type="guest" data-desc="会议/活动智能助手，自动生成邀请函、活动文案、宴会说明和参会须知。"><span class="dropdown-item-dot"></span>会议邀请助手</div>
+              <div class="dropdown-item" data-title="健康小妙招" data-badge="智能服务团队" data-badge-type="guest" data-desc="旅途健康舒缓建议，涵盖疲劳、颈肩酸痛、眼胀、轻度不适等场景。"><span class="dropdown-item-dot"></span>健康小妙招</div>
+              <div class="dropdown-item" data-title="天气助手" data-badge="智能服务团队" data-badge-type="guest" data-desc="目的地实时天气、空气质量查询，提供穿搭、雨具和出行建议。"><span class="dropdown-item-dot"></span>天气助手</div>
+              <div class="dropdown-item" data-title="本地推荐官" data-badge="智能服务团队" data-badge-type="guest" data-desc="推荐地道美食、隐藏玩法、本地人私藏去处，支持按距离、口味、预算筛选。"><span class="dropdown-item-dot"></span>本地推荐官</div>
+              <div class="dropdown-item" data-title="每日运势测测" data-badge="智能服务团队" data-badge-type="guest" data-desc="轻量化每日能量、生活灵感和仪式感内容，增强互动趣味。"><span class="dropdown-item-dot"></span>每日运势测测</div>
+              <div class="dropdown-item" data-title="睡眠助手眠眠" data-badge="智能服务团队" data-badge-type="guest" data-desc="助眠服务助手，提供睡前故事、轻音乐、白噪音、冥想引导和睡眠环境建议。"><span class="dropdown-item-dot"></span>睡眠助手眠眠</div>
+              <div class="dropdown-item" data-title="行程伴侣" data-badge="智能服务团队" data-badge-type="guest" data-desc="个性化旅行规划，包括定制、路线、时间、费用预估和避坑提醒。"><span class="dropdown-item-dot"></span>行程伴侣</div>
+              <div class="dropdown-item" data-title="邀约小管家" data-badge="智能服务团队" data-badge-type="guest" data-desc="会务助手，支持会议邀约、参会统计、提醒、会前事项收集和现场服务跟进。"><span class="dropdown-item-dot"></span>邀约小管家</div>
+              <div class="dropdown-item" data-title="酒店管家" data-badge="智能服务团队" data-badge-type="guest" data-desc="智能服务管家，统一回答客房服务、设施、营业时间、Wi-Fi、早餐、停车等高频问题。"><span class="dropdown-item-dot"></span>酒店管家</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Column 2: 员工工作台 -->
+      <section class="column-card staff">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2 class="section-title">
+              <span>💻 员工工作台</span>
+            </h2>
+            <span class="target-audience">面向酒店员工与管理人员</span>
+          </div>
+          <p class="section-desc">提效赋能、智能协同的酒店前后台一体化工作台</p>
+        </div>
+
+        <div class="tags-container">
+          <div class="tag-chip" data-title="酒店便捷入驻" data-badge="员工工作台" data-badge-type="staff" data-desc="支持酒店通过智能体问答快速完成供应链或酒店注册。"><span class="chip-dot"></span>酒店便捷入驻</div>
+          <div class="tag-chip" data-title="智能体配置" data-badge="员工工作台" data-badge-type="staff" data-desc="配置酒店知识库，沉淀高频问答、未命中问题、点踩问题和待优化问题，支持审核入库。统一管理酒店资料、设施说明、制度文档、周边内容和商品资料。维护标准问答、适用门店、生效时间、答案版本和相似问法。设置不同智能体的角色定位、知识范围、回答风格、转人工规则和权限边界。设置不同风格的智能体首页。"><span class="chip-dot"></span>智能体配置</div>
+          <div class="tag-chip" data-title="商城配置" data-badge="员工工作台" data-badge-type="staff" data-desc="商城视觉与功能配置，支持首页、分类页、商品卡、推荐位、广告位、专题配置，支持配置供应链/自营。"><span class="chip-dot"></span>商城配置</div>
+          <div class="tag-chip" data-title="平台商品池" data-badge="员工工作台" data-badge-type="staff" data-desc="平台级商品供应链管理，包括供应商、商品矩阵、渠道管控。"><span class="chip-dot"></span>平台商品池</div>
+          <div class="tag-chip" data-title="AI营销" data-badge="员工工作台" data-badge-type="staff" data-desc="智能化营销工具，一是支持促销配置（优惠券、满减、折扣等）和活动策略配置。二是支持为酒店提供AI生成营销文案和海报。"><span class="chip-dot"></span>AI营销</div>
+          <div class="tag-chip" data-title="NFC碰一碰服务配置" data-badge="员工工作台" data-badge-type="staff" data-desc="通过配置二维码打开碰碰贴服务入口，适配不支持NFC的设备。支持生成或展示评价文案并支持一键复制，支持跳转或同步至外部平台。帮助住客一键接入酒店WiFi。"><span class="chip-dot"></span>NFC碰一碰服务配置</div>
+          <div class="tag-chip" data-title="订单管理" data-badge="员工工作台" data-badge-type="staff" data-desc="全链路订单管理，涵盖交易处理和售后退款，保障交易闭环。"><span class="chip-dot"></span>订单管理</div>
+          <div class="tag-chip" data-title="财务与结算" data-badge="员工工作台" data-badge-type="staff" data-desc="完整财务与资金结算能力，包括企业钱包、佣金结算、对账管理、结算中心。"><span class="chip-dot"></span>财务与结算</div>
+          <div class="tag-chip" data-title="AI交班助手" data-badge="员工工作台" data-badge-type="staff" data-desc="交班辅助工具，自动汇总待办工单、反馈、风险提醒、重点客情和班次注意事项。"><span class="chip-dot"></span>AI交班助手</div>
+          <div class="tag-chip" data-title="售卖房型配置" data-badge="员工工作台" data-badge-type="staff" data-desc="房型售卖管理，管理售卖状态、权益说明、库存展示和渠道可售配置。"><span class="chip-dot"></span>售卖房型配置</div>
+          <div class="tag-chip" data-title="房态房价配置" data-badge="员工工作台" data-badge-type="staff" data-desc="房态房价实时监控，展示实时房态、可售房量、房价策略、入住率和价格变动。"><span class="chip-dot"></span>房态房价配置</div>
+          <div class="tag-chip" data-title="吐槽管理" data-badge="员工工作台" data-badge-type="staff" data-desc="吐槽与投诉全流程管理，包括发布管理、吐槽墙、投诉预警闭环。"><span class="chip-dot"></span>吐槽管理</div>
+        </div>
+      </section>
+
+      <!-- Column 3: 管理者工作台 -->
+      <section class="column-card manager">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2 class="section-title">
+              <span>📊 管理者工作台</span>
+            </h2>
+            <span class="target-audience">面向店长、经理、老板</span>
+          </div>
+          <p class="section-desc">全局数据掌控、风险洞察与全流程办结跟踪</p>
+        </div>
+
+        <div class="tags-container">
+          <div class="tag-chip has-dropdown" data-title="运营数据分析" data-badge="管理者工作台" data-badge-type="manager" data-desc="酒店运营全景数据看板，涵盖AI回答质量、数据埋点、商城分析、单店/多店明细与报告导出。" onclick="toggleDropdown(event, 'dropdown-analytics')">
+            <div style="display: flex; align-items: center; gap: 6px; overflow: hidden; min-width: 0;">
+              <span class="chip-dot"></span>
+              <span style="overflow: hidden; text-overflow: ellipsis;">运营数据分析</span>
+            </div>
+            <span class="dropdown-arrow">▼</span>
+            <div id="dropdown-analytics" class="dropdown-menu dropdown-down" onclick="event.stopPropagation()">
+              <div class="dropdown-item" data-title="AI回答质量数据" data-badge="运营数据分析" data-badge-type="manager" data-desc="AI回答质量监控，支持住客点赞/点踩反馈，按多维度汇总质量数据。"><span class="dropdown-item-dot"></span>AI回答质量数据</div>
+              <div class="dropdown-item" data-title="数据埋点监控" data-badge="运营数据分析" data-badge-type="manager" data-desc="全维度数据埋点，采集小程序访问、AI问答、工单、商城等关键行为数据。"><span class="dropdown-item-dot"></span>数据埋点监控</div>
+              <div class="dropdown-item" data-title="商城数据分析" data-badge="运营数据分析" data-badge-type="manager" data-desc="统计商品浏览次数、详情查看次数、停留时长、收藏和加购行为。统计商城内搜索频次最高的关键词和无结果关键词。分别统计自营商城和平台商城交易笔数、交易金额、退款额和上架SKU数。"><span class="dropdown-item-dot"></span>商城数据分析</div>
+              <div class="dropdown-item" data-title="单店运营明细分析" data-badge="运营数据分析" data-badge-type="manager" data-desc="单店运营全景分析，展示基础信息、服务数据、咨询热点、工单表现和运营简析。"><span class="dropdown-item-dot"></span>单店运营明细分析</div>
+              <div class="dropdown-item" data-title="工单响应时长与处理率" data-badge="运营数据分析" data-badge-type="manager" data-desc="工单效率分析，统计响应时长、处理时长、处理率、超时率和工单类型占比。"><span class="dropdown-item-dot"></span>工单响应时长与处理率</div>
+              <div class="dropdown-item" data-title="高频咨询主题分析" data-badge="运营数据分析" data-badge-type="manager" data-desc="住客咨询热点分析，统计高频关键词和主题分布。"><span class="dropdown-item-dot"></span>高频咨询主题分析</div>
+              <div class="dropdown-item" data-title="多店运营明细分析" data-badge="运营数据分析" data-badge-type="manager" data-desc="汇总多家酒店登录、问答、工单、反馈、预警、商城和入口触达等核心数据。"><span class="dropdown-item-dot"></span>多店运营明细分析</div>
+              <div class="dropdown-item" data-title="报告导出" data-badge="运营数据分析" data-badge-type="manager" data-desc="自动化报告导出，支持Excel、PDF、HTML看板，覆盖集团汇总、门店对比和图表。"><span class="dropdown-item-dot"></span>报告导出</div>
+            </div>
+          </div>
+          <div class="tag-chip" data-title="风险预警" data-badge="管理者工作台" data-badge-type="manager" data-desc="风险预警管理，统计预警信息，区分等级，跟踪处理数量、状态和时长。"><span class="chip-dot"></span>风险预警</div>
+          <div class="tag-chip" data-title="员工端使用分析" data-badge="管理者工作台" data-badge-type="manager" data-desc="员工端使用行为分析，统计访问次数、问答数据和常用功能分布。"><span class="chip-dot"></span>员工端使用分析</div>
+          <div class="tag-chip" data-title="工单处理与办结跟踪" data-badge="管理者工作台" data-badge-type="manager" data-desc="工单全生命周期跟踪，覆盖受理、分派、处理、办结、超时和评价状态。"><span class="chip-dot"></span>工单处理与办结跟踪</div>
+          <div class="tag-chip" data-title="单店运营明细分析" data-badge="管理者工作台" data-badge-type="manager" data-desc="按单家酒店展示基础信息、服务数据、咨询热点、工单表现和运营简析。"><span class="chip-dot"></span>单店运营明细分析</div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Global Feature Detail Tooltip Popover -->
+  <div id="feature-tooltip" class="feature-tooltip-popover">
+    <div class="tooltip-header">
+      <span id="tooltip-title" class="tooltip-title"></span>
+      <span id="tooltip-badge" class="tooltip-badge"></span>
+    </div>
+    <div id="tooltip-body" class="tooltip-body"></div>
+  </div>
+
+  <script>
+    function toggleDropdown(event, dropdownId) {
+      event.stopPropagation();
+      const target = document.getElementById(dropdownId);
+      const chip = target.closest('.has-dropdown');
+      const isActive = target.classList.contains('active');
+
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        menu.classList.remove('active');
+        const parentChip = menu.closest('.has-dropdown');
+        if (parentChip) parentChip.classList.remove('active');
+      });
+
+      if (!isActive && target) {
+        target.classList.add('active');
+        if (chip) chip.classList.add('active');
+      }
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.has-dropdown')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.classList.remove('active');
+          const parentChip = menu.closest('.has-dropdown');
+          if (parentChip) parentChip.classList.remove('active');
+        });
+      }
+    });
+
+    // Tooltip Hover Logic
+    const tooltipEl = document.getElementById('feature-tooltip');
+    const tooltipTitle = document.getElementById('tooltip-title');
+    const tooltipBadge = document.getElementById('tooltip-badge');
+    const tooltipBody = document.getElementById('tooltip-body');
+
+    function updateTooltipPos(e) {
+      if (!tooltipEl) return;
+      const tooltipWidth = tooltipEl.offsetWidth || 280;
+      const tooltipHeight = tooltipEl.offsetHeight || 100;
+      
+      let left = e.clientX + 12;
+      let top = e.clientY + 12;
+
+      if (left + tooltipWidth > window.innerWidth - 12) {
+        left = e.clientX - tooltipWidth - 12;
+      }
+      if (top + tooltipHeight > window.innerHeight - 12) {
+        top = e.clientY - tooltipHeight - 12;
+      }
+
+      left = Math.max(8, left);
+      top = Math.max(8, top);
+
+      tooltipEl.style.left = left + 'px';
+      tooltipEl.style.top = top + 'px';
+    }
+
+    document.addEventListener('mouseover', function(e) {
+      const target = e.target.closest('[data-desc]');
+      if (target) {
+        const desc = target.getAttribute('data-desc');
+        const title = target.getAttribute('data-title') || target.innerText.replace('▼', '').trim();
+        const badge = target.getAttribute('data-badge') || '功能详情';
+        const badgeType = target.getAttribute('data-badge-type') || 'guest';
+
+        tooltipTitle.textContent = title;
+        tooltipBadge.textContent = badge;
+        tooltipBadge.className = 'tooltip-badge ' + badgeType;
+        tooltipBody.textContent = desc;
+
+        tooltipEl.classList.add('visible');
+        updateTooltipPos(e);
+      }
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (tooltipEl && tooltipEl.classList.contains('visible')) {
+        updateTooltipPos(e);
+      }
+    });
+
+    document.addEventListener('mouseout', function(e) {
+      const target = e.target.closest('[data-desc]');
+      if (target) {
+        const related = e.relatedTarget ? e.relatedTarget.closest('[data-desc]') : null;
+        if (!related) {
+          tooltipEl.classList.remove('visible');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
