@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Smartphone, Laptop, Sparkles, MessageSquare, ListTodo, LayoutDashboard, Send, BadgeCheck, CheckCircle2, ShieldAlert, Wifi, BellRing, ChevronRight, ShoppingBag, ChevronLeft } from 'lucide-react';
+import { Smartphone, Laptop, Sparkles, MessageSquare, ListTodo, LayoutDashboard, Send, BadgeCheck, CheckCircle2, ShieldAlert, Wifi, BellRing, ShoppingBag } from 'lucide-react';
 import RolePainPoints from './RolePainPoints';
 import LifecycleService from './LifecycleService';
 import SopSimulator from './SopSimulator';
@@ -10,7 +10,6 @@ type SectionType = 'overview' | 'painpoints' | 'solution' | 'sop';
 export default function ProductShowcase() {
   const [activeMode, setActiveMode] = useState<ModeType>('guest');
   const [activeSection, setActiveSection] = useState<SectionType>('overview');
-  const [skillPage, setSkillPage] = useState(0);
 
   // Staff Tasks state
   const [tasks, setTasks] = useState([
@@ -73,56 +72,13 @@ export default function ProductShowcase() {
           </p>
         </div>
         <div className="rounded-none border-y border-slate-200 shadow-sm overflow-hidden bg-white">
-          {skillPage === 0 ? (
-            <iframe
-              src="/hotel-claw-XuanChuan2.0/hotel_smart_service.html"
-              title="HotelClaw 智能服务"
-              className="w-full"
-              scrolling="no"
-              style={{ height: '900px', border: 'none', display: 'block' }}
-            />
-          ) : (
-            <iframe
-              src="/hotel-claw-XuanChuan2.0/skill-matrix.html"
-              title="HotelClaw 技能矩阵"
-              className="w-full"
-              scrolling="no"
-              style={{ height: '900px', border: 'none', display: 'block' }}
-            />
-          )}
-        </div>
-        <div className="flex justify-center items-center gap-4 mt-6">
-          <button
-            onClick={() => setSkillPage(skillPage === 0 ? 1 : skillPage - 1)}
-            disabled={skillPage === 0}
-            className="flex items-center gap-1 px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-600 font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            上一页
-          </button>
-          <div className="flex items-center gap-2">
-            {[0, 1].map((page) => (
-              <button
-                key={page}
-                onClick={() => setSkillPage(page)}
-                className={`w-8 h-8 rounded-full text-sm font-bold transition ${
-                  skillPage === page
-                    ? 'bg-brand-500 text-white shadow-md shadow-brand-500/20'
-                    : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300'
-                }`}
-              >
-                {page + 1}
-              </button>
-            ))}
-          </div>
-          <button
-            onClick={() => setSkillPage(skillPage === 1 ? 0 : skillPage + 1)}
-            disabled={skillPage === 1}
-            className="flex items-center gap-1 px-4 py-2 rounded-xl border border-slate-200 bg-white text-slate-600 font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition disabled:opacity-40 disabled:cursor-not-allowed"
-          >
-            下一页
-            <ChevronRight className="w-4 h-4" />
-          </button>
+          <iframe
+            src="/hotel-claw-XuanChuan2.0/hotel_smart_service.html"
+            title="HotelClaw 智能服务"
+            className="w-full"
+            scrolling="no"
+            style={{ height: '900px', border: 'none', display: 'block' }}
+          />
         </div>
       </div>
 

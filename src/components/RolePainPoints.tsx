@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PAIN_POINTS } from '../data';
 import { RoleType } from '../types';
-import { AlertCircle, CheckCircle, ShieldAlert, BadgeInfo, Quote, Zap } from 'lucide-react';
+import { AlertCircle, CheckCircle, ShieldAlert, BadgeInfo, Quote } from 'lucide-react';
 
 interface Props {
   allowedRoles?: RoleType[];
@@ -78,20 +78,6 @@ export default function RolePainPoints({ allowedRoles, hideTitle }: Props) {
               <span className="text-slate-600">{selectedPoint.title}</span>
             </h3>
             <p className="text-xs text-slate-400 mt-1">{selectedPoint.roleDesc}</p>
-          </div>
-          <div className="bg-indigo-900/10 text-brand-900 text-xs px-3 py-2 rounded-xl border border-brand-200 flex items-center gap-1.5 font-medium shrink-0">
-            <Zap className="w-3.5 h-3.5 fill-brand-500 text-brand-500" />
-            {(() => {
-              const taglines: Record<string, string> = {
-                guest: '到店前被周到照顾，住店中即呼即应，离店后持续温暖',
-                front_desk: '告别重复电话轰炸，专注为客人提供有温度的服务',
-                housekeeping: '自动匹配任务动线，降低跨岗学习成本，工作更轻松',
-                marketing: 'AI一键生成营销素材，自动唤醒私域客户，轻松拿提成',
-                manager: '从问题救火到智能驱动经营运营，管理宽带提升 3 倍',
-                owner: '降本增效看得见，数字资产多维穿透沉淀',
-              };
-              return taglines[activeRole] || 'AI 重塑经营流程，提升运作能效';
-            })()}
           </div>
         </div>
 

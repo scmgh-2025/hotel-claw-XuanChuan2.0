@@ -31,46 +31,52 @@
     }
 
     .page { max-width: 1440px; margin: 0 auto; padding: 42px 44px 52px; }
-    .page-header { text-align: center; margin-bottom: 36px; }
-    .page-header .eyebrow { margin: 0 0 10px; color: var(--purple-2); font-size: 13px; font-weight: 700; letter-spacing: .18em; }
-    .page-header h1 { margin: 0; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; letter-spacing: -.04em; }
-    .page-header .slogan { margin: 12px 0 0; color: var(--muted); font-size: 15px; letter-spacing: .05em; }
+    .masthead { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin: 0 0 30px 76px; }
+    .eyebrow { margin: 0 0 10px; color: var(--purple-2); font-size: 13px; font-weight: 700; letter-spacing: .18em; }
+    h1 { margin: 0; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; letter-spacing: -.04em; }
+    .subtitle { max-width: 430px; margin: 0 0 2px; color: var(--muted); font-size: 14px; line-height: 1.7; text-align: right; }
 
     .architecture { position: relative; display: grid; gap: 34px; }
-    .layer { position: relative; display: grid; grid-template-columns: 68px 1fr; gap: 18px; align-items: stretch; }
-    .rail { display: flex; justify-content: center; align-items: center; border-radius: 14px; background: var(--navy); color: white; writing-mode: vertical-rl; text-orientation: mixed; font-size: 20px; font-weight: 700; letter-spacing: .18em; box-shadow: 0 12px 22px rgba(33, 43, 85, .14); }
+    .layer { position: relative; display: grid; grid-template-columns: 58px 1fr; gap: 18px; align-items: stretch; }
+    .rail { display: flex; justify-content: center; align-items: center; border-radius: 14px; background: var(--navy); color: white; writing-mode: vertical-rl; text-orientation: mixed; font-size: 15px; font-weight: 700; letter-spacing: .18em; box-shadow: 0 12px 22px rgba(33, 43, 85, .14); }
     .layer-content { overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
-    .layer-banner { padding: 14px 30px; color: white; display: flex; align-items: center; }
-    .layer-banner.purple { background: linear-gradient(135deg, #3c2a63, #60458c); justify-content: space-between; }
-    .layer-banner.amber { background: linear-gradient(135deg, #e9b64c, #f5ce77); color: #3d2a0b; justify-content: space-between; }
-    .layer-banner h2 { margin: 0; font-size: clamp(18px, 2vw, 24px); letter-spacing: -.03em; }
+    .layer-banner { padding: 24px 30px; color: white; }
+    .layer-banner.purple { background: linear-gradient(135deg, #3c2a63, #60458c); }
+    .layer-banner.amber { background: linear-gradient(135deg, #e9b64c, #f5ce77); color: #3d2a0b; }
+    .banner-kicker { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .15em; opacity: .75; }
+    .layer-banner h2 { margin: 0; font-size: clamp(21px, 2.6vw, 31px); letter-spacing: -.03em; }
     .layer-banner h2 em { font-style: normal; color: #ffe082; }
     .amber h2 em { color: #5b3a03; }
-
-    .layer-note { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 20px; color: #3d2a0b; background: rgba(255, 255, 255, .35); font-size: 13px; font-weight: 500; backdrop-filter: blur(4px); white-space: nowrap; }
-    .layer-note::before { content: "✦"; color: #7a5310; font-size: 15px; }
-    .purple .layer-note { color: #e8e0ff; background: rgba(255, 255, 255, .15); }
-    .purple .layer-note::before { color: #c8b4f5; }
 
     .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 22px; background: linear-gradient(180deg, #ffffff, #fcfdff); }
     .module { min-width: 0; padding: 20px 19px 18px; border: 1px solid #e9ecf3; border-radius: 16px; background: var(--card); box-shadow: 0 7px 18px rgba(29, 40, 74, .045); transition: box-shadow .2s ease, transform .2s ease; }
     .module:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(29, 40, 74, .075); }
-    .module-head { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
-    .module-head h3 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
-    .module-slogan { margin: 0 0 14px; color: var(--purple-2); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
-    .amber-layer .module-slogan { color: var(--amber-deep); }
+    .module-head { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+    .module-icon { display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 34px; border-radius: 10px; color: var(--purple); background: var(--purple-soft); font-size: 15px; font-weight: 800; }
+    .amber-layer .module-icon { color: var(--amber-deep); background: var(--amber-soft); }
+    .module h3 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
     .module-rule { height: 1px; margin: 0 0 14px; background: var(--line); }
     .chip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
     .chip { padding: 10px 5px; border: 1px solid #e9eaf1; border-radius: 9px; color: #3e4a64; background: #fbfcfe; font-size: 13px; line-height: 1.25; text-align: center; white-space: nowrap; }
     .chip { cursor: help; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
     .chip:hover, .chip:focus-visible { z-index: 3; border-color: #b99dde; background: #fff; outline: none; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(70, 45, 120, .12); }
     .module-note { margin: 14px 0 0; color: #a0a7b5; font-size: 12px; text-align: right; }
+    .layer-note { display: flex; align-items: center; gap: 12px; margin: 0 24px 22px; padding: 13px 16px; border-radius: 10px; color: #705219; background: #fff9eb; font-size: 13px; }
+    .layer-note::before { content: "✦"; color: #d79b22; font-size: 17px; }
 
     .high .module-grid { padding-top: 24px; }
     .high .module { padding-top: 18px; }
     .high .chip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
     .high .chip { padding: 9px 6px; font-size: 12px; }
     .high .module h3 { font-size: 17px; }
+    .high .module-icon { background: #f4effc; }
+    .high .module:nth-child(2) .module-icon { color: #41627e; background: #eef5f8; }
+    .high .module:nth-child(3) .module-icon { color: #a05b24; background: #fff3e9; }
+
+    .flow { position: absolute; left: 88px; bottom: -27px; z-index: 2; display: flex; align-items: center; gap: 9px; color: #a2a9b8; font-size: 12px; }
+    .flow-line { width: 1px; height: 20px; background: #c8cdd8; }
+    .flow-arrow { width: 7px; height: 7px; border-right: 1px solid #9aa3b4; border-bottom: 1px solid #9aa3b4; transform: rotate(45deg); }
+    .footer { margin: 26px 0 0 76px; color: #8a93a5; font-size: 12px; letter-spacing: .04em; }
 
     .feature-tooltip { position: fixed; z-index: 20; width: min(330px, calc(100vw - 28px)); padding: 14px 16px 15px; border: 1px solid rgba(139, 102, 194, .3); border-radius: 13px; color: #eef0ff; background: rgba(43, 35, 78, .98); box-shadow: 0 16px 35px rgba(28, 20, 58, .17); pointer-events: none; opacity: 0; transform: translateY(6px) scale(.97); transform-origin: bottom center; transition: opacity .18s ease, transform .18s ease; }
     .feature-tooltip.is-visible { opacity: 1; transform: translateY(0) scale(1); }
@@ -82,9 +88,12 @@
 
     @media (max-width: 920px) {
       .page { padding: 28px 20px 40px; }
-      .page-header { margin-bottom: 28px; }
+      .masthead { margin-left: 0; align-items: flex-start; flex-direction: column; }
+      .subtitle { text-align: left; }
       .layer { grid-template-columns: 42px 1fr; gap: 12px; }
       .module-grid { grid-template-columns: 1fr; }
+      .flow { left: 53px; }
+      .footer { margin-left: 54px; }
     }
     @media (max-width: 520px) {
       .page { padding: 22px 12px 30px; }
@@ -96,78 +105,79 @@
       .chip-grid, .high .chip-grid { gap: 7px; }
       .chip { font-size: 12px; }
       .layer-note { margin: 0 13px 14px; font-size: 12px; }
+      .flow { display: none; }
+      .footer { margin: 18px 0 0 42px; font-size: 11px; }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <section class="architecture" aria-label="酒店智能服务架构图">
-      <section class="layer amber-layer" aria-labelledby="basic-title">
-        <div class="rail">基础功能层</div>
-        <div class="layer-content">
-          <div class="layer-banner amber">
-            <h2 id="basic-title">基础功能</h2>
-            <div class="layer-note">向住客提供集合问答、服务和购物的 AI 智能服务体验</div>
-          </div>
-          <div class="module-grid">
-            <article class="module">
-              <div class="module-head"><h3>AI问答</h3></div>
-              <p class="module-slogan">知识问答 · 即时响应 · 零等待</p>
-              <div class="module-rule"></div>
-              <div class="chip-grid"><span class="chip">WiFi密码</span><span class="chip">会议室</span><span class="chip">停车场</span><span class="chip">洗衣房</span><span class="chip">餐厅</span><span class="chip">更多服务</span></div><p class="module-note">知识问答 · 即时响应</p>
-            </article>
-            <article class="module">
-              <div class="module-head"><h3>客服服务工单</h3></div>
-              <p class="module-slogan">服务受理 · 闭环跟踪 · 高效处理</p>
-              <div class="module-rule"></div>
-              <div class="chip-grid"><span class="chip">外卖代送</span><span class="chip">清洁</span><span class="chip">维修</span><span class="chip">送物</span><span class="chip">入住预约</span><span class="chip">更多服务</span></div><p class="module-note">服务受理 · 闭环跟踪</p>
-            </article>
-            <article class="module">
-              <div class="module-head"><h3>线上商城</h3></div>
-              <p class="module-slogan">商品交易 · 旅程延展 · 一站购齐</p>
-              <div class="module-rule"></div>
-              <div class="chip-grid"><span class="chip">特产</span><span class="chip">订房续住</span><span class="chip">文娱活动</span><span class="chip">精品游</span><span class="chip">景区门票</span><span class="chip">更多商品</span></div><p class="module-note">商品交易 · 旅程延展</p>
-            </article></div>
-          </div>
-        </div>
-      </section>
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">HOTEL CLAW · AI SERVICE ARCHITECTURE</p>
+        <h1>酒店智能服务整体架构</h1>
+      </div>
+      <p class="subtitle">以 AI Agent 为核心，连接住客体验、酒店运营与增长营销的智能服务体系</p>
+    </header>
 
+    <section class="architecture" aria-label="酒店智能服务架构图">
       <section class="layer high" aria-labelledby="advanced-title">
-        <div class="rail">高阶智能体服务</div>
+        <div class="rail">高阶服务层</div>
         <div class="layer-content">
           <div class="layer-banner purple">
+            <p class="banner-kicker">INTELLIGENT EXPERIENCE &amp; OPERATIONS</p>
             <h2 id="advanced-title">基于 <em>AI Agent（智能体）</em> 的高阶服务</h2>
-            <div class="layer-note">助力酒店实现全场景智能覆盖、精细化运营及高效决策的 AI 服务体验</div>
           </div>
           <div class="module-grid">
             <article class="module">
-              <div class="module-head"><h3>住客服务</h3></div>
-              <p class="module-slogan">AI 管家 · 贴心陪伴 · 全程无忧</p>
-              <div class="module-rule"></div>
+              <div class="module-head"><div class="module-icon">客</div><h3>住客服务</h3></div><div class="module-rule"></div>
               <div class="chip-grid">
                 <span class="chip">行李寄存</span><span class="chip">亲子陪伴</span><span class="chip">会议邀请助手</span><span class="chip">健康小妙招</span><span class="chip">天气助手</span><span class="chip">本地推荐官</span><span class="chip">睡眠助手</span><span class="chip">行程伴侣</span><span class="chip">邀约小管家</span><span class="chip">酒店管家</span>
               </div>
             </article>
             <article class="module">
-              <div class="module-head"><h3>管理运营</h3></div>
-              <p class="module-slogan">数据洞察 · 智能分析 · 高效决策</p>
-              <div class="module-rule"></div>
+              <div class="module-head"><div class="module-icon">营</div><h3>管理运营</h3></div><div class="module-rule"></div>
               <div class="chip-grid">
                 <span class="chip">AI回答质量分析</span><span class="chip">数据埋点监控</span><span class="chip">商城数据分析</span><span class="chip">单店运营明细分析</span><span class="chip">工单响应时长与处理率</span><span class="chip">高频咨询主题分析</span><span class="chip">多店运营明细分析</span><span class="chip">风险预警</span><span class="chip">AI交班助手</span><span class="chip">运营策略洞察</span>
               </div>
             </article>
             <article class="module">
-              <div class="module-head"><h3>AI营销</h3></div>
-              <p class="module-slogan">精准触达 · 智能生成 · 增长驱动</p>
-              <div class="module-rule"></div>
+              <div class="module-head"><div class="module-icon">增</div><h3>AI营销</h3></div><div class="module-rule"></div>
               <div class="chip-grid">
                 <span class="chip">自动构建用户画像</span><span class="chip">主动触达营销</span><span class="chip">营销埋点分析</span><span class="chip">营销文案生成</span><span class="chip">营销海报生成</span><span class="chip">营销活动编排</span>
               </div>
             </article>
           </div>
         </div>
+        <div class="flow" aria-hidden="true"><span class="flow-line"></span><span>能力下沉</span><span class="flow-arrow"></span></div>
+      </section>
+
+      <section class="layer amber-layer" aria-labelledby="basic-title">
+        <div class="rail">基础功能层</div>
+        <div class="layer-content">
+          <div class="layer-banner amber">
+            <p class="banner-kicker">CORE SERVICE FOUNDATION</p>
+            <h2 id="basic-title">基础功能</h2>
+          </div>
+          <div class="module-grid">
+            <article class="module">
+              <div class="module-head"><div class="module-icon">问</div><h3>AI问答</h3></div><div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">WiFi密码</span><span class="chip">会议室</span><span class="chip">停车场</span><span class="chip">洗衣房</span><span class="chip">餐厅</span><span class="chip">更多服务</span></div><p class="module-note">知识问答 · 即时响应</p>
+            </article>
+            <article class="module">
+              <div class="module-head"><div class="module-icon">单</div><h3>客服服务工单</h3></div><div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">外卖代送</span><span class="chip">清洁</span><span class="chip">维修</span><span class="chip">送物</span><span class="chip">入住预约</span><span class="chip">更多服务</span></div><p class="module-note">服务受理 · 闭环跟踪</p>
+            </article>
+            <article class="module">
+              <div class="module-head"><div class="module-icon">购</div><h3>线上商城</h3></div><div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">特产</span><span class="chip">订房续住</span><span class="chip">文娱活动</span><span class="chip">精品游</span><span class="chip">景区门票</span><span class="chip">更多商品</span></div><p class="module-note">商品交易 · 旅程延展</p>
+            </article>
+          </div>
+          <div class="layer-note">向住客提供集合问答、服务和购物的 AI 智能服务体验</div>
+        </div>
       </section>
     </section>
+    <p class="footer">一套平台能力 · 三类服务场景 · 多维智能增长</p>
   </main>
 </body>
 <script>
@@ -252,7 +262,7 @@
     if (activeChip === chip) { tooltip.classList.remove("is-visible"); activeChip = null; }
   }
 
-  document.querySelectorAll(".high .chip").forEach((chip) => {
+  document.querySelectorAll(".chip").forEach((chip) => {
     chip.setAttribute("tabindex", "0");
     chip.setAttribute("aria-label", `${chip.textContent.trim()}：悬停查看功能详情`);
     chip.addEventListener("mouseenter", () => showTooltip(chip));

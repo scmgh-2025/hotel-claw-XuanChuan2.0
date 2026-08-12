@@ -1,6 +1,6 @@
 import React from 'react';
 import { COMPANY_BACKS } from '../data';
-import { ShieldCheck, Landmark, Award, BadgeAlert, KeyRound } from 'lucide-react';
+import { ShieldCheck, Landmark, Award, BadgeAlert, KeyRound, Lock, CreditCard, Satellite } from 'lucide-react';
 
 export default function CompanyBackground() {
   const getIcon = (idx: number) => {
@@ -61,21 +61,21 @@ export default function CompanyBackground() {
       {/* Triple Security Guarantee Bar */}
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
-          <span className="text-2xl">🔒</span>
+          <Lock className="w-6 h-6 text-emerald-400 shrink-0" />
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">上市公司级安全</h4>
             <p className="text-sm text-slate-500">双重沙箱隔离 · 绝对保护住客隐私</p>
           </div>
         </div>
         <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
-          <span className="text-2xl">💳</span>
+          <CreditCard className="w-6 h-6 text-sky-400 shrink-0" />
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">央行支付合规</h4>
             <p className="text-sm text-slate-500">佣金提成秒清算 · 交易流水无缝入账</p>
           </div>
         </div>
         <div className="bg-slate-900 text-white rounded-2xl p-4 flex items-center gap-3 border border-slate-800">
-          <span className="text-2xl">🛰️</span>
+          <Satellite className="w-6 h-6 text-violet-400 shrink-0" />
           <div className="text-left">
             <h4 className="text-base font-bold text-slate-200">行业顶尖底盘</h4>
             <p className="text-sm text-slate-500">百度/阿里/微软顶尖专家大模型算法</p>

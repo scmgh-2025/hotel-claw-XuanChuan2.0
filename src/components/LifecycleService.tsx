@@ -153,7 +153,7 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               </h3>
             </div>
 
-            {/* Before vs After Grid - 对齐全岗位提效方案样式 */}
+            {/* Before vs After Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
               {/* Before: 没有智能体时 */}
               <div className="bg-orange-50 rounded-xl p-4 border-2 border-orange-200 flex flex-col justify-between">
@@ -162,45 +162,18 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                     <span>🧔</span>
                     没有智能体时
                   </div>
-                  <div className="space-y-3">
-                    <div>
-                      <h4 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center font-mono text-xs font-bold">1</span>
-                        住客现状
-                      </h4>
-                      <div className="space-y-1.5">
-                        {stage.beforeGuest.map((item, i) => (
-                          <div key={i} className="bg-white rounded-lg p-2.5 border border-orange-100/60 flex gap-2">
-                            <span className="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
-                              <p className="text-xs text-orange-500 font-medium mt-0.5">{item.desc}</p>
-                            </div>
-                          </div>
-                        ))}
+                  <div className="space-y-1.5">
+                    {stage.problems.map((item, i) => (
+                      <div key={i} className="bg-white rounded-lg p-2.5 border border-orange-100/60 flex gap-2">
+                        <span className="w-5 h-5 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                          <p className="text-xs text-orange-600 font-medium mt-0.5 leading-relaxed">{item.desc}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-orange-600 mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-orange-200 text-orange-700 flex items-center justify-center font-mono text-xs font-bold">2</span>
-                        酒店服务现状
-                      </h4>
-                      <div className="space-y-1.5">
-                        {stage.beforeHotel.map((item, i) => (
-                          <div key={i} className="bg-white rounded-lg p-2.5 border border-orange-100/60 flex gap-2">
-                            <span className="w-5 h-5 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
-                              <p className="text-xs text-orange-500 font-medium mt-0.5">{item.desc}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -212,45 +185,18 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                     <span>🤖</span>
                     HotelClaw 智能体赋能
                   </div>
-                  <div className="space-y-3">
-                    <div>
-                      <h4 className="text-sm font-bold text-brand-600 mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-brand-200 text-brand-700 flex items-center justify-center font-mono text-xs font-bold">1</span>
-                        AI 为住客实现
-                      </h4>
-                      <div className="space-y-1.5">
-                        {stage.afterGuest.map((item, i) => (
-                          <div key={i} className="bg-white rounded-lg p-2.5 border border-brand-100/60 flex gap-2">
-                            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
-                              <p className="text-xs text-brand-500 font-medium mt-0.5">{item.desc}</p>
-                            </div>
-                          </div>
-                        ))}
+                  <div className="space-y-1.5">
+                    {stage.changes.map((item, i) => (
+                      <div key={i} className="bg-white rounded-lg p-2.5 border border-brand-100/60 flex gap-2">
+                        <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
+                          <p className="text-xs text-brand-500 font-medium mt-0.5 leading-relaxed">{item.desc}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-brand-600 mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-brand-200 text-brand-700 flex items-center justify-center font-mono text-xs font-bold">2</span>
-                        AI 为酒店带来
-                      </h4>
-                      <div className="space-y-1.5">
-                        {stage.afterHotel.map((item, i) => (
-                          <div key={i} className="bg-white rounded-lg p-2.5 border border-brand-100/60 flex gap-2">
-                            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5">
-                              {i + 1}
-                            </span>
-                            <div>
-                              <h4 className="text-sm font-bold text-slate-700 mt-0.5">{item.title}</h4>
-                              <p className="text-xs text-brand-500 font-medium mt-0.5">{item.desc}</p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>

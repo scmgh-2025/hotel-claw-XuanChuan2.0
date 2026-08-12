@@ -27,10 +27,8 @@ export interface LifecycleStage {
   id: number;
   phase: string;
   title: string;
-  beforeGuest: LifecycleItem[];
-  beforeHotel: LifecycleItem[];
-  afterGuest: LifecycleItem[];
-  afterHotel: LifecycleItem[];
+  problems: LifecycleItem[];
+  changes: LifecycleItem[];
   valueGuest: string;
   valueHotel: string;
 }

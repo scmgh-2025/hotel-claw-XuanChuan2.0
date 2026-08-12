@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   Sparkles, Bot, Layers, Cpu, TrendingUp, Coins, 
   MapPin, ShieldCheck, Smartphone, Calculator, 
-  MessageSquare, UserCheck, Star, ArrowRight, Menu, X, Landmark, ChevronRight
+  MessageSquare, UserCheck, Star, ArrowRight, Menu, X, Landmark, ChevronRight,
+  Zap, Settings, Gift, Search, TrendingDown, RefreshCw, Lightbulb, BarChart3, Lock, CreditCard,
 } from 'lucide-react';
 
 // Modular Components
@@ -117,8 +118,8 @@ export default function App() {
       </header>
 
       {/* 2. Main Hero Banner Section — Light Fresh */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <section id="hero-section" className="relative overflow-hidden pt-6 pb-12 sm:pt-10 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 min-h-screen flex flex-col">
+      <section id="hero-section" className="relative overflow-hidden py-8 sm:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex items-center">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
@@ -140,19 +141,19 @@ export default function App() {
             {/* 4 Core Bento Grid selling highlights */}
             <div className="grid grid-cols-2 gap-4 max-w-2xl">
               <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-3xl">⚡</span>
+                <Zap className="w-8 h-8 text-brand-500" />
                 <h3 className="font-display text-lg font-black text-slate-800 mt-3">高效减负，释放人力</h3>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-3xl">⚙️</span>
+                <Settings className="w-8 h-8 text-brand-500" />
                 <h3 className="font-display text-lg font-black text-slate-800 mt-3">智能提效，轻松履职</h3>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-3xl">💝</span>
+                <Gift className="w-8 h-8 text-brand-500" />
                 <h3 className="font-display text-lg font-black text-slate-800 mt-3">全景可视，穿透管理</h3>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-3xl">💰</span>
+                <Coins className="w-8 h-8 text-brand-500" />
                 <h3 className="font-display text-lg font-black text-slate-800 mt-3">双线经营，多元创收</h3>
               </div>
             </div>
@@ -209,8 +210,8 @@ export default function App() {
             <div className="group relative bg-gradient-to-br from-white to-rose-50/50 rounded-2xl p-4 border border-rose-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
               <div className="flex items-start gap-3 mb-4">
                 <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center shrink-0 text-2xl shadow-sm">
-                    🤖
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center shrink-0 shadow-sm">
+                    <Bot className="w-6 h-6 text-rose-600" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center text-white text-xs font-black shadow-md">
                     1
@@ -229,21 +230,21 @@ export default function App() {
                   <ul className="space-y-1.5">
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-rose-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>咨询转接、夜班值守等基础工作需投入较多人工资源</span>
+                      <span>咨询接待、夜间值守等基础工作耗费大量人力</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-rose-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>人员流动性较高，对应产生持续的培训费用支出</span>
+                      <span>员工流失率高，持续产生培训成本</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-rose-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>综合人力开支长期维持较高水平</span>
+                      <span>基础岗位多，人力投入长期偏高</span>
                     </li>
                   </ul>
                 </div>
                 <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2.5 border border-amber-100">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-base">💡</span>
+                    <Lightbulb className="w-4 h-4 text-amber-700" />
                     <div className="text-base font-extrabold text-amber-700 uppercase tracking-wider">行业案例</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">
@@ -257,8 +258,8 @@ export default function App() {
             <div className="group relative bg-gradient-to-br from-white to-sky-50/50 rounded-2xl p-4 border border-sky-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
               <div className="flex items-start gap-3 mb-4">
                 <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center shrink-0 text-2xl shadow-sm">
-                    🔍
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky-100 to-sky-200 flex items-center justify-center shrink-0 shadow-sm">
+                    <Search className="w-6 h-6 text-sky-600" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center text-white text-xs font-black shadow-md">
                     2
@@ -277,25 +278,25 @@ export default function App() {
                   <ul className="space-y-1.5">
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-sky-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>在岗员工服务能力存在个体差异</span>
+                      <span>员工服务水平参差不齐</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-sky-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>服务执行流程、对外应答口径未实现统一规范</span>
+                      <span>服务流程、对外答复缺乏统一标准</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-sky-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>客房需求、客诉处置易出现响应延时情况</span>
+                      <span>客房需求、客诉响应容易滞后</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-sky-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>对住客体验及门店线上评分形成负面影响</span>
+                      <span>服务品质不稳定，易引发客人差评</span>
                     </li>
                   </ul>
                 </div>
                 <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2.5 border border-amber-100">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-base">💡</span>
+                    <Lightbulb className="w-4 h-4 text-amber-700" />
                     <div className="text-base font-extrabold text-amber-700 uppercase tracking-wider">行业案例</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">
@@ -309,8 +310,8 @@ export default function App() {
             <div className="group relative bg-gradient-to-br from-white to-violet-50/50 rounded-2xl p-4 border border-violet-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
               <div className="flex items-start gap-3 mb-4">
                 <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-100 to-violet-200 flex items-center justify-center shrink-0 text-2xl shadow-sm">
-                    📉
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-violet-100 to-violet-200 flex items-center justify-center shrink-0 shadow-sm">
+                    <TrendingDown className="w-6 h-6 text-violet-600" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-xs font-black shadow-md">
                     3
@@ -329,21 +330,21 @@ export default function App() {
                   <ul className="space-y-1.5">
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-violet-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>运营数据、人员信息等资料分散存储，数据互通性不足</span>
+                      <span>各类数据分散，难以互通</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-violet-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>各部门之间协同办公效率偏低</span>
+                      <span>跨部门协同办公效率低</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-violet-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>管理人员难以实时获取一线真实的运营运行数据</span>
+                      <span>管理者无法实时掌握一线真实经营数据</span>
                     </li>
                   </ul>
                 </div>
                 <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2.5 border border-amber-100">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-base">💡</span>
+                    <Lightbulb className="w-4 h-4 text-amber-700" />
                     <div className="text-base font-extrabold text-amber-700 uppercase tracking-wider">行业案例</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">
@@ -357,8 +358,8 @@ export default function App() {
             <div className="group relative bg-gradient-to-br from-white to-emerald-50/50 rounded-2xl p-4 border border-emerald-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
               <div className="flex items-start gap-3 mb-4">
                 <div className="relative">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shrink-0 text-2xl shadow-sm">
-                    🔄
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shrink-0 shadow-sm">
+                    <RefreshCw className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white text-xs font-black shadow-md">
                     4
@@ -377,21 +378,21 @@ export default function App() {
                   <ul className="space-y-1.5">
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-emerald-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>酒店营收来源集中于客房业务，收入结构较为单一</span>
+                      <span>营收主要依靠客房，收入来源单一</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-emerald-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>自营商品、本地文旅资源缺少店内合规的销售途径</span>
+                      <span>自营商品、文旅产品缺少线上售卖途径</span>
                     </li>
                     <li className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
                       <span className="text-emerald-400 mt-0.5 flex-shrink-0">◆</span>
-                      <span>第三方平台存在一定比例抽成，带来酒店实际收益缩减</span>
+                      <span>第三方平台抽取佣金，压缩酒店利润</span>
                     </li>
                   </ul>
                 </div>
                 <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-2.5 border border-amber-100">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-base">💡</span>
+                    <Lightbulb className="w-4 h-4 text-amber-700" />
                     <div className="text-base font-extrabold text-amber-700 uppercase tracking-wider">行业案例</div>
                   </div>
                   <p className="text-sm text-slate-600 leading-relaxed">
@@ -584,7 +585,9 @@ export default function App() {
               {/* 更多酒店提示 */}
               <div className="col-span-full flex justify-center mt-6">
                 <div className="flex items-center gap-2 bg-white/80 backdrop-blur border border-slate-200 rounded-full px-5 py-2.5 shadow-sm">
-                  <span className="text-slate-500 text-sm font-medium">更多合作酒店持续接入中</span>
+                  <span className="text-slate-500 text-sm font-medium">
+                    已累计接入酒店<span className="font-black text-brand-600">1000+</span> · 更多合作酒店持续接入中
+                  </span>
                   <svg className="w-4 h-4 text-brand-500 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
