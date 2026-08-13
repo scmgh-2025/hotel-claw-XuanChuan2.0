@@ -1,429 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HotelClaw 技能矩阵</title>
+  <title>酒店 Claw 智能服务架构</title>
   <style>
     :root {
-      --bg: #f5f7fa;
-      --surface: rgba(255,255,255,.94);
-      --ink: #172033;
-      --muted: #7c879b;
-      --line: #dce3ee;
-      --shadow: 0 10px 30px rgba(32, 53, 91, .08);
-      --blue: #4d88ff;
-      --green: #42b883;
-      --orange: #ee9b4b;
-      --purple: #9b7af4;
+      --ink: #182238;
+      --muted: #647089;
+      --line: #e6e9ef;
+      --page: #f7f9fc;
+      --card: #ffffff;
+      --navy: #212b55;
+      --purple: #4a3672;
+      --purple-2: #7c61ad;
+      --purple-soft: #f4f1fb;
+      --amber: #eebd58;
+      --amber-deep: #9c6d1a;
+      --amber-soft: #fff9eb;
+      --shadow: 0 12px 30px rgba(41, 53, 84, .07);
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      min-width: 320px;
       color: var(--ink);
-      background: var(--bg);
-      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-      overflow: hidden;
+      background: var(--page);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    button { font: inherit; }
-    .page { width: 100%; height: auto; margin: 0; padding: 0; overflow: hidden; }
-    .topbar { display: none; }
-    .eyebrow { margin: 0 0 6px; color: #71809a; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(22px, 2.2vw, 32px); letter-spacing: -.04em; line-height: 1.1; }
-    .intro { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
-    .meta { display: flex; align-items: center; gap: 8px; color: #70809a; font-size: 11px; white-space: nowrap; }
-    .meta strong { color: var(--ink); font-size: 15px; }
-    .divider { width: 1px; height: 20px; background: #d8dfeb; }
-    .diagram-shell { position: relative; height: auto; overflow: hidden; border: none; border-radius: 0; background: transparent; box-shadow: none; }
-    .diagram { position: relative; height: auto; padding: 10px 16px 12px; }
-    .connector-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
-    .connector { fill: none; stroke: #d4e4f5; stroke-width: 1.35; stroke-linecap: round; opacity: .75; transition: stroke .2s, stroke-width .2s, opacity .2s; filter: url(#glow); }
-    .connector.is-active { stroke: #94c5e8; stroke-width: 2.15; opacity: 1; }
-    .connector-flow { fill: none; stroke: url(#flowGrad); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 12 40; animation: flowDash 2.2s linear infinite; filter: url(#glowStrong); }
-    .connector-flow.is-active { stroke-width: 2.8; animation-duration: 1.4s; }
-    @keyframes flowDash { to { stroke-dashoffset: -52; } }
-    .levels { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; }
-    .root-wrap { display: flex; justify-content: center; }
-    .root-node { position: relative; min-width: 220px; padding: 5px 14px 6px; border: 1px solid #dce4f1; border-radius: 12px; background: linear-gradient(135deg, #1f2f4d, #294c7d); color: #fff; text-align: center; box-shadow: 0 0 0 rgba(125,211,252,.5), 0 0 14px rgba(125,211,252,.4), 0 10px 22px rgba(35,67,110,.17); animation: rootGlow 3s ease-in-out infinite; }
-    @keyframes rootGlow { 0%, 100% { box-shadow: 0 0 0 rgba(125,211,252,.4), 0 0 12px rgba(125,211,252,.3), 0 10px 22px rgba(35,67,110,.17); } 50% { box-shadow: 0 0 4px rgba(125,211,252,.65), 0 0 28px rgba(110,231,183,.4), 0 10px 22px rgba(35,67,110,.17); } }
-    .root-node:before { content: "✦"; display: inline-block; margin-right: 6px; color: #a7c5ff; font-size: 12px; }
-    .root-node strong { display: inline-block; font-size: 14px; letter-spacing: -.04em; }
-    .root-node span { display: none; }
-    .primary-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.75fr); gap: 14px; align-items: start; margin-top: 28px; }
-    .primary-group { min-width: 0; }
-    .primary-node { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; position: relative; min-height: 44px; padding: 5px 9px 4px 9px; border: 1px solid var(--tone-line); border-left: 4px solid var(--tone); border-radius: 10px; background: color-mix(in srgb, var(--tone) 8%, white); box-shadow: 0 6px 14px rgba(32,53,91,.07); cursor: pointer; text-align: center; transition: .22s ease; }
-    .primary-node:hover, .primary-node.is-active { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(32,53,91,.12); border-color: var(--tone); }
-    .primary-node strong { display: block; font-size: 13px; line-height: 1.25; }
-    .primary-node em { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; font-style: normal; }
-    .primary-node span { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
-    .secondary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
-    .secondary-wrap { min-width: 0; padding: 7px; border: 1px solid color-mix(in srgb, var(--tone) 28%, white); border-radius: 8px; background: color-mix(in srgb, var(--tone) 7%, white); box-shadow: 0 3px 8px rgba(32,53,91,.03); }
-    .secondary-node { display: flex; align-items: center; justify-content: center; min-height: 28px; padding: 5px 6px; border: 1px solid color-mix(in srgb, var(--tone) 46%, white); border-left: 3px solid var(--tone); border-radius: 6px; background: color-mix(in srgb, var(--tone) 15%, white); color: #43516b; font-size: 11px; font-weight: 700; line-height: 1.15; text-align: center; transition: .2s; }
-    .secondary-node:hover, .secondary-node.is-active { border-color: var(--tone); background: color-mix(in srgb, var(--tone) 23%, white); box-shadow: 0 5px 12px rgba(32,53,91,.08); transform: translateY(-1px); }
-    .feature-grid { display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start; justify-content: center; margin-top: 5px; }
-    .feature-node { display: inline-flex; align-items: center; justify-content: center; width: 88px; height: 30px; padding: 3px 6px; border: 1px solid color-mix(in srgb, var(--tone) 24%, white); border-radius: 6px; background: color-mix(in srgb, var(--tone) 5%, white); color: #68758a; font-size: 10px; line-height: 1.2; text-align: center; transition: .18s ease; }
-    .feature-node:hover, .feature-node.is-active { border-color: var(--tone); background: #fff; color: #33415b; box-shadow: 0 3px 8px rgba(32,53,91,.08); transform: translateY(-1px); }
-    .feature-node.is-tall { height: 54px; padding: 5px 6px; white-space: normal; line-height: 1.35; }
-    .feature-tip { position: fixed; z-index: 9999; max-width: 320px; padding: 12px 14px; border-radius: 10px; background: #1f2937; color: #f9fafb; font-size: 12px; line-height: 1.6; box-shadow: 0 12px 40px rgba(0,0,0,.22); pointer-events: none; opacity: 0; transform: translateY(4px); transition: opacity .15s ease, transform .15s ease; }
-    .feature-tip.is-visible { opacity: 1; transform: translateY(0); }
-    .feature-tip strong { display: block; margin-bottom: 5px; font-size: 13px; color: #fff; }
-    .feature-tip:after { content: ""; position: absolute; top: -5px; left: 16px; width: 10px; height: 10px; background: #1f2937; transform: rotate(45deg); }
-    .primary-group.is-dimmed { opacity: .25; filter: grayscale(.28); }
-    .secondary-node.is-dimmed, .feature-node.is-dimmed { opacity: .25; }
-    .source-note { display: none; }
-    .primary-group[data-index="3"] .secondary-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    @media (max-width: 1050px) {
-      .page { height: auto; overflow: hidden; }
-      .diagram-shell { height: auto; overflow: hidden; }
-      .diagram { height: auto; padding: 8px 10px; }
-      .primary-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .secondary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .primary-group[data-index="3"] .secondary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .connector-layer { display: none; }
+
+    .page { max-width: 1440px; margin: 0 auto; padding: 42px 44px 52px; }
+    .page-header { text-align: center; margin-bottom: 36px; }
+    .page-header .eyebrow { margin: 0 0 10px; color: var(--purple-2); font-size: 13px; font-weight: 700; letter-spacing: .18em; }
+    .page-header h1 { margin: 0; font-size: clamp(28px, 3.5vw, 42px); line-height: 1.15; letter-spacing: -.04em; }
+    .page-header .slogan { margin: 12px 0 0; color: var(--muted); font-size: 15px; letter-spacing: .05em; }
+
+    .architecture { position: relative; display: grid; gap: 34px; }
+    .layer { position: relative; display: grid; grid-template-columns: 68px 1fr; gap: 18px; align-items: stretch; }
+    .rail { display: flex; justify-content: center; align-items: center; border-radius: 14px; background: var(--navy); color: white; writing-mode: vertical-rl; text-orientation: mixed; font-size: 20px; font-weight: 700; letter-spacing: .18em; box-shadow: 0 12px 22px rgba(33, 43, 85, .14); }
+    .layer-content { overflow: hidden; border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+    .layer-banner { padding: 14px 30px; color: white; display: flex; align-items: center; }
+    .layer-banner.purple { background: linear-gradient(135deg, #3c2a63, #60458c); justify-content: space-between; }
+    .layer-banner.amber { background: linear-gradient(135deg, #e9b64c, #f5ce77); color: #3d2a0b; justify-content: space-between; }
+    .layer-banner h2 { margin: 0; font-size: clamp(18px, 2vw, 24px); letter-spacing: -.03em; }
+    .layer-banner h2 em { font-style: normal; color: #ffe082; }
+    .amber h2 em { color: #5b3a03; }
+
+    .layer-note { display: flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 20px; color: #3d2a0b; background: rgba(255, 255, 255, .35); font-size: 13px; font-weight: 500; backdrop-filter: blur(4px); white-space: nowrap; }
+    .layer-note::before { content: "✦"; color: #7a5310; font-size: 15px; }
+    .purple .layer-note { color: #e8e0ff; background: rgba(255, 255, 255, .15); }
+    .purple .layer-note::before { color: #c8b4f5; }
+
+    .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding: 22px; background: linear-gradient(180deg, #ffffff, #fcfdff); }
+    .module { min-width: 0; padding: 20px 19px 18px; border: 1px solid #e9ecf3; border-radius: 16px; background: var(--card); box-shadow: 0 7px 18px rgba(29, 40, 74, .045); transition: box-shadow .2s ease, transform .2s ease; }
+    .module:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(29, 40, 74, .075); }
+    .module-head { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
+    .module-head h3 { margin: 0; font-size: 18px; letter-spacing: -.02em; }
+    .module-slogan { margin: 0 0 14px; color: var(--purple-2); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+    .amber-layer .module-slogan { color: var(--amber-deep); }
+    .module-rule { height: 1px; margin: 0 0 14px; background: var(--line); }
+    .chip-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 9px; }
+    .chip { padding: 10px 5px; border: 1px solid #e9eaf1; border-radius: 9px; color: #3e4a64; background: #fbfcfe; font-size: 13px; line-height: 1.25; text-align: center; white-space: nowrap; }
+    .chip { cursor: help; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+    .chip:hover, .chip:focus-visible { z-index: 3; border-color: #b99dde; background: #fff; outline: none; transform: translateY(-2px); box-shadow: 0 6px 14px rgba(70, 45, 120, .12); }
+    .module-note { margin: 14px 0 0; color: #a0a7b5; font-size: 12px; text-align: right; }
+
+    .high .module-grid { padding-top: 24px; }
+    .high .module { padding-top: 18px; }
+    .high .chip-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .high .chip { padding: 9px 6px; font-size: 12px; }
+    .high .chip-full { grid-column: 1 / -1; text-align: center; }
+    .high .module h3 { font-size: 17px; }
+
+    .feature-tooltip { position: fixed; z-index: 20; width: min(330px, calc(100vw - 28px)); padding: 14px 16px 15px; border: 1px solid rgba(139, 102, 194, .3); border-radius: 13px; color: #eef0ff; background: rgba(43, 35, 78, .98); box-shadow: 0 16px 35px rgba(28, 20, 58, .17); pointer-events: none; opacity: 0; transform: translateY(6px) scale(.97); transform-origin: bottom center; transition: opacity .18s ease, transform .18s ease; }
+    .feature-tooltip.is-visible { opacity: 1; transform: translateY(0) scale(1); }
+    .feature-tooltip strong { display: block; margin-bottom: 7px; color: #ffe18b; font-size: 13px; letter-spacing: .03em; }
+    .feature-tooltip span { display: block; font-size: 12px; line-height: 1.65; }
+    .feature-tooltip::after { content: ""; position: absolute; left: var(--arrow-left, 50%); bottom: -6px; width: 10px; height: 10px; border-right: 1px solid rgba(139, 102, 194, .3); border-bottom: 1px solid rgba(139, 102, 194, .3); background: rgba(43, 35, 78, .98); transform: translateX(-50%) rotate(45deg); }
+    .feature-tooltip.below { transform-origin: top center; }
+    .feature-tooltip.below::after { top: -6px; bottom: auto; border: 0; border-left: 1px solid rgba(139, 102, 194, .3); border-top: 1px solid rgba(139, 102, 194, .3); transform: translateX(-50%) rotate(45deg); }
+
+    @media (max-width: 920px) {
+      .page { padding: 28px 20px 40px; }
+      .page-header { margin-bottom: 28px; }
+      .layer { grid-template-columns: 42px 1fr; gap: 12px; }
+      .module-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 620px) {
-      .page { padding: 0; }
-      .diagram-shell { border-radius: 0; }
-      .diagram { padding: 6px; }
-      .primary-row { grid-template-columns: 1fr; }
-      .secondary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .feature-node { width: 94px; }
-      .root-node { min-width: 220px; }
-      .root-node strong { font-size: 16px; }
+    @media (max-width: 520px) {
+      .page { padding: 22px 12px 30px; }
+      .layer { grid-template-columns: 34px 1fr; gap: 8px; }
+      .rail { border-radius: 10px; font-size: 12px; letter-spacing: .08em; }
+      .layer-banner { padding: 19px 18px; }
+      .module-grid { padding: 13px; gap: 12px; }
+      .module { padding: 16px 13px; }
+      .chip-grid, .high .chip-grid { gap: 7px; }
+      .chip { font-size: 12px; }
+      .layer-note { margin: 0 13px 14px; font-size: 12px; }
     }
   </style>
 </head>
 <body>
   <main class="page">
-    <section class="diagram-shell" aria-label="HotelClaw 四层技能矩阵架构图">
-      <div class="diagram" id="diagram">
-        <svg class="connector-layer" id="connectors" aria-hidden="true"><defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glowStrong" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7dd3fc" stop-opacity="0"/><stop offset="30%" stop-color="#7dd3fc" stop-opacity="1"/><stop offset="70%" stop-color="#6ee7b7" stop-opacity="1"/><stop offset="100%" stop-color="#6ee7b7" stop-opacity="0"/></linearGradient></defs></svg>
-        <div class="levels">
-          <section class="level level-root"><div class="root-wrap"><div class="root-node" id="rootNode"><strong>HotelClaw 技能矩阵</strong><span>酒店智能体功能架构总览</span></div></div></section>
-          <section class="level level-primary"><div class="primary-row" id="primaryRow"></div></section>
+    <section class="architecture" aria-label="酒店智能服务架构图">
+      <section class="layer amber-layer" aria-labelledby="basic-title">
+        <div class="rail">基础功能</div>
+        <div class="layer-content">
+          <div class="layer-banner amber">
+            <h2 id="basic-title">基础功能</h2>
+            <div class="layer-note">向住客提供集合问答、服务和购物的 AI 智能服务体验</div>
+          </div>
+          <div class="module-grid">
+            <article class="module">
+              <div class="module-head"><h3>AI问答</h3></div>
+              <p class="module-slogan">知识问答 · 即时响应 · 零等待</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">设施问询</span><span class="chip">儿童服务</span><span class="chip">酒店政策</span><span class="chip">酒店活动</span><span class="chip">到店指引</span><span class="chip">更多服务</span></div><p class="module-note">知识问答 · 即时响应</p>
+            </article>
+            <article class="module">
+              <div class="module-head"><h3>客房服务</h3></div>
+              <p class="module-slogan">服务受理 · 闭环跟踪 · 高效处理</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">外卖代送</span><span class="chip">客房清洁</span><span class="chip">设备维修</span><span class="chip">客房送物</span><span class="chip">行李寄存</span><span class="chip">更多服务</span></div><p class="module-note">服务受理 · 闭环跟踪</p>
+            </article>
+            <article class="module">
+              <div class="module-head"><h3>线上商城</h3></div>
+              <p class="module-slogan">商品交易 · 旅程延展 · 一站购齐</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid"><span class="chip">本地特产</span><span class="chip">订房续住</span><span class="chip">文娱打卡</span><span class="chip">精品路线</span><span class="chip">景区门票</span><span class="chip">更多产品</span></div><p class="module-note">商品交易 · 旅程延展</p>
+            </article></div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section class="layer high" aria-labelledby="advanced-title">
+        <div class="rail">高阶智能体服务</div>
+        <div class="layer-content">
+          <div class="layer-banner purple">
+            <h2 id="advanced-title">基于 <em>AI Agent（智能体）</em> 的高阶服务</h2>
+            <div class="layer-note">助力酒店实现全场景智能覆盖、精细化运营及高效决策的 AI 服务体验</div>
+          </div>
+          <div class="module-grid">
+            <article class="module">
+              <div class="module-head"><h3>住客服务</h3></div>
+              <p class="module-slogan">AI 管家 · 贴心陪伴 · 全程无忧</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid">
+                <span class="chip">亲子陪伴</span><span class="chip">会议邀请助手</span><span class="chip">健康小妙招</span><span class="chip">天气助手</span><span class="chip">本地推荐官</span><span class="chip">睡眠助手</span><span class="chip">行程伴侣</span><span class="chip">邀约小管家</span><span class="chip">每日运势测</span><span class="chip chip-full">更多功能不断更新中</span>
+              </div>
+            </article>
+            <article class="module">
+              <div class="module-head"><h3>管理运营</h3></div>
+              <p class="module-slogan">数据洞察 · 智能分析 · 高效决策</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid">
+                <span class="chip">AI交班助手</span><span class="chip">服务质量分析</span><span class="chip">经营数据看板</span><span class="chip">动态定价</span><span class="chip">需求预测</span><span class="chip">智能排班</span><span class="chip">深度财务</span><span class="chip">集团管理</span><span class="chip">跨店比较</span><span class="chip chip-full">更多功能不断更新中</span>
+              </div>
+            </article>
+            <article class="module">
+              <div class="module-head"><h3>AI营销</h3></div>
+              <p class="module-slogan">精准触达 · 智能生成 · 增长驱动</p>
+              <div class="module-rule"></div>
+              <div class="chip-grid">
+                <span class="chip">营销文案生成</span><span class="chip">营销海报生成</span><span class="chip">营销方案编排</span><span class="chip chip-full">更多功能不断更新中</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </section>
-    <div class="source-note">数据源：HotelClaw capability matrix · Hover 查看分支关系 · Click 聚焦业务域</div>
   </main>
-
-  <script>
-    const csv = `一级分类,二级分类,功能名称
-住客服务（面向住客）,特色服务功能,NFC碰一碰服务入口
-住客服务（面向住客）,特色服务功能,Wi-Fi一键连接
-住客服务（面向住客）,特色服务功能,一键好评复制
-住客服务（面向住客）,特色服务功能,一键绑定房间
-住客服务（面向住客）,特色服务功能,专业数字人形象
-住客服务（面向住客）,特色服务功能,入住引导
-住客服务（面向住客）,特色服务功能,千人千面服务
-住客服务（面向住客）,特色服务功能,房间码快捷进入
-住客服务（面向住客）,特色服务功能,数字化服务入口组合
-住客服务（面向住客）,特色服务功能,问题反馈
-住客服务（面向住客）,客服工单,外卖代送
-住客服务（面向住客）,客服工单,客房清洁
-住客服务（面向住客）,客服工单,客房维修
-住客服务（面向住客）,客服工单,客房送物
-住客服务（面向住客）,客服工单,开具发票
-住客服务（面向住客）,客服工单,开夜床
-住客服务（面向住客）,客服工单,洗衣/熨烫
-住客服务（面向住客）,客服工单,行李寄存
-住客服务（面向住客）,客服工单,车牌登记
-住客服务（面向住客）,客服工单,预约入住
-住客服务（面向住客）,客服工单,预约叫醒
-住客服务（面向住客）,设施咨询,WiFi
-住客服务（面向住客）,设施咨询,会议室
-住客服务（面向住客）,设施咨询,停车场
-住客服务（面向住客）,设施咨询,健身房
-住客服务（面向住客）,设施咨询,充电桩
-住客服务（面向住客）,设施咨询,客房设施
-住客服务（面向住客）,设施咨询,洗衣房
-住客服务（面向住客）,设施咨询,餐厅
-住客服务（面向住客）,智能服务团队,亲子陪伴乐乐
-住客服务（面向住客）,智能服务团队,会议邀请助手
-住客服务（面向住客）,智能服务团队,健康小妙招
-住客服务（面向住客）,智能服务团队,天气助手
-住客服务（面向住客）,智能服务团队,本地推荐官
-住客服务（面向住客）,智能服务团队,每日运势测测
-住客服务（面向住客）,智能服务团队,睡眠助手眠眠
-住客服务（面向住客）,智能服务团队,行程伴侣
-住客服务（面向住客）,智能服务团队,邀约小管家
-住客服务（面向住客）,智能服务团队,酒店管家
-住客服务（面向住客）,周边推荐,休闲运动
-住客服务（面向住客）,周边推荐,周边打卡
-住客服务（面向住客）,周边推荐,周边美食
-住客服务（面向住客）,周边推荐,文化体验
-住客服务（面向住客）,订房购物,订房
-住客服务（面向住客）,订房购物,商城购物
-住客服务（面向住客）,订房购物,精选特色商城
-酒店经营与运营（面向员工与管理层）,AI便捷入驻,供应商快速入驻
-酒店经营与运营（面向员工与管理层）,AI便捷入驻,酒店快速入驻
-酒店经营与运营（面向员工与管理层）,购物商城,平台商城
-酒店经营与运营（面向员工与管理层）,购物商城,自营商城
-酒店经营与运营（面向员工与管理层）,购物商城,装修配置
-酒店经营与运营（面向员工与管理层）,平台商品池,供应商
-酒店经营与运营（面向员工与管理层）,平台商品池,商品矩阵
-酒店经营与运营（面向员工与管理层）,平台商品池,渠道管控
-酒店经营与运营（面向员工与管理层）,机构管理,商品同步
-酒店经营与运营（面向员工与管理层）,机构管理,酒店账号
-酒店经营与运营（面向员工与管理层）,营销策略,促销
-酒店经营与运营（面向员工与管理层）,营销策略,活动策略配置
-酒店经营与运营（面向员工与管理层）,订单管理,交易处理
-酒店经营与运营（面向员工与管理层）,订单管理,售后退款
-酒店经营与运营（面向员工与管理层）,认证审核,机构入驻
-酒店经营与运营（面向员工与管理层）,认证审核,认证审核
-酒店经营与运营（面向员工与管理层）,财务服务,企业钱包
-酒店经营与运营（面向员工与管理层）,财务服务,佣金结算
-酒店经营与运营（面向员工与管理层）,商城数据分析,商品浏览与详情分析
-酒店经营与运营（面向员工与管理层）,商城数据分析,商城搜索高频关键词分析
-酒店经营与运营（面向员工与管理层）,商城数据分析,自营与平台商城交易统计
-酒店经营与运营（面向员工与管理层）,资金结算,对账管理
-酒店经营与运营（面向员工与管理层）,资金结算,结算中心
-自营商城与供应链管理（面向商城运维人员）,内容中心,协议
-自营商城与供应链管理（面向商城运维人员）,内容中心,新闻
-自营商城与供应链管理（面向商城运维人员）,内容中心,消息模板
-自营商城与供应链管理（面向商城运维人员）,吐槽管理,吐槽发布管理
-自营商城与供应链管理（面向商城运维人员）,吐槽管理,吐槽墙
-自营商城与供应链管理（面向商城运维人员）,吐槽管理,投诉预警闭环
-自营商城与供应链管理（面向商城运维人员）,数据运营,AI回答质量反馈
-自营商城与供应链管理（面向商城运维人员）,数据运营,AI问答详情留痕
-自营商城与供应链管理（面向商城运维人员）,数据运营,全维度数据埋点监控
-自营商城与供应链管理（面向商城运维人员）,数据运营,多门店运营数据看板
-自营商城与供应链管理（面向商城运维人员）,数据运营,自动化报告导出
-自营商城与供应链管理（面向商城运维人员）,数据运营,风险预警管理
-自营商城与供应链管理（面向商城运维人员）,文旅活动管理,专题管理
-自营商城与供应链管理（面向商城运维人员）,文旅活动管理,景区
-自营商城与供应链管理（面向商城运维人员）,文旅活动管理,活动
-自营商城与供应链管理（面向商城运维人员）,智能辅助,交班助手
-自营商城与供应链管理（面向商城运维人员）,智能辅助,任务转化
-自营商城与供应链管理（面向商城运维人员）,智能辅助,员工端使用分析
-自营商城与供应链管理（面向商城运维人员）,智能辅助,工单处理与办结跟踪
-自营商城与供应链管理（面向商城运维人员）,核心经营,售卖房型
-自营商城与供应链管理（面向商城运维人员）,核心经营,房态房价
-自营商城与供应链管理（面向商城运维人员）,运营数据分析,单店运营明细分析
-自营商城与供应链管理（面向商城运维人员）,运营数据分析,工单响应时长与处理率
-自营商城与供应链管理（面向商城运维人员）,运营数据分析,高频咨询主题分析
-智能体管理与配置（面向酒店平台运维人员）,知识库,问题池
-智能体管理与配置（面向酒店平台运维人员）,知识库,资料池
-智能体管理与配置（面向酒店平台运维人员）,知识库,FAQ
-智能体管理与配置（面向酒店平台运维人员）,智能体设置,智能体页面装修
-智能体管理与配置（面向酒店平台运维人员）,智能体设置,快捷指令
-智能体管理与配置（面向酒店平台运维人员）,智能体设置,智能体配置
-智能体管理与配置（面向酒店平台运维人员）,架构与权限,分层管理
-智能体管理与配置（面向酒店平台运维人员）,架构与权限,权限分配
-智能体管理与配置（面向酒店平台运维人员）,架构与权限,酒店账号
-智能体管理与配置（面向酒店平台运维人员）,数据监控,全维度数据埋点监控
-智能体管理与配置（面向酒店平台运维人员）,数据监控,多门店运营数据看板
-智能体管理与配置（面向酒店平台运维人员）,数据监控,自动化报告导出
-智能体管理与配置（面向酒店平台运维人员）,内容管理,新闻
-智能体管理与配置（面向酒店平台运维人员）,内容管理,协议
-智能体管理与配置（面向酒店平台运维人员）,内容管理,消息模板`;
-
-    const tones = [
-      { name: 'blue', color: '#4d88ff', line: '#d7e4ff', label: '住客服务' },
-      { name: 'green', color: '#42b883', line: '#d5f0e5', label: '酒店经营' },
-      { name: 'orange', color: '#ee9b4b', line: '#f7e5d0', label: '供应链' },
-      { name: 'purple', color: '#9b7af4', line: '#e9e2ff', label: '智能体配置' }
-    ];
-    const descriptions = {
-      '行程伴侣': '旅行定制、路线规划、时间安排、费用预估和避坑提醒生成个性化行程方案。',
-      '本地推荐官': '结合酒店位置推荐地道美食、隐藏玩法、本地人私藏去处，并支持按距离、口味、预算筛选。',
-      '健康小妙招': '提供旅途疲劳、颈肩酸痛、眼睛酸胀、轻度不适等场景的日常舒缓建议和注意事项提示。',
-      '睡眠助手眠眠': '提供睡前故事、助眠轻音乐、白噪音、冥想引导和睡眠环境建议。',
-      '亲子陪伴乐乐': '提供儿童故事、儿歌、科普启蒙、亲子互动话题和酒店亲子设施查询。',
-      '邀约小管家': '支持会议邀约、参会统计、会务提醒、会前事项收集和现场服务跟进。',
-      '会议邀请助手': '根据活动主题生成邀请函、活动文案、宴会排面说明和参会须知。',
-      '每日运势测测': '提供轻量化每日能量、生活灵感和仪式感内容，增强住客互动。',
-      '天气助手': '提供实时天气、空气质量、穿搭建议、雨具提醒和出行建议。',
-      '酒店管家': '统一回答客房服务、物品配送、酒店设施、营业时间、Wi-Fi、早餐、停车等高频问题。',
-      '行李寄存': '住客在线提交寄存件数、取件时间、联系方式等信息并生成服务记录。',
-      '客房维修': '住客提交设施故障、图片和房号后自动形成维修工单并跟踪进度。',
-      '开具发票': '住客在线提交抬头、税号、金额、邮箱等信息，支持电子发票进度查询。',
-      '车牌登记': '住客输入车牌号完成停车登记，可与离店核验或停车减免流程衔接。',
-      '开夜床': '住客预约夜床服务时间、人数和偏好，客房部按单执行并反馈状态。',
-      '外卖代送': '住客提交外卖存放位置和房号，员工接单后配送并更新状态。',
-      '洗衣/熨烫': '支持提交衣物数量、服务类型、取送时间和特殊注意事项。',
-      '预约叫醒': '住客选择叫醒时间、提醒方式和备注，系统生成提醒任务并支持执行确认。',
-      '客房清洁': '住客可预约清洁时间、清洁类型和免打扰偏好，客房部按工单处理。',
-      '客房送物': '支持在线申请饮用水、毛巾、牙具、枕头、被子等物品配送。',
-      '预约入住': '住客提前提交到店时间、入住偏好和特殊需求，酒店可提前准备房间。',
-      '周边美食': '按酒店位置推荐餐饮榜单、营业时间、距离、人均消费和本地特色菜。',
-      '周边打卡': '推荐拍照点、城市地标、景区入口、夜游路线和热门打卡内容。',
-      '文化体验': '推荐非遗工坊、民俗活动、博物馆、演出和地方节庆信息。',
-      '休闲运动': '推荐周边散步路线、健身、骑行、球类、温泉、康养休闲等内容。',
-      '入住引导': '提供到店路线、前台位置、入住材料、押金规则、早餐和设施使用说明。',
-      '设施咨询': '集中查询餐厅、洗衣房、健身房、会议室、停车场、充电桩等设施信息。',
-      '问题反馈': '住客可提交体验反馈、吐槽、建议和图片，系统跟踪回复与处理时长。',
-      '房间码快捷进入': '住客扫描酒店房间内张贴的专属房间二维码，系统自动识别并绑定当前房间信息，无需手动输入房号或验证身份，直接跳转至该房间专属的酒店智能体服务页面，同时自动加载该房间对应的个性化服务上下文（如入住人信息、预订权益、房间专属设施等）。',
-      '千人千面服务': '基于住客历史行为、入住类型、偏好和当前场景提供个性化推荐与服务排序。',
-      '一键绑定房间': '住客扫码或授权后快速绑定房间号，获取对应房间的专属服务上下文。',
-      'NFC碰一碰服务入口': '住客通过二维码打开碰碰贴服务入口，适配不支持NFC的设备。',
-      '一键好评复制': '生成或展示评价文案并支持一键复制，支持跳转或同步至外部平台。',
-      'Wi-Fi一键连接': '展示前台或房间Wi-Fi信息，支持一键复制密码并统计复制次数。',
-      '数字化服务入口组合': '组合房间码、NFC、微信分享、公众号、小程序搜索等多入口并分析来源效果。',
-      '房态房价': '展示实时房态、可售房量、房价策略、入住率和价格变动信息。',
-      '售卖房型': '管理各房型售卖状态、权益说明、库存展示和渠道可售配置。',
-      '工单处理与办结跟踪': '跟踪工单受理、分派、处理、办结、超时和评价状态，形成服务闭环。',
-      '工单响应时长与处理率': '统计平均响应时长、平均处理时长、处理率、超时率和各类型工单占比。',
-      '单店运营明细分析': '按单家酒店展示基础信息、服务数据、咨询热点、工单表现和运营简析。',
-      '交班助手': '自动汇总待办工单、未处理反馈、风险提醒、重点客情和班次注意事项。',
-      '任务转化': '将住客咨询、反馈、预警或运营建议转化为可追踪任务并分派责任人。',
-      '员工端使用分析': '统计员工端访问次数、B端智能体问答数据和常用功能分布。',
-      'AI问答详情留痕': '记录住客问题、对应智能体、提问时间、回答时间、响应耗时和反馈结果。',
-      '高频咨询主题分析': '自动统计问答高频关键词和主题分布，识别住客最关注的问题类型。',
-      'AI回答质量反馈': '支持住客对回答点赞、点踩，并按智能体、问题类型和时间维度汇总。',
-      '吐槽墙': '集中管理住客吐槽、建议和投诉，支持回复模板、处理记录和时长统计。',
-      '吐槽发布管理': '管理适合公开回应的评价、吐槽以及回复内容发布吐槽墙。',
-      '投诉预警闭环': '对高风险投诉独立标记、预警、跟踪补救动作和最终满意度。',
-      '景区': '维护景区基础信息、开放时间、门票政策、交通方式、推荐人群和上下架状态。',
-      '活动': '管理节庆活动、酒店活动、城市活动、报名规则、库存和展示位置。',
-      '专题管理': '按主题组合景区、活动、商品和攻略，形成专题页或推荐合集。',
-      '全维度数据埋点监控': '采集小程序访问、AI问答、工单、反馈、商城、NFC、扫码、评价等关键行为数据。',
-      '多门店运营数据看板': '汇总多家酒店登录、问答、工单、反馈、预警、商城和入口触达等核心数据。',
-      '风险预警管理': '统计当日和累计预警信息，区分风险等级并跟踪处理数量、状态和时长。',
-      '自动化报告导出': '支持生成Excel、PDF、HTML看板和结构化数据文件，覆盖集团汇总、门店对比和图表分析。',
-      '新闻': '发布平台公告、目的地资讯、酒店动态和运营新闻，支持分类与上下架。',
-      '协议': '维护用户协议、隐私政策、商户协议、服务条款和版本生效记录。',
-      '消息模板': '配置入住提醒、工单通知、活动推送、订单通知、评价引导等模板。',
-      '便利购物': '面向住客提供客房便利品、伴手礼、早餐券、延迟退房等轻量购买入口。',
-      '供应商': '平台管理供应商资料、资质、合作状态、结算方式、供货范围和联系人。',
-      '商品矩阵': '管理平台商品分类、SKU、价格、库存、图文、适用渠道和上下架状态。',
-      '渠道管控': '支持渠道机构提交主体信息、合作范围、联系人和经营资质。',
-      '机构入驻': '支持渠道机构提交主体信息、合作范围、联系人和经营资质。',
-      '认证审核': '对供应商、商户、机构资料进行资质审核、状态变更和留痕。',
-      '促销': '配置优惠券、满减、折扣、组合购、限时促销和适用门店/商品。',
-      '活动策略配置': '配置活动主题、参与商品、投放渠道、时间、库存、预算和效果指标。',
-      '自营商城': '支持酒店自营商品、服务券、套餐、本地特色商品销售。',
-      '平台商城': '支持上架平台提供的各类商品包括实物商品、旅游商品、各类服务等。',
-      '装修配置': '配置商城首页、分类页、商品卡片、推荐位、广告位和专题入口。',
-      '商品浏览与详情分析': '统计商品浏览次数、详情查看次数、停留时长、收藏和加购行为。',
-      '商城搜索高频关键词分析': '统计商城内搜索频次最高的关键词和无结果关键词。',
-      '酒店账号': '同步酒店组织、门店、员工账号、角色和服务开通状态。',
-      '商品同步': '将商品、价格、库存、上下架状态同步到酒店端、商城端和渠道端。',
-      '交易处理': '支持下单、支付、库存扣减、订单确认、发货/核销、分账和状态流转。',
-      '售后退款': '支持退款申请、审核、退货、部分退款、原路退回和售后记录。',
-      '自营与平台商城交易统计': '分别统计自营商城和平台商城交易笔数、交易金额、退款额和上架SKU数。',
-      '对账管理': '支持按日、月、年多维度汇总机构交易收支数据，展示对应周期的收入金额、支出金额及交易笔数，提供交易详情查看和对账报表下载功能。',
-      '结算中心': '支持实时展示在途货款金额、未完成订单金额、结算中金额、已完成结算金额等核心资金指标；可按订单编号、交易单号、订单类型、结算角色筛选查询收入详情，提供单笔及批量申请结算功能，清晰呈现每笔订单的实付金额、拨款金额、预计代扣个税、手续费等明细。',
-      '企业钱包': '管理企业账户余额、充值、扣款、结算明细和授权使用范围。',
-      '佣金结算': '统计分销佣金、平台服务费、商户分账和结算状态。',
-      '酒店快速入驻': '支持酒店通过智能体问答快速完成平台注册。',
-      '供应商快速入驻': '支持本地商户提交资质、商品、结算信息并完成审核上架。',
-      '问题池': '沉淀高频问答、未命中问题、点踩问题和待优化问题，支持审核入库。',
-      '资料池': '统一管理酒店资料、设施说明、制度文档、周边内容和商品资料。',
-      'FAQ': '维护标准问答、适用门店、生效时间、答案版本和相似问法。',
-      '智能体页面装修': '配置智能体头像、欢迎语、页面主题、入口模块、推荐卡片和品牌露出。',
-      '快捷指令': '配置常用服务入口、推荐问题、快捷按钮和场景化指令。',
-      '智能体配置': '设置不同智能体的角色定位、知识范围、回答风格、转人工规则和权限边界。',
-      '分层管理': '按集团、区域、门店、供应商、商户、渠道等层级管理组织和资源。',
-      '权限分配': '按角色配置菜单、数据范围、审批、上下架、结算和导出权限。',
-      '专业数字人形象': '以佩戴眼镜、身着干练商务正装的女性3D数字人作为酒店线上服务对外形象作为交互界面。',
-      '房间码快捷进入': '住客扫描酒店房间内张贴的专属房间二维码，系统自动识别并绑定当前房间信息，无需手动输入房号或验证身份，直接跳转至该房间专属的酒店智能体服务页面，同时自动加载该房间对应的个性化服务上下文。',
-      '商城购物': '支持商城商品浏览、选购、下单和支付等全流程购物体验。',
-      '订房': '提供房型查询、房态查看、在线预订和订单管理。',
-      '精选特色商城': '精选酒店特色商品和服务，提供差异化购物体验。',
-      '外卖代送': '住客提交外卖存放位置和房号，员工接单后配送并更新状态。',
-      'WiFi': '展示酒店Wi-Fi名称、密码和连接方式。',
-      '会议室': '查询会议室位置、容量、配套设施和预订方式。',
-      '停车场': '查询停车场位置、收费标准和剩余车位。',
-      '充电桩': '查询充电桩位置、使用状态和收费标准。',
-      '客房设施': '介绍客房内各项设施设备和使用说明。',
-      '洗衣房': '查询洗衣房位置、营业时间和服务项目。',
-      '餐厅': '查询餐厅位置、营业时间、菜系和预订方式。'
-    };
-    const rows = csv.trim().split(/\r?\n/).slice(1).map(row => {
-      const [primary, secondary, feature] = row.split(/[,\t]/);
-      return { primary, secondary, feature };
-    });
-    const grouped = [...new Set(rows.map(r => r.primary))].map((primary, i) => ({
-      primary, tone: tones[i], secondary: [...new Set(rows.filter(r => r.primary === primary).map(r => r.secondary))].map(name => ({ name, features: rows.filter(r => r.primary === primary && r.secondary === name).map(r => r.feature) }))
-    }));
-    const row = document.getElementById('primaryRow');
-    const esc = text => text.replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
-    grouped.forEach((group, index) => {
-      const groupEl = document.createElement('article');
-      groupEl.className = 'primary-group';
-      groupEl.dataset.index = index;
-      groupEl.style.setProperty('--tone', group.tone.color);
-      groupEl.style.setProperty('--tone-line', group.tone.line);
-      const primaryText = group.primary;
-      const bracketIdx = primaryText.indexOf('（');
-      const mainText = bracketIdx > -1 ? primaryText.slice(0, bracketIdx) : primaryText;
-      const bracketText = bracketIdx > -1 ? primaryText.slice(bracketIdx) : '';
-      groupEl.innerHTML = `<button class="primary-node" type="button" data-branch="${index}"><strong>${esc(mainText)}</strong>${bracketText ? `<em>${esc(bracketText)}</em>` : ''}</button><div class="secondary-grid">${group.secondary.map((item, secondaryIndex) => `<section class="secondary-wrap" data-branch="${index}" data-secondary="${secondaryIndex}"><div class="secondary-node" role="button" tabindex="0">${esc(item.name)}</div><div class="feature-grid">${item.features.map(feature => { const isTall = ['商品浏览与详情分析','商城搜索高频关键词分析','自营与平台商城交易统计','工单处理与办结跟踪','工单响应时长与处理率','全维度数据埋点监控','多门店运营数据看板','高频咨询主题分析','数字化服务入口组合','NFC碰一碰服务入口','AI回答质量反馈','AI问答详情留痕','员工端使用分析','智能体页面装修','结算中心','对账管理','活动策略配置','消息模板','精选特色商城','房间码快捷进入','全维度数据埋点监控','单店运营明细分析','多门店运营数据看板'].includes(feature); return `<span class="feature-node${isTall ? ' is-tall' : ''}">${esc(feature)}</span>`; }).join('')}</div></section>`).join('')}</div>`;
-      row.appendChild(groupEl);
-    });
-
-    function branchState(index) {
-      document.querySelectorAll('[data-branch]').forEach(el => {
-        el.classList.toggle('is-active', index !== null && Number(el.dataset.branch) === index);
-        if (el.classList.contains('primary-group')) el.classList.toggle('is-dimmed', index !== null && Number(el.dataset.index) !== index);
-      });
-      document.querySelectorAll('.primary-group').forEach(el => el.classList.toggle('is-dimmed', index !== null && Number(el.dataset.index) !== index));
-      document.querySelectorAll('.connector, .connector-flow').forEach(el => el.classList.toggle('is-active', index !== null && Number(el.dataset.branch) === index));
-    }
-    row.addEventListener('click', e => { const button = e.target.closest('.primary-node'); if (button) branchState(Number(button.dataset.branch)); });
-    row.addEventListener('pointerover', e => { const group = e.target.closest('.primary-group'); if (group) branchState(Number(group.dataset.index)); });
-    document.querySelector('.diagram-shell').addEventListener('pointerleave', () => branchState(null));
-
-    const tip = document.createElement('div');
-    tip.className = 'feature-tip';
-    document.body.appendChild(tip);
-    let hideTimer = null;
-
-    function showTip(node) {
-      const name = node.textContent.trim();
-      const desc = descriptions[name];
-      if (!desc) return;
-      tip.innerHTML = `<strong>${esc(name)}</strong>${esc(desc)}`;
-      const rect = node.getBoundingClientRect();
-      const tipW = 320;
-      const tipH = tip.offsetHeight;
-      let left = rect.left;
-      let top = rect.bottom + 8;
-      if (left + tipW > window.innerWidth - 12) left = window.innerWidth - tipW - 12;
-      if (left < 12) left = 12;
-      if (top + tipH > window.innerHeight - 12) top = rect.top - tipH - 8;
-      tip.style.left = left + 'px';
-      tip.style.top = top + 'px';
-      tip.classList.add('is-visible');
-    }
-    function hideTip() {
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => tip.classList.remove('is-visible'), 120);
-    }
-
-    row.addEventListener('mouseover', e => {
-      const node = e.target.closest('.feature-node');
-      if (node) { clearTimeout(hideTimer); showTip(node); }
-    });
-    row.addEventListener('mouseout', e => {
-      const node = e.target.closest('.feature-node');
-      if (node && !node.contains(e.relatedTarget)) hideTip();
-    });
-    document.addEventListener('scroll', hideTip, true);
-
-    function point(el, canvas) { const a = el.getBoundingClientRect(), b = canvas.getBoundingClientRect(); return { x: a.left - b.left + a.width / 2, top: a.top - b.top, bottom: a.bottom - b.top }; }
-    function drawConnectors() {
-      const diagram = document.getElementById('diagram'), svg = document.getElementById('connectors');
-      const root = point(document.getElementById('rootNode'), diagram);
-      const primaryNodes = [...document.querySelectorAll('.primary-node')];
-      const h = diagram.scrollHeight, w = diagram.clientWidth;
-      svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('width', w); svg.setAttribute('height', h);
-      const defs = svg.querySelector('defs'); svg.innerHTML = ''; if (defs) svg.appendChild(defs);
-      primaryNodes.forEach((node, i) => {
-        const p = point(node, diagram); const yMid = (root.top + p.bottom) / 2;
-        const d = `M ${root.x} ${root.top} C ${root.x} ${yMid}, ${p.x} ${yMid}, ${p.x} ${p.bottom}`;
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path'); path.classList.add('connector'); path.dataset.branch = i;
-        path.setAttribute('d', d); svg.appendChild(path);
-        const flow = document.createElementNS('http://www.w3.org/2000/svg', 'path'); flow.classList.add('connector-flow'); flow.dataset.branch = i;
-        flow.setAttribute('d', d); svg.appendChild(flow);
-      });
-    }
-    drawConnectors();
-    new ResizeObserver(drawConnectors).observe(document.getElementById('diagram'));
-    window.addEventListener('resize', drawConnectors);
-  </script>
 </body>
+<script>
+  const featureDetails = {
+    "设施问询": "酒店设施设备问答，涵盖 WiFi、会议室、停车场、健身房、洗衣房、餐厅等信息查询。",
+    "儿童服务": "亲子服务信息查询，涵盖儿童设施、儿童套餐、亲子活动等。",
+    "酒店政策": "酒店入住政策查询，涵盖入住/退房时间、押金规则、宠物政策等。",
+    "酒店活动": "酒店当前活动信息查询，涵盖促销活动、主题活动、会员权益等。",
+    "到店指引": "酒店位置及交通指引，涵盖地图导航、停车指引、接送服务等。",
+    "更多服务": "集合酒店问答、服务工单和线上购物入口，为住客提供一站式 AI 智能服务体验。",
+    "外卖代送": "外卖代送、客房清洁、设备维修、客房送物、续住预约等全品类工单，住客在线提交后自动生成，部门按单处理并跟踪进度。",
+    "客房清洁": "客房清洁服务工单，支持预约时间、清洁需求备注，酒店安排人员上门服务。",
+    "设备维修": "客房设备维修工单，涵盖空调、电视、灯具等设备故障报修，快速响应处理。",
+    "客房送物": "客房物品配送工单，涵盖毛巾、拖鞋、牙刷、矿泉水等日用品配送。",
+    "续住预约": "续住服务工单，住客可在线申请延长入住，自动查询房态并完成预约。",
+    "行李寄存": "行李寄存服务工单，住客在线提交寄存件数、取件时间、联系方式等信息并生成服务记录。",
+    "本地特产": "平台精选本地特产商品，涵盖地方美食、纪念品、文创产品等。",
+    "订房续住": "酒店客房在线购买入口，支持房型选择、日期查询、价格展示和预订下单。",
+    "文娱打卡": "本地文娱打卡推荐，涵盖网红景点、文化场所、娱乐场所等热门打卡地。",
+    "精品路线": "本地精品游览路线，涵盖一日游、半日游、主题游等精选行程安排。",
+    "景区门票": "平台精选景区门票，支持在线购票、电子票核销。",
+    "更多产品": "集合酒店商城全部商品入口，涵盖特产、房型、文娱、景区等多品类商品。",
+    "亲子陪伴": "亲子住客智能陪伴助手，提供儿童故事、儿歌、科普、亲子话题和亲子设施查询。",
+    "会议邀请助手": "会议/活动智能助手，自动生成邀请函、活动文案、宴会说明和参会须知。",
+    "健康小妙招": "旅途健康舒缓建议，涵盖疲劳、颈肩酸痛、眼胀、轻度不适等场景。",
+    "天气助手": "目的地实时天气、空气质量查询，提供穿搭、雨具和出行建议。",
+    "本地推荐官": "推荐地道美食、隐藏玩法、本地人私藏去处，支持按距离、口味、预算筛选。",
+    "睡眠助手": "助眠服务助手，提供睡前故事、轻音乐、白噪音、冥想引导和睡眠环境建议。",
+    "行程伴侣": "个性化旅行规划，包括定制路线、时间、费用预估和避坑提醒。",
+    "邀约小管家": "会务助手，支持会议邀约、参会统计、提醒、会前事项收集和现场服务跟进。",
+    "AI交班助手": "自动汇总待办事项、重点客情和班次注意事项，确保信息传递不遗漏。",
+    "服务质量分析": "统计工单响应时长、处理时长及超时率，量化服务执行效率。统计客人高频咨询问题，监测AI回复满意度（点赞/点踩），追踪风险预警信息。",
+    "经营数据看板": "汇总全渠道访问、咨询及商城交易数据（浏览、搜索、销量），支持单店与多店数据查看。",
+    "动态定价": "根据入住率、节假日及周边房价等因素，自动计算并推荐最优房价，提升经营收益。",
+    "需求预测": "基于历史数据预测未来客流走势，辅助提前安排物资、人员及库存准备。",
+    "智能排班": "结合客流预测与员工技能，自动生成排班表，平衡忙闲时段人力配置，控制用工成本。",
+    "深度财务": "整合营收、成本、退款及非房收入数据，提供精细化的利润核算与对账支持。",
+    "集团管理": "统一管理多门店的账号权限、基础信息及政策标准，实现集团化高效管控。",
+    "跨店比较": "横向对比各门店的入住率、营收、服务质量等核心指标，快速定位标杆与待改进门店。",
+    "更多功能不断更新中": "更多功能正在持续开发和更新中，敬请期待。",
+    "主动触达营销": "根据客户意向、入住周期、会员状态自动发起定向推送优惠与套餐，唤醒潜在客源、促进复购。",
+    "营销埋点分析": "记录访客交互、询价、点击、领券等关键行为，追踪营销路径，量化各环节转化效果。",
+    "营销文案生成": "输入房型、活动信息，快速生成小红书、朋友圈、套餐推广等多风格宣传文案。",
+    "营销海报生成": "依托活动主题、酒店素材，一键生成适配线上渠道分发的宣传海报。",
+    "营销方案编排": "支持促销配置与活动策略编排，组合优惠券、满减、折扣等营销权益。",
+    "每日运势测": "轻量化每日能量、生活灵感和仪式感内容，增强互动趣味。"
+  };
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "feature-tooltip";
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.innerHTML = "<strong></strong><span></span>";
+  document.body.appendChild(tooltip);
+  const titleNode = tooltip.querySelector("strong");
+  const detailNode = tooltip.querySelector("span");
+  let activeChip = null;
+
+  function placeTooltip(chip) {
+    const gap = 12;
+    const rect = chip.getBoundingClientRect();
+    const tipRect = tooltip.getBoundingClientRect();
+    let left = rect.left + rect.width / 2 - tipRect.width / 2;
+    let top = rect.top - tipRect.height - gap;
+    if (top < 12) top = rect.bottom + gap;
+    left = Math.max(14, Math.min(left, window.innerWidth - tipRect.width - 14));
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.style.setProperty("--arrow-left", `${Math.max(12, Math.min(tipRect.width - 12, rect.left + rect.width / 2 - left))}px`);
+    tooltip.classList.toggle("below", top > rect.bottom);
+  }
+
+  function showTooltip(chip) {
+    activeChip = chip;
+    const label = chip.textContent.trim();
+    titleNode.textContent = label;
+    detailNode.textContent = featureDetails[label] || "该功能用于完善酒店智能服务体验，具体能力可按业务配置扩展。";
+    tooltip.classList.add("is-visible");
+    placeTooltip(chip);
+  }
+
+  function hideTooltip(chip) {
+    if (activeChip === chip) { tooltip.classList.remove("is-visible"); activeChip = null; }
+  }
+
+  document.querySelectorAll(".high .chip").forEach((chip) => {
+    chip.setAttribute("tabindex", "0");
+    chip.setAttribute("aria-label", `${chip.textContent.trim()}：悬停查看功能详情`);
+    chip.addEventListener("mouseenter", () => showTooltip(chip));
+    chip.addEventListener("mouseleave", () => hideTooltip(chip));
+    chip.addEventListener("focus", () => showTooltip(chip));
+    chip.addEventListener("blur", () => hideTooltip(chip));
+  });
+  window.addEventListener("resize", () => activeChip && placeTooltip(activeChip));
+  window.addEventListener("scroll", () => activeChip && placeTooltip(activeChip), { passive: true });
+</script>
 </html>
