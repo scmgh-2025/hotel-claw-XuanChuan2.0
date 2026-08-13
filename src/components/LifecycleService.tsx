@@ -138,7 +138,7 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
                         isActive ? 'text-brand-600 font-bold' : 'text-slate-400'
                       }`}
                     >
-                      {s.phase.replace('阶段 ', '')}
+                      {s.phase}
                     </span>
                   </button>
                 );
@@ -147,9 +147,9 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
           </div>
 
           <div className="bg-slate-50 rounded-2xl p-5 md:p-6 border border-slate-100">
-            <div className="mb-4">
-              <h3 className="font-display text-lg md:text-xl font-bold text-slate-900 flex items-center gap-1.5">
-                {stage.title}
+            <div className="text-center mb-4">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-slate-900">
+                {stage.phase.replace(/^\d+\./, '')}
               </h3>
             </div>
 

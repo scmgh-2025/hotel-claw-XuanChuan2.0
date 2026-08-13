@@ -254,7 +254,7 @@ export const PAIN_POINTS: PainPoint[] = [
 export const LIFECYCLE_STAGES: LifecycleStage[] = [
   {
     id: 1,
-    phase: '阶段 1：客人到店前',
+    phase: '1.预订与住前',
     title: '浏览 → 咨询 → 预订 → 导航',
     problems: [
       { title: '咨询响应不及时', desc: '客人想了解房型、停车、早餐等信息时，只能通过电话或微信联系。前台繁忙时电话占线或回复延迟，信息获取效率低。' },
@@ -269,7 +269,7 @@ export const LIFECYCLE_STAGES: LifecycleStage[] = [
   },
   {
     id: 2,
-    phase: '阶段 2：办理入住',
+    phase: '2.到店入住',
     title: '到店 → 核验 → 分房 → 欢迎',
     problems: [
       { title: '高峰时段排队耗时', desc: '客人抵店后需在前台排队等候人工办理，高峰期等待时间较长，携带行李时尤感不便。' },
@@ -284,7 +284,7 @@ export const LIFECYCLE_STAGES: LifecycleStage[] = [
   },
   {
     id: 3,
-    phase: '阶段 3：住中服务',
+    phase: '3.住中服务',
     title: '呼叫 → 派单 → 响应 → 闭环',
     problems: [
       { title: '服务请求依赖电话中转，进度不透明', desc: '客人需送物、报修或保洁时，须致电前台，再由前台转达至服务人员，沟通链路长且易遗漏；提交请求后，客人无法知晓是否已受理、预计送达时间，等待期间易产生焦虑。' },
@@ -301,7 +301,7 @@ export const LIFECYCLE_STAGES: LifecycleStage[] = [
   },
   {
     id: 4,
-    phase: '阶段 4：本地消费',
+    phase: '4.本地旅购',
     title: '餐饮 → 周边 → 特产 → 出行',
     problems: [
       { title: '信息获取依赖人工，推荐局限且主观', desc: '客人咨询周边吃喝玩乐时，前台仅能凭个人经验作答，覆盖面窄、准确性低、千人一面，难以匹配不同客人的个性化偏好，推荐质量参差不齐。' },
@@ -318,7 +318,7 @@ export const LIFECYCLE_STAGES: LifecycleStage[] = [
   },
   {
     id: 5,
-    phase: '阶段 5：退房离店',
+    phase: '5.退房离店',
     title: '结算 → 送别 → 发票 → 评价',
     problems: [
       { title: '早间退房高峰需排队', desc: '退房集中时段，客人需在前台排队等候查房、结算，急于离店时体验不佳。' },
@@ -335,7 +335,7 @@ export const LIFECYCLE_STAGES: LifecycleStage[] = [
   },
   {
     id: 6,
-    phase: '阶段 6：离店后运营',
+    phase: '6.离店后运营',
     title: '召回 → 运营 → 会员 → 挽回',
     problems: [
       { title: '离店后缺乏后续连接', desc: '客人离店后与酒店再无互动，下次出行时易被遗忘或转向其他酒店。' },
