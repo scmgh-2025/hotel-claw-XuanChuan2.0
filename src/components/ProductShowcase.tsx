@@ -73,7 +73,7 @@ export default function ProductShowcase() {
         </div>
         <div className="rounded-none border-y border-slate-200 shadow-sm overflow-hidden bg-white">
           <iframe
-            src="/hotel-claw-XuanChuan2.0/hotel_smart_service.html"
+            src="/hotel-claw-XuanChuan2.0/skill-matrix.html"
             title="HotelClaw 智能服务"
             className="w-full"
             scrolling="no"

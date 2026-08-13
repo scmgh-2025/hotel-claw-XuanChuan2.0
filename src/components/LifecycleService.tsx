@@ -159,7 +159,6 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <div className="bg-orange-50 rounded-xl p-4 border-2 border-orange-200 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-orange-700 font-bold text-base mb-3">
-                    <span>🧔</span>
                     没有智能体时
                   </div>
                   <div className="space-y-1.5">
@@ -182,7 +181,6 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
               <div className="bg-brand-50 rounded-xl p-4 border-2 border-brand-200 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-brand-700 font-bold text-base mb-3">
-                    <span>🤖</span>
                     HotelClaw 智能体赋能
                   </div>
                   <div className="space-y-1.5">
@@ -205,14 +203,12 @@ export default function LifecycleService({ forcedViewMode, hideTitle }: { forced
             {/* Role value section */}
             <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-indigo-50/40 p-3.5 rounded-xl border border-brand-100/30 flex items-start gap-3">
-                <span className="text-xl shrink-0">💝</span>
                 <div>
                   <h4 className="text-sm font-bold text-brand-900">住客获得价值</h4>
                   <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueGuest}</p>
                 </div>
               </div>
               <div className="bg-emerald-50/40 p-3.5 rounded-xl border border-emerald-100/30 flex items-start gap-3">
-                <span className="text-xl shrink-0">💰</span>
                 <div>
                   <h4 className="text-sm font-bold text-emerald-900">酒店获得价值</h4>
                   <p className="text-sm text-slate-600 mt-1 leading-relaxed font-medium">{stage.valueHotel}</p>
