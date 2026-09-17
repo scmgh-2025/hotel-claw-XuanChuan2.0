@@ -27,16 +27,7 @@ export default function RoiCalculator() {
   const otaCommissionRate = 0.15;
   const annualOtaSaved = Math.round(annualRoomNights * privateRepeatConversion * adr * otaCommissionRate);
 
-  let monthlyCost = 99;
-  let tier = '专业版 (Pro)';
-  if (rooms <= 50) {
-    monthlyCost = 59;
-    tier = '基础版';
-  } else if (rooms > 150) {
-    monthlyCost = 299;
-    tier = '旗舰尊享版 (Pro+)';
-  }
-  const annualSaaS = monthlyCost * 12;
+  const annualSaaS = 199;
 
   const totalBenefit = annualStaffSaved + annualSpecialtyRevenue + annualOtaSaved;
   const netProfit = totalBenefit - annualSaaS;
@@ -135,51 +126,30 @@ export default function RoiCalculator() {
             className="mt-auto bg-gradient-to-br from-blue-50 to-indigo-50 p-3.5 rounded-xl border border-blue-100 text-center cursor-pointer hover:shadow-md transition-shadow"
           >
             <div className="flex items-center justify-center gap-2">
-              <div className="text-sm text-slate-500">酒店智能体 SaaS 投入</div>
+              <div className="text-sm text-slate-500">黄小西酒店智能体·住客端 SaaS 投入</div>
               <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${expanded.saas ? 'rotate-180' : ''}`} />
             </div>
             <div className="text-3xl font-display font-extrabold text-brand-600 mt-1">
-              ¥{monthlyCost} <span className="text-base font-normal text-slate-500">/ 月</span>
+              ¥199 <span className="text-base font-normal text-slate-500">元/年</span>
             </div>
             <div className="text-sm text-slate-600 font-semibold mt-1">
-              配置系统：{tier} (年缴：¥{annualSaaS})
+              套餐类型：基础套餐
             </div>
-            <div className="text-sm text-slate-400 mt-1">
-              *一套年费通常仅需五间房费，超低入场门槛
-            </div>
-            <div className={`overflow-hidden transition-all duration-300 ${expanded.saas ? 'max-h-[400px] mt-3' : 'max-h-0'}`}>
+            <div className="overflow-hidden max-h-[400px] mt-3">
               <div className="pt-3 border-t border-blue-100 space-y-2 text-left">
-                <div className="text-sm font-bold text-slate-600">📋 版本判定规则</div>
-                <div className={`rounded-lg p-3 border ${rooms <= 50 ? 'bg-brand-50 border-brand-200' : 'bg-white border-blue-100'}`}>
-                  <div className="flex items-center justify-between">
-                    <div className="font-bold text-slate-700">基础版</div>
-                    <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms <= 50 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      ≤ 50 间
-                    </div>
-                  </div>
-                  <div className="text-brand-600 font-bold mt-1">¥59 / 月</div>
-                  <div className="text-xs text-slate-500 mt-0.5">适合小型民宿、精品客栈</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="rounded-lg p-2 border border-emerald-100 bg-emerald-50 flex items-center gap-1.5">
+                  <span className="text-emerald-600 font-bold text-base leading-none">✓</span>
+                  <span className="text-xs font-bold text-slate-700">包含住客端全部软件功能</span>
                 </div>
-                <div className={`rounded-lg p-3 border ${rooms > 50 && rooms <= 150 ? 'bg-brand-50 border-brand-200' : 'bg-white border-blue-100'}`}>
-                  <div className="flex items-center justify-between">
-                    <div className="font-bold text-slate-700">专业版 (Pro)</div>
-                    <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms > 50 && rooms <= 150 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      51 ~ 150 间
-                    </div>
-                  </div>
-                  <div className="text-brand-600 font-bold mt-1">¥99 / 月</div>
-                  <div className="text-xs text-slate-500 mt-0.5">适合中大型酒店、连锁品牌</div>
+                <div className="rounded-lg p-2 border border-amber-100 bg-amber-50 flex items-center gap-1.5">
+                  <span className="text-amber-600 font-bold text-base leading-none">⚠</span>
+                  <span className="text-xs text-slate-700">年度 AI 对话总次数上限：<span className="font-bold text-slate-800">10000 次</span></span>
                 </div>
-                <div className={`rounded-lg p-3 border ${rooms > 150 ? 'bg-brand-50 border-brand-200' : 'bg-white border-blue-100'}`}>
-                  <div className="flex items-center justify-between">
-                    <div className="font-bold text-slate-700">旗舰尊享版 (Pro+)</div>
-                    <div className={`text-xs font-bold px-2 py-0.5 rounded-full ${rooms > 150 ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-500'}`}>
-                      &gt; 150 间
-                    </div>
-                  </div>
-                  <div className="text-brand-600 font-bold mt-1">¥299 / 月</div>
-                  <div className="text-xs text-slate-500 mt-0.5">适合酒店集团、大型度假村</div>
-                </div>
+              </div>
+                <p className="text-xs text-slate-400 pt-1 border-t border-blue-100">
+                  各类现场物料及硬件，需另行采购；硬件规格及高阶方案请咨询工作人员。
+                </p>
               </div>
             </div>
           </div>
@@ -187,7 +157,7 @@ export default function RoiCalculator() {
 
         {/* Right Outputs Metrics bento */}
         <div className="lg:col-span-7 space-y-4 flex flex-col">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
             {/* Front Desk Benefit */}
             <div
               onClick={() => toggleExpand('staff')}
